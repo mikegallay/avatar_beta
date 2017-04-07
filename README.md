@@ -1,1 +1,0 @@
-# Avatar Beta Project Starter
