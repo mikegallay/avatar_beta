@@ -20,7 +20,8 @@ class WebpackDevConfig extends WebpackBaseConfig {
       ],
       plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        // new webpack.NoErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
       ]
     };
   }

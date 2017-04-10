@@ -2,11 +2,19 @@ import React from 'react';
 import './testcomponent.scss';
 
 class TestComponent extends React.Component {
+  constructor(props) {
+		super(props);
+    console.log('testcomponent',props);
+  }
+  componentWillMount(){
+    this.props.data.actions.changeItem('Bill');
+    console.log('HERE',this.props);
+  }
 
   render() {
     return (
       <div className="testcomponent-component">
-        This is test Component copy.
+        This is {this.props.data.addItem.user.name}’s house!
       </div>
     );
   }

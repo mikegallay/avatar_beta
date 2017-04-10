@@ -10,6 +10,10 @@
 /* Populated by react-webpack-redux:reducer */
 import { combineReducers } from 'redux';
 
-const reducers = {};
+import addItem from "./addItem"
+
+const reducers = {
+  addItem,
+};
 const combined = combineReducers(reducers);
 module.exports = combined;
