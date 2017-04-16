@@ -1,9 +1,0 @@
-{
-  "generator-react-webpack": {
-    "appName": "avatar-beta",
-    "style": "scss",
-    "cssmodules": false,
-    "postcss": true,
-    "generatedWithVersion": 4
-  }
-}
