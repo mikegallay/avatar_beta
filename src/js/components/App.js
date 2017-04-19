@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
+import { Link } from "react-router"
 
 import { bindActionCreators } from 'redux'
 import { fetchUser } from "../actions/userActions"
@@ -16,31 +17,19 @@ import { fetchTweets } from "../actions/tweetsActions"
     actions:bindActionCreators({fetchUser, fetchTweets}, dispatch)
   }
 })
-export default class Layout extends React.Component {
+export default class App extends React.Component {
   componentWillMount() {
-
-    this.props.actions.fetchUser()
-  }
-  componentDidUpdate(){
-    console.log(this.props);
-  }
-
-  fetchTweets() {
-    this.props.actions.fetchTweets()
+    console.log('app props',this.props);
   }
 
   render() {
-    const { user, tweets } = this.props;
-
-    if (!tweets.length) {
-      return <button onClick={this.fetchTweets.bind(this)}>load tweets</button>
-    }
-
-    const mappedTweets = tweets.map(tweet => <li key={tweet.id}>{tweet.id}</li>)
-
     return <div>
-      <h1>{user.name}</h1>
-      <ul>{mappedTweets}</ul>
-    </div>
+      <h1>App</h1>
+      <Link to="archives">archives </Link>
+      <Link to="news">news</Link>
+      <div class="container">
+        {this.props.children}
+      </div>
+      </div>
   }
 }
