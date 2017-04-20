@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { styles } from './styles.scss';
 import { connect } from "react-redux"
 
 import KeyableElement from '../KeyableElement'

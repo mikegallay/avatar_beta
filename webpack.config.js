@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-
 const debug = process.env.NODE_ENV !== "production";
 
 module.exports = {

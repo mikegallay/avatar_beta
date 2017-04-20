@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import { styles } from './styles.scss';
+import { styles } from './styles.scss';
 // import { connect } from "react-redux"
 
 //import { bindActionCreators } from 'redux'
@@ -12,6 +12,10 @@ export default class ElementAnimation extends Component {
     console.log('ElementAnimation',this.props);
   }
   render() {
-    return <div>ElementAnimation</div>
+    return (
+      <div className={ `${styles}` }>
+        <div>ElementAnimation</div>
+      </div>
+    )
   }
 }

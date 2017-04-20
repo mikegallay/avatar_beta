@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { styles } from './styles.scss';
+import { styles }  from './styles.scss';
 // require('./styles.scss');
-// import { connect } from "react-redux"
+import { connect } from "react-redux"
 
 import TimelineEngine from './components/TimelineEngine'
 
@@ -13,7 +13,7 @@ console.log('KeyableElement',this.props);
   }
   render() {
     return (
-    <div className='av-ke-container'>
+    <div className={ `${styles}` }>
       <div>
         <h1>KE  {this.props.id}</h1>
         <TimelineEngine />
