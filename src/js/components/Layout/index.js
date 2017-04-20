@@ -1,46 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 
+import KeyableElement from '../KeyableElement'
+
 import { bindActionCreators } from 'redux'
-import { fetchUser } from "../../actions/userActions"
-import { fetchTweets } from "../../actions/tweetsActions"
+// import { fetchUser } from "../../actions/userActions"
+// import { fetchTweets } from "../../actions/tweetsActions"
 
 @connect((store) => {
   return {
     user: store.rootState.user.user,
-    userFetched: store.rootState.user.fetched,
-    tweets: store.rootState.tweets.tweets,
+    // userFetched: store.rootState.user.fetched,
+    // tweets: store.rootState.tweets.tweets,
   };
 },(dispatch) => {
   return {
-    actions:bindActionCreators({fetchUser, fetchTweets}, dispatch)
+    actions:bindActionCreators({}, dispatch)
   }
 })
 export default class Layout extends Component {
   componentWillMount() {
 
-    this.props.actions.fetchUser()
   }
   componentDidUpdate(){
-    console.log(this.props);
-  }
-
-  fetchTweets() {
-    this.props.actions.fetchTweets()
+    console.log('Layout',this.props);
   }
 
   render() {
-    const { user, tweets } = this.props;
 
-    if (!tweets.length) {
-      return <button onClick={this.fetchTweets.bind(this)}>load tweets</button>
-    }
 
-    const mappedTweets = tweets.map(tweet => <li key={tweet.id}>{tweet.id}</li>)
+    // const mappedTweets = tweets.map(tweet => <li key={tweet.id}>{tweet.id}</li>)
 
     return <div>
-      <h1>{user.name}</h1>
-      <ul>{mappedTweets}</ul>
+      <KeyableElement id="potato"/>
     </div>
   }
 }

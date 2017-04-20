@@ -9,8 +9,8 @@ import App from "./components/App"
 import Layout from "./components/Layout"
 
 export default (
-  <Route path="/" component={KeyableElement}>
-    <IndexRoute component={Layout}></IndexRoute>
+  <Route path="/" component={Layout}>
+    <IndexRoute component={Archives}></IndexRoute>
     <Route path="archives" name="archives" component={Archives}></Route>
     <Route path="news" name="news" component={News}></Route>
   </Route>
