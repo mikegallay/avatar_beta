@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from 'react';
 
 // import Layout from "../components/Layout";
 
-export default class News extends React.Component {
+export default class News extends Component {
   render() {
     const { query } = this.props.location;
     const { params } = this.props;

@@ -1,9 +1,9 @@
-import React from "react"
+import React, { Component } from 'react';
 import { connect } from "react-redux"
 
 import { bindActionCreators } from 'redux'
-import { fetchUser } from "../actions/userActions"
-import { fetchTweets } from "../actions/tweetsActions"
+import { fetchUser } from "../../actions/userActions"
+import { fetchTweets } from "../../actions/tweetsActions"
 
 @connect((store) => {
   return {
@@ -16,7 +16,7 @@ import { fetchTweets } from "../actions/tweetsActions"
     actions:bindActionCreators({fetchUser, fetchTweets}, dispatch)
   }
 })
-export default class Layout extends React.Component {
+export default class Layout extends Component {
   componentWillMount() {
 
     this.props.actions.fetchUser()
