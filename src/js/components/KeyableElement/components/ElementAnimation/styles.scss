@@ -1,3 +1,39 @@
 :local(.styles) {
+  .element-wrapper{
+    overflow: visible;
+    left:100px;
+    position: absolute;
 
+    .element-scale, .element-rotate{
+      position: relative;
+      width:100%;
+      height:100%;
+
+    }
+    .element-scale{
+      transform: scale(1);
+      transform-origin: 0% 0%;
+      transition: transform .5s;
+    }
+    .element-rotate{
+      transform: rotate(0deg);
+      transform-origin: 0% 0%;
+      transition: transform 1s;
+    }
+    &.s{
+        .element-scale{transform: scale(1.4);}
+    }
+    &.r{
+        .element-rotate{transform: rotate(45deg);}
+    }
+  }
+  .element-holder{
+    position:relative;
+    width:100%;
+    height:100%;
+    background: yellow;
+    opacity:.5;
+    left: -50%;
+    top:-50%;
+  }
 }

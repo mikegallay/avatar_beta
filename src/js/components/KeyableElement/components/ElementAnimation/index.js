@@ -4,17 +4,38 @@ import { styles } from './styles.scss';
 
 //import { bindActionCreators } from 'redux'
 
-export default class ControlsAnimation extends Component {
+export default class ElementAnimation extends Component {
+  constructor(props){
+    super(props)
+    console.log('ElementAnimation',props);
+    const data = this.props.data
+
+    this.state = {
+      w : data ? data.w + 'px' : '100px',
+      h : data ? data.h + 'px' : '100px',
+    }
+  }
   componentWillMount() {
 
   }
   componentDidUpdate(){
-    console.log('ControlsAnimation',this.props);
+
   }
   render() {
     return (
       <div className={ `${styles}` }>
-        <div>ControlsAnimation</div>
+        <div className='element-wrapper' style={{
+          'width':this.state.w,
+          'height':this.state.h,
+          'background':'none'
+        }}>
+          <div className='element-scale'>
+            <div className='element-rotate'>
+              <div className='element-holder'>ElementAnimation</div>
+            </div>
+            </div>
+
+        </div>
       </div>
     )
   }
