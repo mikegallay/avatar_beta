@@ -9,14 +9,14 @@ export default class TimelineEngine extends Component {
   componentWillMount() {
 
   }
-  componentDidUpdate(){
+  componentDidMount(){
     console.log('TimelineEngine',this.props);
   }
   render() {
     return (
       <div className={ `${styles}` }>
-        <div>TimelineEngine</div>
-        <ElementAnimation data={{'w':50,'h':'75', 'id' : this.props.id}}/>
+        {/*<div>TimelineEngine</div>*/}
+        <ElementAnimation data={this.props.data}/>
         <ControlsAnimation/>
       </div>
     )

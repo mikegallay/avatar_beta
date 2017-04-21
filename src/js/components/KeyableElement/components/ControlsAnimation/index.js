@@ -17,7 +17,7 @@ export default class ControlsAnimation extends Component {
   render() {
     return (
       <div className={ `${styles}` }>
-        <div>ControlsAnimation</div>
+        {/*<div>ControlsAnimation</div>*/}
       </div>
     )
   }
