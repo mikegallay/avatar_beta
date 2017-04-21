@@ -4,7 +4,7 @@
     left:100px;
     position: absolute;
 
-    .element-scale, .element-rotate{
+    .element-scale, .element-rotateX, .element-rotateY, .element-rotateZ{
       position: relative;
       width:100%;
       height:100%;
@@ -15,24 +15,37 @@
       transform-origin: 0% 0%;
       transition: transform .5s;
     }
-    .element-rotate{
+    .element-rotateX, .element-rotateY, .element-rotateZ{
       transform: rotate(0deg);
       transform-origin: 0% 0%;
       transition: transform 1s;
+      transform: perspective( 200px );
+    }
+    .element-rotateY{
+      transition: transform .5s;
+    }
+    .element-rotateY{
+      transition: transform 2s;
     }
     &.s{
         .element-scale{transform: scale(1.4);}
     }
-    &.r{
-        .element-rotate{transform: rotate(45deg);}
+    &.rx{
+        .element-rotateX{transform: rotateX(45deg);}
+    }
+    &.ry{
+        .element-rotateY{transform: rotateY(180deg);}
+    }
+    &.rz{
+        .element-rotateZ{transform: rotateZ(180deg);}
     }
   }
   .element-holder{
     position:relative;
     width:100%;
     height:100%;
-    background: yellow;
-    opacity:.5;
+    background: black;
+    // opacity:.5;
     left: -50%;
     top:-50%;
   }

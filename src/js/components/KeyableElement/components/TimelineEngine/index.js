@@ -16,7 +16,7 @@ export default class TimelineEngine extends Component {
     return (
       <div className={ `${styles}` }>
         <div>TimelineEngine</div>
-        <ElementAnimation data={{'w':50,'h':'75'}}/>
+        <ElementAnimation data={{'w':50,'h':'75', 'id' : this.props.id}}/>
         <ControlsAnimation/>
       </div>
     )

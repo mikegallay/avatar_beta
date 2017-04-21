@@ -30,8 +30,13 @@ export default class ElementAnimation extends Component {
           'background':'none'
         }}>
           <div className='element-scale'>
-            <div className='element-rotate'>
-              <div className='element-holder'>ElementAnimation</div>
+            <div className='element-rotateX'>
+              <div className='element-rotateY'>
+                <div className='element-rotateZ'>
+                  <div className='element-holder'>ElementAnimation</div>
+                  {this.props.children}
+                </div>
+              </div>
             </div>
             </div>
 

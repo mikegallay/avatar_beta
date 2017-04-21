@@ -15,8 +15,8 @@ console.log('KeyableElement',this.props);
     return (
     <div className={ `${styles}` }>
       <div>
-        <h1>KE  {this.props.id}</h1>
-        <TimelineEngine />
+        <p>KE  {this.props.id}</p>
+        <TimelineEngine id={this.props.id}/>
       </div>
     </div>
     )
