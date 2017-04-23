@@ -27,20 +27,23 @@ export default class Layout extends Component {
   constructor(props){
     super(props)
     this.state={
-      rot:0
+      rot:90
     }
   }
-  componentWillMount() {
-
+  componentDidUpdate() {
+    console.log('update');
   }
   componentDidMount(){
     console.log('Layout',this.props);
     var that = this
     // TweenMax.to('.face .element-rotateY',1,{rotationY:45,delay:1,ease:Linear.easeNone})
     window.addEventListener('click',function(){
-      console.log('click');
-      that.setState({rot:that.state.rot+90})
-      TweenMax.to('.face.element-rotateZ',1,{rotationZ:that.state.rot,transformOrigin:"50% 50% 0",ease:Linear.easeNone})
+      console.log('click2');
+
+      // TweenMax.set('.face.element-rotateZ',{rotationZ:that.state.rot})
+      TweenMax.to('.face.element-rotateZ',.25,{rotationZ:that.state.rot,ease:Linear.easeNone,onComplete: () => {that.setState({rot:that.state.rot+90})}})
+      // that.setState({rot:that.state.rot+90})
+
     })
 
   }
@@ -60,6 +63,7 @@ export default class Layout extends Component {
             <KeyableElement data={{'w':50,'h':50, 'id':'right-eye', 'x':'75%','y':'25%'}}/>
           </ElementAnimation>
           <ControlsAnimation/>
+          <h6>CLICK ME!</h6>
         </div>
       </div>
     )
