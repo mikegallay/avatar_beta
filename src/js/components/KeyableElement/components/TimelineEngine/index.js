@@ -16,7 +16,9 @@ export default class TimelineEngine extends Component {
     return (
       <div className={ `${styles}` }>
         {/*<div>TimelineEngine</div>*/}
-        <ElementAnimation data={this.props.data}/>
+        <ElementAnimation data={this.props.data}>
+          {this.props.children}
+        </ElementAnimation>
         <ControlsAnimation/>
       </div>
     )

@@ -58,11 +58,13 @@ export default class Layout extends Component {
         <div className="av-ke-main">
           {/*<p>KEM</p>
           <div>TimelineEngine</div>*/}
-          <ElementAnimation data={{'w':200,'h':200, 'id':'face'}}>
+          <TimelineEngine data={{'w':200,'h':200, 'id':'face'}}>
             <KeyableElement data={{'w':50,'h':50, 'id':'left-eye', 'x':'25%','y':'25%'}}/>
             <KeyableElement data={{'w':50,'h':50, 'id':'right-eye', 'x':'75%','y':'25%'}}/>
-          </ElementAnimation>
-          <ControlsAnimation/>
+            <KeyableElement data={{'w':100,'h':25, 'id':'mouth', 'x':'50%','y':'70%'}}/>
+          </TimelineEngine>
+          {/*<ElementAnimation data={{'w':200,'h':200, 'id':'face'}}/>
+          <ControlsAnimation/>*/}
           <h6>CLICK ME!</h6>
         </div>
       </div>

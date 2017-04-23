@@ -41,8 +41,9 @@ export default class ElementAnimation extends Component {
             <div className={`element-rotateX ${this.state.id}`}>
               <div className={`element-rotateY ${this.state.id}`}>
                 <div className={`element-rotateZ ${this.state.id}`}>
-                  <div className={`element-holder ${this.state.id}`}></div>
-                  {this.props.children}
+                  <div className={`element-holder ${this.state.id}`}>
+                    {this.props.children}
+                  </div>
                 </div>
               </div>
             </div>
