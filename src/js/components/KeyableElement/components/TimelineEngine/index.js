@@ -39,7 +39,7 @@ export default class TimelineEngine extends Component {
     )
   }
   renderAnimationControls(){
-    return <ElementControls actions={this.props.actions} data={this.props.data}/>
+    return <ElementControls actions={this.props.actions} activeControl={this.props.activeControl} data={this.props.data}/>
   }
   render() {
     return (

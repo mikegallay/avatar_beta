@@ -13,6 +13,7 @@ export default class ControlsAnimation extends Component {
 
   }
   componentDidUpdate(){
+    // console.log('ControlsAnimationUpdate',this.props);
   }
   render() {
     return (

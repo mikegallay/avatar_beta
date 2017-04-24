@@ -15,7 +15,7 @@ console.log('KeyableElement',this.props);
     return (
     <div className={ `${styles}` }>
       <div>
-        <TimelineEngine actions={this.props.actions} data={this.props.data}/>
+        <TimelineEngine actions={this.props.actions} activeControl={this.props.activeControl} data={this.props.data}/>
       </div>
     </div>
     )

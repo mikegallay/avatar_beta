@@ -2,16 +2,14 @@ export function hideAllControls() {
   return {
     type: "HIDE_ALL_CONTROLS",
     payload: {
-      isActive: false
+      activeControls: false
     }
   }
 }
 
-export function toggleControl(isActive) {
+export function toggleControl(id) {
   return {
     type: "TOGGLE_CONTROL",
-    payload: {
-      isActive: !isActive
-    }
+    payload: id
   }
 }
