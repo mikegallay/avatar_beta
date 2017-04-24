@@ -15,6 +15,7 @@ import { bindActionCreators } from 'redux'
 @connect((store) => {
   return {
     user: store.rootState.user.user,
+    avatar: store.rootState.avatar
     // userFetched: store.rootState.user.fetched,
     // tweets: store.rootState.tweets.tweets,
   };
@@ -29,43 +30,44 @@ export default class Layout extends Component {
     this.state={
       rot:90
     }
+    //add masterTL
   }
   componentDidUpdate() {
-    console.log('update');
+    // console.log('update');
   }
   componentDidMount(){
     console.log('Layout',this.props);
     var that = this
     // TweenMax.to('.face .element-rotateY',1,{rotationY:45,delay:1,ease:Linear.easeNone})
-    window.addEventListener('click',function(){
-      console.log('click2');
-
-      // TweenMax.set('.face.element-rotateZ',{rotationZ:that.state.rot})
+    this.$clickme.addEventListener('click',function(){
+      // console.log('click2');
       TweenMax.to('.face.element-rotateZ',.25,{rotationZ:that.state.rot,ease:Linear.easeNone,onComplete: () => {that.setState({rot:that.state.rot+90})}})
-      // that.setState({rot:that.state.rot+90})
-
+      TweenMax.to('.right-eye.element-scale',.2,{scaleX:1,scaleY:.1,delay:.3, yoyo:true, repeat:1, ease:Linear.easeNone})
     })
 
   }
 
   render() {
-
-
-    // const mappedTweets = tweets.map(tweet => <li key={tweet.id}>{tweet.id}</li>)
+    const {avatar} = this.props.avatar
+    const mappedElements = this.props.avatar.elements.map(element =>
+      <KeyableElement
+        key={element.id}
+        data={{
+          'w':element.w,
+          'h':element.h,
+          'id':element.id,
+          'x':element.bx,
+          'y':element.by
+        }}/>)
 
     return (
       <div className={ `${styles}` }>
         <div className="av-ke-main">
-          {/*<p>KEM</p>
-          <div>TimelineEngine</div>*/}
-          <TimelineEngine data={{'w':200,'h':200, 'id':'face'}}>
-            <KeyableElement data={{'w':50,'h':50, 'id':'left-eye', 'x':'25%','y':'25%'}}/>
-            <KeyableElement data={{'w':50,'h':50, 'id':'right-eye', 'x':'75%','y':'25%'}}/>
-            <KeyableElement data={{'w':100,'h':25, 'id':'mouth', 'x':'50%','y':'70%'}}/>
+          <TimelineEngine data={{'id':'masterTL'}}/>
+          <TimelineEngine data={this.props.avatar.mainElement}>
+            {mappedElements}
           </TimelineEngine>
-          {/*<ElementAnimation data={{'w':200,'h':200, 'id':'face'}}/>
-          <ControlsAnimation/>*/}
-          <h6>CLICK ME!</h6>
+          <h6 ref={clickme => this.$clickme = clickme}>CLICK ME!</h6>
         </div>
       </div>
     )

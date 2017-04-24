@@ -16,6 +16,10 @@
     width:200px;
     height:200px;
     position: relative;
+    pointer-events: none;
+    div{
+      pointer-events: none;
+    }
   }
 
   .element-wrapper{

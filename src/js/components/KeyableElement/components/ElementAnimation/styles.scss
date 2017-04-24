@@ -9,11 +9,19 @@
 
   .element-wrapper{
     overflow: visible;
+    &.main-element{
+      // pointer-events: none;
+    }
 
     &.child-element{
       .element-scale, .element-rotateX, .element-rotateY, .element-rotateZ{
         // transform-origin: 0% 50%;
         perspective: 400px;
+      }
+      .element-holder{
+        pointer-events: all;
+        cursor:pointer;
+        // z-index: 100;
       }
     }
 

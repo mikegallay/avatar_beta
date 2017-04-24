@@ -20,8 +20,17 @@ export default class ElementAnimation extends Component {
       y     : data ? data.y : '0%',
     }
   }
-  componentWillMount() {
+  componentDidMount() {
+    var that = this
 
+    if (this.state.type == 'child-element'){
+      console.log('here');
+      this.$element.addEventListener('click',function(){
+        console.log('clicked',that.state.id);
+        // TweenMax.to('.face.element-rotateZ',.25,{rotationZ:that.state.rot,ease:Linear.easeNone,onComplete: () => {that.setState({rot:that.state.rot+90})}})
+        // TweenMax.to('.right-eye.element-scale',.2,{scaleX:1,scaleY:.1,delay:.3, yoyo:true, repeat:1, ease:Linear.easeNone})
+      })
+    }
   }
   componentDidUpdate(){
 
@@ -41,7 +50,9 @@ export default class ElementAnimation extends Component {
             <div className={`element-rotateX ${this.state.id}`}>
               <div className={`element-rotateY ${this.state.id}`}>
                 <div className={`element-rotateZ ${this.state.id}`}>
-                  <div className={`element-holder ${this.state.id}`}>
+                  <div
+                    ref = {element => this.$element = element}
+                    className={`element-holder ${this.state.id}`}>
                     {this.props.children}
                   </div>
                 </div>
