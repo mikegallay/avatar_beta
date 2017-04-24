@@ -1,0 +1,15 @@
+:local(.styles) {
+
+  .element-controls{
+    position:fixed;
+    width:100px;
+    left:50%;
+    top:100px;
+    margin-left: -50px;
+    border: 1px solid black;
+    background: gray;
+    &.hidden{
+      // display: none;
+    }
+  }
+}

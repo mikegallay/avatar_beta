@@ -4,6 +4,7 @@ import { styles } from './styles.scss';
 
 import ElementAnimation from '../ElementAnimation'
 import ControlsAnimation from '../ControlsAnimation'
+import ElementControls from '../ElementControls'
 
 export default class TimelineEngine extends Component {
   constructor(props){
@@ -15,7 +16,7 @@ export default class TimelineEngine extends Component {
       tl,
 
     }
-    console.log('master?',this.state.isMaster);
+    // console.log('master?',this.state.isMaster);
     //intialize TL/props/states
     //add controls to populate the TL
       //play.stop.pause.restart?
@@ -32,15 +33,19 @@ export default class TimelineEngine extends Component {
   }
   renderAnimationObjects(){
     return (
-      <ElementAnimation data={this.props.data}>
+      <ElementAnimation actions={this.props.actions} data={this.props.data}>
         {this.props.children}
       </ElementAnimation>
     )
+  }
+  renderAnimationControls(){
+    return <ElementControls actions={this.props.actions} data={this.props.data}/>
   }
   render() {
     return (
       <div className={ `${styles}` }>
         {!this.state.isMaster && this.renderAnimationObjects()}
+        {!this.state.isMaster && this.renderAnimationControls()}
         <ControlsAnimation/>
       </div>
     )

@@ -24,7 +24,6 @@ export default class ElementAnimation extends Component {
     var that = this
 
     if (this.state.type == 'child-element'){
-      console.log('here');
       this.$element.addEventListener('click',function(){
         console.log('clicked',that.state.id);
         // TweenMax.to('.face.element-rotateZ',.25,{rotationZ:that.state.rot,ease:Linear.easeNone,onComplete: () => {that.setState({rot:that.state.rot+90})}})

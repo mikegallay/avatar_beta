@@ -15,8 +15,7 @@ console.log('KeyableElement',this.props);
     return (
     <div className={ `${styles}` }>
       <div>
-        {/*<p>KE  {this.props.data.id}</p>*/}
-        <TimelineEngine data={this.props.data}/>
+        <TimelineEngine actions={this.props.actions} data={this.props.data}/>
       </div>
     </div>
     )
