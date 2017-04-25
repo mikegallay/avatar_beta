@@ -46,7 +46,7 @@ export default class ElementLayout extends Component {
             'left':this.state.x,
             'top':this.state.y,
           }}>
-          <div className={`element-scale ${this.state.id}`}>
+          {/*<div className={`element-scale ${this.state.id}`}>*/}
             <div className={`element-rotateX ${this.state.id}`}>
               <div className={`element-rotateY ${this.state.id}`}>
                 <div className={`element-rotateZ ${this.state.id}`}>
@@ -58,7 +58,7 @@ export default class ElementLayout extends Component {
                 </div>
               </div>
             </div>
-            </div>
+          {/*</div>*/}
 
         </div>
       </div>

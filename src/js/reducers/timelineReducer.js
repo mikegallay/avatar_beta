@@ -2,6 +2,13 @@ export default function reducer(state={
     init: false,
     masterTimeline: null,
     subTimelines: {},
+    //make subTimelines build like this?
+    // subTimelines : {
+      //rightEye: {
+        //tl: tl,
+        //changed: false
+      //}
+    // }
   }, action) {
 
     switch (action.type) {
@@ -12,7 +19,7 @@ export default function reducer(state={
       case "INITIALIZE_SUB_TIMELINE": {
         const id = action.payload;
         let tl = new TimelineMax();
-        
+
         // console.log('init_sub',action.payload);
         return {
           ...state,

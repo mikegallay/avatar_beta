@@ -34,15 +34,24 @@ export default class TimelineEngine extends Component {
   }
 
   componentDidUpdate() {
-    console.log('TimelineEngine Update',this.props);
-    if (!this.state.tlInit){
-      this.props.timeline.masterTimeline.add(this.props.timeline.subTimelines[this.props.data.id],0)
-      this.setState({tlInit:true})
-    }else if (this.props.data.id != 'face'){
+    // console.log('TimelineEngine Update',this.props);
+    const {masterTimeline, subTimelines} = this.props.timeline
+    const {id} = this.props.data
+    // const id = this.props.data.id;
 
-      var subtl = this.props.timeline.subTimelines[this.props.data.id];
-      console.log('here',this.props.data.id);
-      subtl.to('.'+this.props.data.id+'.element-scale',.2,{scaleX:1,scaleY:.1,delay:0, yoyo:true, repeat:1, ease:Linear.easeNone})
+    if (!this.state.tlInit){
+      masterTimeline.add(subTimelines[id],0)
+      this.setState({tlInit:true})
+
+    // }else if (id != 'face'){
+    }else if (id == 'leftBrow' || id == 'rightBrow'){
+      var subtl = subTimelines[id];
+      // console.log('here',this.props.data.id);
+      let diff = '-=15px';
+      if (id == 'nose') diff = 0;
+      if (id == 'mouth') diff = '+=15px'
+      subtl.to('.'+id+'.element-holder',.5,{scaleX:1.5,scaleY:1.5,yoyo:true, repeat:1, ease:Linear.easeNone},0)
+      subtl.to('.'+id+'.element-holder',.15,{top:diff,yoyo:true, repeat:3, ease:Linear.easeNone},.2)
       // subtl.pause();
     }
   }

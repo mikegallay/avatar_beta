@@ -33,14 +33,14 @@ export default class AvatarHolder extends Component {
   }
 
   playTL(){
-    console.log('playTL');
+    // console.log('playTL');
     this.props.timeline.masterTimeline.restart();
   }
 
   componentDidUpdate() {
     console.log('AvatarHolder update',this.props);
       // let tm = new TweenMax('.face.element-rotateZ',1,{rotationZ:360,ease:Linear.easeNone});
-      this.props.timeline.masterTimeline.to('.face.element-rotateZ',1,{rotationZ:360,ease:Linear.easeNone})
+      // this.props.timeline.masterTimeline.to('.face.element-rotateZ',1,{rotationZ:360,ease:Linear.easeNone})
       this.props.timeline.masterTimeline.pause();
   }
   componentDidMount(){
@@ -48,7 +48,7 @@ export default class AvatarHolder extends Component {
     var that = this
     // TweenMax.to('.face .element-rotateY',1,{rotationY:45,delay:1,ease:Linear.easeNone})
     this.$clickme.addEventListener('click',function(){
-      console.log('click2');
+      // console.log('click2');
       that.playTL();
       // TweenMax.to('.face.element-rotateZ',.25,{rotationZ:that.state.rot,ease:Linear.easeNone,onComplete: () => {that.setState({rot:that.state.rot+90})}})
       // TweenMax.to('.rightEye.element-scale',.2,{scaleX:1,scaleY:.1,delay:.3, yoyo:true, repeat:1, ease:Linear.easeNone})
