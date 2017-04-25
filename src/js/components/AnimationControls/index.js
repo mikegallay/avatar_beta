@@ -8,7 +8,7 @@ import ElementControls from './components/ElementControls'
 import { bindActionCreators } from 'redux'
 
 // import { fetchUser } from "../../actions/userActions"
-import { hideAllControls, toggleControl } from "../../actions/elementControlsActions"
+import { hideAllControls, toggleControl } from "../../actions/controlsActions"
 
 @connect((store) => {
   return {

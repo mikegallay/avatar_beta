@@ -7,7 +7,7 @@ import AnimationControls from '../AnimationControls'
 
 import { bindActionCreators } from 'redux'
 
-import { hideAllControls, toggleControl } from "../../actions/elementControlsActions"
+import { hideAllControls, toggleControl } from "../../actions/controlsActions"
 
 @connect((store) => {
   return {

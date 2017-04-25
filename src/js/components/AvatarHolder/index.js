@@ -11,7 +11,7 @@ import ElementLayout from './components/ElementLayout'
 import { bindActionCreators } from 'redux'
 
 // import { fetchUser } from "../../actions/userActions"
-import { hideAllControls, toggleControl } from "../../actions/elementControlsActions"
+import { hideAllControls, toggleControl } from "../../actions/controlsActions"
 
 @connect((store) => {
   return {
