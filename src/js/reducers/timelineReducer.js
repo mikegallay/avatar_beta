@@ -5,10 +5,11 @@ export default function reducer(state={
   }, action) {
 
     switch (action.type) {
-      /*case "ADD_KEYFRAME": {
-        return {...state}
+      case "INITIALIZE_TIMELINE": {
+        console.log('initt',action.payload);
+        return {...state, masterTimeline: action.payload}
       }
-      case "REMOVE_KEYFRAME": {
+      /*  case "REMOVE_KEYFRAME": {
         return {...state}
       }
       case "FETCH_USER_FULFILLED": {

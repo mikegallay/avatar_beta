@@ -5,9 +5,9 @@ import TimelineEngine from '../TimelineEngine'
 
 export default class KeyableElement extends Component {
   componentWillMount() {
-    console.log('KeyableElement',this.props);
+    // console.log('KeyableElement',this.props);
   }
-  
+
   render() {
     return (
     <div className={ `${styles}` }>

@@ -27,7 +27,7 @@ export default class TimelineEngine extends Component {
 
   }
   componentDidMount(){
-    console.log('TimelineEngine',this.props);
+    // console.log('TimelineEngine',this.props);
   }
   renderAnimationObjects(){
     return (

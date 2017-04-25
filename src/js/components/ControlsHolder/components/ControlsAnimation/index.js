@@ -7,7 +7,7 @@ import { styles } from './styles.scss';
 export default class ControlsAnimation extends Component {
   constructor(props){
     super(props)
-    console.log('ControlsAnimation',props);
+    // console.log('ControlsAnimation',props);
   }
   componentWillMount() {
 

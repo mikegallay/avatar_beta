@@ -7,7 +7,7 @@ import { styles } from './styles.scss';
 export default class ElementLayout extends Component {
   constructor(props){
     super(props)
-    console.log('ElementLayout',props);
+    // console.log('ElementLayout',props);
     const data = this.props.data
     const type = data.id === 'face' ? 'main-element' : 'child-element'
 

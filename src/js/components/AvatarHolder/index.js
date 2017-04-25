@@ -8,17 +8,18 @@ import ElementLayout from './components/ElementLayout'
 
 import { bindActionCreators } from 'redux'
 
-// import { fetchUser } from "../../actions/userActions"
+import { initializeTimeline } from "../../actions/timelineActions"
 import { toggleActiveControl } from "../../actions/controlsActions"
 
 @connect((store) => {
   return {
     user: store.rootState.user.user,
-    avatar: store.rootState.avatar
+    avatar: store.rootState.avatar,
+    timeline: store.rootState.timeline,
   };
 },(dispatch) => {
   return {
-    actions:bindActionCreators({toggleActiveControl}, dispatch)
+    actions:bindActionCreators({toggleActiveControl,initializeTimeline}, dispatch)
   }
 })
 export default class AvatarHolder extends Component {
@@ -31,10 +32,10 @@ export default class AvatarHolder extends Component {
     this.buildMasterTL();
   }
   componentDidUpdate() {
-    // console.log('Layout update',this.props);
+    console.log('AvatarHolder update',this.props);
   }
   componentDidMount(){
-    console.log('Layout',this.props);
+    console.log('AvatarHolder',this.props);
     var that = this
     // TweenMax.to('.face .element-rotateY',1,{rotationY:45,delay:1,ease:Linear.easeNone})
     this.$clickme.addEventListener('click',function(){
@@ -46,7 +47,13 @@ export default class AvatarHolder extends Component {
   }
 
   buildMasterTL(){
-
+    // console.log('buildMasterTL',this.props.timeline.masterTimeline);
+    if (!this.props.timeline.masterTimeline){
+      console.log('go build it');
+      let tl = new TimelineMax();
+      this.props.actions.initializeTimeline(tl);
+      console.log('buildMasterTL',this.props.timeline.masterTimeline);
+    }
   }
 
   render() {

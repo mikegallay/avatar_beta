@@ -5,11 +5,11 @@ import { connect } from "react-redux"
 import AvatarHolder from '../AvatarHolder'
 import ControlsHolder from '../ControlsHolder'
 
-import { bindActionCreators } from 'redux'
+// import { bindActionCreators } from 'redux'
 
-import { toggleActiveControl } from "../../actions/controlsActions"
+// import { toggleActiveControl } from "../../actions/controlsActions"
 
-@connect((store) => {
+/*@connect((store) => {
   return {
     user: store.rootState.user.user,
     avatar: store.rootState.avatar
@@ -18,7 +18,7 @@ import { toggleActiveControl } from "../../actions/controlsActions"
   return {
     actions:bindActionCreators({toggleActiveControl}, dispatch)
   }
-})
+})*/
 export default class Layout extends Component {
   constructor(props){
     super(props)
@@ -40,7 +40,7 @@ export default class Layout extends Component {
       <div className={ `${styles}` }>
         <div className='layout'>
           <AvatarHolder/>
-          
+
           <ControlsHolder/>
         </div>
       </div>

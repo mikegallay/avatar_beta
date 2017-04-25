@@ -7,7 +7,7 @@ import { styles } from './styles.scss';
 export default class ElementControls extends Component {
   constructor(props){
     super(props)
-    console.log('ElementControls',props);
+    // console.log('ElementControls',props);
     this.state={
       isActive : this.props.data.id == this.props.data.activeControl,
     }
