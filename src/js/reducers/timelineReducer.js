@@ -9,6 +9,19 @@ export default function reducer(state={
         console.log('initt',action.payload);
         return {...state, masterTimeline: action.payload}
       }
+      case "INITIALIZE_SUB_TIMELINE": {
+        const id = action.payload;
+        let tl = new TimelineMax();
+        
+        // console.log('init_sub',action.payload);
+        return {
+          ...state,
+          subTimelines: {
+            ...state.subTimelines,
+            [id] : tl
+          }
+        }
+      }
       /*  case "REMOVE_KEYFRAME": {
         return {...state}
       }

@@ -4,3 +4,10 @@ export function initializeTimeline(tl) {
     payload: tl
   }
 }
+
+export function initializeSubTimeline(id) {
+  return {
+    type: "INITIALIZE_SUB_TIMELINE",
+    payload: id
+  }
+}

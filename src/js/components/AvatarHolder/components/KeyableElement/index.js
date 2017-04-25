@@ -12,7 +12,11 @@ export default class KeyableElement extends Component {
     return (
     <div className={ `${styles}` }>
       <div>
-        <TimelineEngine actions={this.props.actions} activeControl={this.props.activeControl} data={this.props.data}/>
+        <TimelineEngine
+          actions={this.props.actions} 
+          timeline={this.props.timeline}
+          activeControl={this.props.activeControl}
+          data={this.props.data}/>
       </div>
     </div>
     )
