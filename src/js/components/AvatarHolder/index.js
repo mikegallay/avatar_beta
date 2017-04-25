@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import KeyableElement from './components/KeyableElement'
 import TimelineEngine from './components/TimelineEngine'
 // import ControlsAnimation from './components/ControlsAnimation'
-import ElementAnimation from './components/ElementAnimation'
+import ElementLayout from './components/ElementLayout'
 // import KeyableElementChild from '../KeyableElementChild'
 
 import { bindActionCreators } from 'redux'

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { styles } from './styles.scss';
 // import { connect } from "react-redux"
 
-import ElementAnimation from '../ElementAnimation'
+import ElementLayout from '../ElementLayout'
 import ControlsAnimation from '../ControlsAnimation'
 import ElementControls from '../ElementControls'
 
@@ -33,9 +33,9 @@ export default class TimelineEngine extends Component {
   }
   renderAnimationObjects(){
     return (
-      <ElementAnimation actions={this.props.actions} data={this.props.data}>
+      <ElementLayout actions={this.props.actions} data={this.props.data}>
         {this.props.children}
-      </ElementAnimation>
+      </ElementLayout>
     )
   }
   renderAnimationControls(){

@@ -1,39 +1,5 @@
 :local(.styles) {
-  h6{
-    width:100px;
-    position: absolute;
-    top:100%;
-    left:50%;
-    margin-left:-25px;
-    z-index: 100;
-    cursor: pointer;
-    pointer-events: all;
-  }
+  position: relative;
   width:100%;
-  height: 100vh;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  .av-ke-main{
-    width:200px;
-    height:200px;
-    position: relative;
-    pointer-events: none;
-    div{
-      pointer-events: none;
-    }
-  }
-
-  .element-wrapper{
-    .element-scale, .element-rotateX, .element-rotateY, .element-rotateZ{
-      // transform-origin: 50% 50%;
-      perspective: 400px;
-    }
-    .element-holder{
-      background: lightgreen;
-      left: 0%;
-      top:0%;
-    }
-  }
+  height:100%;
 }

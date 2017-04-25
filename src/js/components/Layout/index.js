@@ -3,6 +3,7 @@ import { styles } from './styles.scss';
 import { connect } from "react-redux"
 
 import AvatarHolder from '../AvatarHolder'
+import AnimationControls from '../AnimationControls'
 
 import { bindActionCreators } from 'redux'
 
@@ -37,8 +38,9 @@ export default class Layout extends Component {
 
     return (
       <div className={ `${styles}` }>
-        <div className="layout">
+        <div className='layout'>
           <AvatarHolder/>
+          <AnimationControls/>
         </div>
       </div>
     )
