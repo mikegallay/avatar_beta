@@ -3,8 +3,6 @@ import { styles } from './styles.scss';
 // import { connect } from "react-redux"
 
 import ElementLayout from '../ElementLayout'
-import ControlsAnimation from '../ControlsAnimation'
-import ElementControls from '../ElementControls'
 
 export default class TimelineEngine extends Component {
   constructor(props){
