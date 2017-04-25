@@ -7,7 +7,7 @@ export function hideAllControls() {
   }
 }
 
-export function toggleControl(id) {
+export function toggleActiveControl(id) {
   return {
     type: "TOGGLE_CONTROL",
     payload: id

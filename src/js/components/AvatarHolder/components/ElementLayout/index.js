@@ -26,8 +26,7 @@ export default class ElementLayout extends Component {
     if (this.state.type == 'child-element'){
       this.$element.addEventListener('click',function(){
         console.log('clicked',that.state.id);
-        // that.props.actions.hideAllControls();
-        that.props.actions.toggleControl(that.state.id);
+        that.props.actions.toggleActiveControl(that.state.id);
         // TweenMax.to('.face.element-rotateZ',.25,{rotationZ:that.state.rot,ease:Linear.easeNone,onComplete: () => {that.setState({rot:that.state.rot+90})}})
         // TweenMax.to('.right-eye.element-scale',.2,{scaleX:1,scaleY:.1,delay:.3, yoyo:true, repeat:1, ease:Linear.easeNone})
       })

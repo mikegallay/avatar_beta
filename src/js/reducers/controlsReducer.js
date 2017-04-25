@@ -1,22 +1,15 @@
 export default function reducer(state={
-    id: null,
-    mainElement: {id:'face',w:200,h:200},
-    activeControl:'face',
-    elements: {
-      rightEye: {id:'rightEye',w:50,h:50,bx:'75%',by:'25%',cx:'75%',cy:'25%'},
-      leftEye: {id:'leftEye',w:50,h:50,bx:'25%',by:'25%',cx:'25%',cy:'25%'},
-      mouth: {id:'mouth',w:100,h:25,bx:'50%',by:'70%',cx:'50%',cy:'70%'},
-      nose: {id:'nose',w:20,h:40,bx:'50%',by:'40%',cx:'50%',cy:'40%'},
-    },
+    /*init: false,
+    masterTimeline: null,
+    subTimelines: {},*/
   }, action) {
 
     switch (action.type) {
-      case "HIDE_ALL_CONTROLS": {
+      case "ADD_KEYFRAME": {
         return {...state}
       }
-      case "TOGGLE_CONTROL": {
-        console.log('otg',action.payload);
-        return {...state, activeControl: action.payload}
+      case "REMOVE_KEYFRAME": {
+        return {...state}
       }
       /*case "FETCH_USER_FULFILLED": {
         return {

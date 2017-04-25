@@ -3,11 +3,11 @@ import { styles } from './styles.scss';
 import { connect } from "react-redux"
 
 import AvatarHolder from '../AvatarHolder'
-import AnimationControls from '../AnimationControls'
+import ControlsHolder from '../ControlsHolder'
 
 import { bindActionCreators } from 'redux'
 
-import { hideAllControls, toggleControl } from "../../actions/controlsActions"
+import { toggleActiveControl } from "../../actions/controlsActions"
 
 @connect((store) => {
   return {
@@ -16,7 +16,7 @@ import { hideAllControls, toggleControl } from "../../actions/controlsActions"
   };
 },(dispatch) => {
   return {
-    actions:bindActionCreators({hideAllControls, toggleControl}, dispatch)
+    actions:bindActionCreators({toggleActiveControl}, dispatch)
   }
 })
 export default class Layout extends Component {
@@ -40,7 +40,8 @@ export default class Layout extends Component {
       <div className={ `${styles}` }>
         <div className='layout'>
           <AvatarHolder/>
-          <AnimationControls/>
+          
+          <ControlsHolder/>
         </div>
       </div>
     )
