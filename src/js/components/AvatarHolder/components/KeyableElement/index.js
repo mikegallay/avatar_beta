@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import { styles }  from './styles.scss';
-// require('./styles.scss');
-import { connect } from "react-redux"
+import { styles } from './styles.scss';
 
-import TimelineEngine from './components/TimelineEngine'
-
-//import { bindActionCreators } from 'redux'
+import TimelineEngine from '../TimelineEngine'
 
 export default class KeyableElement extends Component {
   componentWillMount() {
-console.log('KeyableElement',this.props);
+    console.log('KeyableElement',this.props);
   }
+  
   render() {
     return (
     <div className={ `${styles}` }>
@@ -19,6 +16,5 @@ console.log('KeyableElement',this.props);
       </div>
     </div>
     )
-
   }
 }

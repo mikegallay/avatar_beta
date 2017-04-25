@@ -1,0 +1,22 @@
+:local(.styles) {
+
+  .element-controls{
+    position:absolute;
+    width:120px;
+    left:50%;
+    top:120%;
+    margin-left: -60px;
+    border: 1px solid black;
+    background: gray;
+    height:auto;
+    color:white;
+    text-align: center;
+    text-transform: uppercase;
+    button{
+      color:blue;
+    }
+    &.hidden{
+      // display: none;
+    }
+  }
+}

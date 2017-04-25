@@ -45,8 +45,8 @@ export default class TimelineEngine extends Component {
     return (
       <div className={ `${styles}` }>
         {!this.state.isMaster && this.renderAnimationObjects()}
-        {!this.state.isMaster && this.renderAnimationControls()}
-        <ControlsAnimation/>
+        {/*{!this.state.isMaster && this.renderAnimationControls()}
+        <ControlsAnimation/>*/}
       </div>
     )
   }
