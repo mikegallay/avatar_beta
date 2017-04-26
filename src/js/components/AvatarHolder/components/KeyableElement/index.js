@@ -10,10 +10,10 @@ export default class KeyableElement extends Component {
 
   render() {
     return (
-    <div className={ `${styles}` }>
+    <div className={ `${styles} ${this.props.data.id}` }>
       <div>
         <TimelineEngine
-          actions={this.props.actions} 
+          actions={this.props.actions}
           timeline={this.props.timeline}
           activeControl={this.props.activeControl}
           data={this.props.data}/>

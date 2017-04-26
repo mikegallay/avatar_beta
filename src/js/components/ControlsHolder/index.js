@@ -33,10 +33,15 @@ export default class ControlsHolder extends Component {
 
   render() {
     const avatarElements = this.props.avatar.elements
+    const avatarEyes = this.props.avatar.eyes
 
     let allElements=[];
     for (var ob in avatarElements) {
       allElements.push(avatarElements[ob]);
+    }
+
+    for (var ob in avatarEyes) {
+      allElements.push(avatarEyes[ob]);
     }
 
     const mappedElements = allElements.map(element =>

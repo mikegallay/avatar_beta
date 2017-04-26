@@ -58,12 +58,86 @@
       // position:relative;
       // width:100%;
       // height:100%;
+
     }
     &.child-element{
       .element-holder{
-        background: black;
+        background: none;//black;
         left: -50%;
         // top:-50%;
+        /*svg:first-child{
+          left:0; top:0; width:100%; height:100%;position:absolute;
+        }*/&.leftEye{
+        transform:translateY(5px);
+      }
+
+        .element-scale{
+          z-index: 2;
+          position: relative;
+          // transform: scale(.25);
+          &.rightEyeBall,&.leftEyeBall{
+            background: white;
+          }
+          &.leftEye,&.rightEye{
+
+            outline: 10px solid lightgreen;
+            outline-offset: 0;
+            &:before{
+              content:'';
+              width:100%;height: 50%;
+              position: absolute;
+              background: lightgreen;
+              top:-50%;
+              left:0;
+            }
+            &:after{
+              content:'';
+              width:100%;height: 50%;
+              position: absolute;
+              background: lightgreen;
+              top:100%;
+              left:0;
+            }
+          }
+          &.leftEye{
+            transform: scale(1,.7);
+          }
+        }
+        &.rightEyeBall,&.leftEyeBall{
+          border-radius:50%;
+          background: none;// url('/assets/eyeball.png');
+          background-size: cover;
+
+        }
+
+        &.rightEye,&.leftEye{
+          // background: url('/assets/eye.png');
+          background-size: cover;
+          // overflow: hidden;
+          svg.icon.leftEye,svg.icon.rightEye{
+            z-index: 2;
+            position:relative;
+          }
+          .eyeMask{
+            position: absolute;
+            top:0;
+            left:0;
+            fill:lightgreen;
+            z-index: 1;
+          }
+          // svg{fill:black;stroke:pink;stroke-width:10px;}
+
+          //svg path:first-child{fill:lightgreen;}
+
+        }
+        .rightEyeBall, .leftEyeBall{
+          z-index: 0;
+        }
+
+      #skin-tone{
+        stroke:#b52808;
+        stroke-width:.5;
+      }
       }
     }
   }

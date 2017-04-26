@@ -85,7 +85,43 @@ export default class AvatarHolder extends Component {
           'id' : element.id,
           'x'  : element.bx,
           'y'  : element.by
-        }}/>)
+        }}/>
+    )
+
+    const avatarEyes = this.props.avatar.eyes
+
+    let allEyes=[];
+    for (var ob in avatarEyes) {
+      allEyes.push(avatarEyes[ob]);
+    }
+
+    const mappedEyes = allEyes.map(element =>
+    <TimelineEngine
+      key={element.id}
+      actions={this.props.actions}
+      timeline={this.props.timeline}
+      activeControl={this.props.avatar.activeControl}
+      data={{
+        'w'  : element.w,
+        'h'  : element.h,
+        'id' : element.id,
+        'x'  : element.bx,
+        'y'  : element.by
+      }}>
+      <KeyableElement
+        key={element.id+"Ball"}
+        actions={this.props.actions}
+        timeline={this.props.timeline}
+        activeControl={this.props.avatar.activeControl}
+        data={{
+          'w'  : element.w,
+          'h'  : element.h,
+          'id' : element.id+'Ball',
+          'x'  : '50%',
+          'y'  : '0%'
+        }}/>
+    </TimelineEngine>
+    )
 
     return (
       <div className={ `${styles}` }>
@@ -97,6 +133,7 @@ export default class AvatarHolder extends Component {
             activeControl={this.props.avatar.activeControl}
             data={this.props.avatar.mainElement}
           >
+            {mappedEyes}
             {mappedElements}
           </TimelineEngine>
           <h6 ref={clickme => this.$clickme = clickme}>CLICK ME!</h6>

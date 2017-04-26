@@ -27,6 +27,11 @@ export default class TimelineEngine extends Component {
   }
 
   buildSubTL(){
+    console.log('buildSubTL',this.props.data.id);
+    //for all, scale the svg
+    //for eyeballs. translate the svg
+    //for all other, translate the element-holder
+    //for all remove rotateZ and apply it to element-holder
     if (!this.props.timeline.subTimelines[this.props.data.id]){
       this.props.actions.initializeSubTimeline(this.props.data.id);
       // this.props.timeline.masterTimeline.add(this.props.timeline.subTimelines[this.props.data.id])
@@ -44,7 +49,7 @@ export default class TimelineEngine extends Component {
       this.setState({tlInit:true})
 
     // }else if (id != 'face'){
-    }else if (id == 'leftBrow' || id == 'rightBrow'){
+    }else if (id == 'leftBrow' || id == 'rightBrow' || id == 'leftEye'){
       var subtl = subTimelines[id];
       // console.log('here',this.props.data.id);
       let diff = '-=15px';
@@ -71,7 +76,7 @@ export default class TimelineEngine extends Component {
   }*/
   render() {
     return (
-      <div className={ `${styles}` }>
+      <div className={ `${styles} ${this.props.data.id}` }>
 
         <ElementLayout
           actions={this.props.actions}
