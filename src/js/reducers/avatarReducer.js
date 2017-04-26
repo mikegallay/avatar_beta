@@ -3,16 +3,16 @@ export default function reducer(state={
     mainElement: {id:'face',w:250,h:250},
     activeControl:'face',
     eyes:{
-      rightEye :      {id:'rightEye',w:50,h:50,bx:'75%',by:'25%',cx:'75%',cy:'25%'},
-      leftEye :       {id:'leftEye',w:50,h:50,bx:'25%',by:'25%',cx:'25%',cy:'25%'},
+      rightEye :      {id:'rightEye',w:50,h:50,bx:'70%',by:'30%',cx:'70%',cy:'30%'},
+      leftEye :       {id:'leftEye',w:50,h:50,bx:'30%',by:'30%',cx:'30%',cy:'30%'},
     },
     elements: {
       //rightEyeBall :  {id:'rightEyeBall',w:45,h:45,bx:'75%',by:'25%',cx:'75%',cy:'25%'},
 
-      rightBrow :     {id:'rightBrow',w:55,h:25,bx:'75%',by:'20%',cx:'75%',cy:'20%'},
+      rightBrow :     {id:'rightBrow',w:55,h:25,bx:'70%',by:'20%',cx:'70%',cy:'20%'},
       //leftEyeBall :   {id:'leftEyeBall',w:45,h:45,bx:'25%',by:'25%',cx:'25%',cy:'25%'},
 
-      leftBrow :      {id:'leftBrow',w:55,h:25,bx:'25%',by:'20%',cx:'25%',cy:'20%'},
+      leftBrow :      {id:'leftBrow',w:55,h:25,bx:'30%',by:'20%',cx:'30%',cy:'20%'},
       mouth :         {id:'mouth',w:100,h:25,bx:'50%',by:'70%',cx:'50%',cy:'70%'},
       nose :          {id:'nose',w:50,h:40,bx:'50%',by:'50%',cx:'50%',cy:'50%'},
     },

@@ -68,7 +68,7 @@
         /*svg:first-child{
           left:0; top:0; width:100%; height:100%;position:absolute;
         }*/&.leftEye{
-        transform:translateY(5px);
+        // transform:translateY(5px);
       }
 
         .element-scale{
@@ -100,7 +100,7 @@
             }
           }
           &.leftEye{
-            transform: scale(1,.7);
+            // transform: scale(1,.7);
           }
         }
         &.rightEyeBall,&.leftEyeBall{
