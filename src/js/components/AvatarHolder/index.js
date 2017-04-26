@@ -114,11 +114,11 @@ export default class AvatarHolder extends Component {
         timeline={this.props.timeline}
         activeControl={this.props.avatar.activeControl}
         data={{
-          'w'  : element.w,
-          'h'  : element.h,
+          'w'  : element.w * .75,
+          'h'  : element.h * .75,
           'id' : element.id+'Ball',
           'x'  : '50%',
-          'y'  : '0%'
+          'y'  : '20%'
         }}/>
     </TimelineEngine>
     )
@@ -133,8 +133,10 @@ export default class AvatarHolder extends Component {
             activeControl={this.props.avatar.activeControl}
             data={this.props.avatar.mainElement}
           >
+
             {mappedEyes}
             {mappedElements}
+
           </TimelineEngine>
           <h6 ref={clickme => this.$clickme = clickme}>CLICK ME!</h6>
         </div>

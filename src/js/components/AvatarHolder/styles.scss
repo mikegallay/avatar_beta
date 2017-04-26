@@ -16,8 +16,8 @@
   justify-content: center;
   pointer-events: none;
   .av-ke-main{
-    width:200px;
-    height:200px;
+    width:350px;
+    height:350px;
     position: relative;
     pointer-events: none;
     div{
@@ -31,7 +31,7 @@
       perspective: 400px;
     }
     .element-holder{
-      background: lightgreen;
+      //background: lightgreen;
       left: 0%;
       top:0%;
     }

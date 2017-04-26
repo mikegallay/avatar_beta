@@ -1,3 +1,4 @@
+$skintone:lightblue;
 :local(.styles) {
 
   div{
@@ -58,7 +59,10 @@
       // position:relative;
       // width:100%;
       // height:100%;
-
+      svg.icon.face{
+        fill:$skintone;
+      }
+      
     }
     &.child-element{
       .element-holder{
@@ -80,13 +84,13 @@
           }
           &.leftEye,&.rightEye{
 
-            outline: 10px solid lightgreen;
+            outline: 10px solid $skintone;
             outline-offset: 0;
             &:before{
               content:'';
               width:100%;height: 50%;
               position: absolute;
-              background: lightgreen;
+              background: $skintone;
               top:-50%;
               left:0;
             }
@@ -94,7 +98,7 @@
               content:'';
               width:100%;height: 50%;
               position: absolute;
-              background: lightgreen;
+              background: $skintone;
               top:100%;
               left:0;
             }
@@ -122,12 +126,12 @@
             position: absolute;
             top:0;
             left:0;
-            fill:lightgreen;
+            fill:$skintone;
             z-index: 1;
           }
           // svg{fill:black;stroke:pink;stroke-width:10px;}
 
-          //svg path:first-child{fill:lightgreen;}
+          //svg path:first-child{fill:$skintone;}
 
         }
         .rightEyeBall, .leftEyeBall{

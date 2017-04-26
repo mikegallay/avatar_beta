@@ -46,6 +46,7 @@ export default class ControlsHolder extends Component {
 
     const mappedElements = allElements.map(element =>
       <ElementControls
+
         key={element.id}
         actions={this.props.actions}
         activeControl={this.props.avatar.activeControl}
@@ -59,10 +60,12 @@ export default class ControlsHolder extends Component {
 
     return (
       <div className={ `${styles}` }>
-        <div className="av-ac-main">
+        <div className='av-ac-main'>
           <p>ControlsHolder</p>
           <ControlsAnimation actions={this.props.actions} activeControl={this.props.avatar.activeControl} data={this.props.avatar.mainElement}/>
-          {mappedElements}
+          <div className='element-controls-wrapper'>
+            {mappedElements}
+          </div>
         </div>
       </div>
     )

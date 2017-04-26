@@ -53,7 +53,6 @@ export default class ElementLayout extends Component {
       <svg
         viewBox={vb}
         className={`icon eyeMask ${id}Mask`}
-        stroke-alignment='outer'
         ref={svg => this.$svg = svg}
       >
         <use xlinkHref={`${this.state.spriteURL}#${id}Mask`} />

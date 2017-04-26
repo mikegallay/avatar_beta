@@ -31,7 +31,7 @@ export default class ElementControls extends Component {
   render() {
     return (
       <div className={ `${styles}` }>
-        <div className={ `element-controls ${this.props.data.id} test-${this.props.activeControl} ${this.props.activeControl == this.props.data.id ? '' : 'hidden'}` }>
+        <div className={ `element-controls ${this.props.data.id} test-${this.props.activeControl} ${this.props.activeControl == this.props.data.id ? 'active' : ''}` }>
           <h4>{this.props.data.id}</h4>
           <button>ADD KEYFRAME</button>
         </div>
