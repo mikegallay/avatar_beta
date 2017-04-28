@@ -64,6 +64,23 @@ export default class AvatarHolder extends Component {
       this.props.actions.initializeTimeline(tl);
     }
   }
+  renderEyeBall(element){
+    return(
+      <KeyableElement
+        key={element.id+"Ball"}
+        actions={this.props.actions}
+        timeline={this.props.timeline}
+        activeControl={this.props.avatar.activeControl}
+        data={{
+          'w'  : element.w,//, * .75,
+          'h'  : element.h,//, * .75,
+          'id' : element.id+'Ball',
+          'x'  : '0%',
+          'y'  : '0%',
+          'bgColor' : element.bgColor
+        }}/>
+    )
+  }
 
   render() {
     const avatarElements = this.props.avatar.elements
@@ -79,13 +96,7 @@ export default class AvatarHolder extends Component {
         actions={this.props.actions}
         timeline={this.props.timeline}
         activeControl={this.props.avatar.activeControl}
-        data={{
-          'w'  : element.w,
-          'h'  : element.h,
-          'id' : element.id,
-          'x'  : element.bx,
-          'y'  : element.by
-        }}/>
+        data={element}/>
     )
 
     const avatarEyes = this.props.avatar.eyes
@@ -101,25 +112,8 @@ export default class AvatarHolder extends Component {
       actions={this.props.actions}
       timeline={this.props.timeline}
       activeControl={this.props.avatar.activeControl}
-      data={{
-        'w'  : element.w,
-        'h'  : element.h,
-        'id' : element.id,
-        'x'  : element.bx,
-        'y'  : element.by
-      }}>
-      <KeyableElement
-        key={element.id+"Ball"}
-        actions={this.props.actions}
-        timeline={this.props.timeline}
-        activeControl={this.props.avatar.activeControl}
-        data={{
-          'w'  : element.w * .75,
-          'h'  : element.h * .75,
-          'id' : element.id+'Ball',
-          'x'  : '50%',
-          'y'  : '20%'
-        }}/>
+      data={element}>
+      {element.useEyeBall && this.renderEyeBall(element)}
     </TimelineEngine>
     )
 

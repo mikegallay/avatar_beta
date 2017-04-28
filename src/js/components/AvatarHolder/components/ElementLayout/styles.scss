@@ -62,25 +62,56 @@ $skintone:lightblue;
       svg.icon.face{
         fill:$skintone;
       }
-      
+
     }
     &.child-element{
+      .rightEye,.rightEar,.rightBrow{
+        .element-rotateY{
+          transform: rotateY(180deg);
+          transform-origin: 0% 50%;
+        }
+        .rightEyeBall,.leftEyeBall{
+          &.element-rotateY{
+            transform: rotateY(0deg);
+          }
+        }
+      }
+
       .element-holder{
         background: none;//black;
         left: -50%;
-        // top:-50%;
-        /*svg:first-child{
-          left:0; top:0; width:100%; height:100%;position:absolute;
-        }*/&.leftEye{
-        // transform:translateY(5px);
-      }
+
+          .rightEyeBall,.leftEyeBall{
+            left:0;
+          }
 
         .element-scale{
           z-index: 2;
           position: relative;
           // transform: scale(.25);
+          .skin{
+            position: absolute;
+            top:0;
+            left:0;
+            fill:$skintone;
+            z-index: 1;
+          }
+          .icon.eye,.icon.ear{
+            z-index: 2;
+            position: relative;
+          }
+          .icon.eyeLid{
+            z-index: 1;
+            position: absolute;
+            fill:darken($skintone,30%);
+            top:0;
+            left:0;
+            transform-origin: 0% 0%;
+            transform:scale(1,0);
+          }
           &.rightEyeBall,&.leftEyeBall{
-            background: white;
+            // background: white;
+            border-radius: 50%;
           }
           &.leftEye,&.rightEye{
 
@@ -103,13 +134,10 @@ $skintone:lightblue;
               left:0;
             }
           }
-          &.leftEye{
-            // transform: scale(1,.7);
-          }
         }
         &.rightEyeBall,&.leftEyeBall{
           border-radius:50%;
-          background: none;// url('/assets/eyeball.png');
+          // background: none;// url('/assets/eyeball.png');
           background-size: cover;
 
         }
@@ -122,13 +150,7 @@ $skintone:lightblue;
             z-index: 2;
             position:relative;
           }
-          .eyeMask{
-            position: absolute;
-            top:0;
-            left:0;
-            fill:$skintone;
-            z-index: 1;
-          }
+
           // svg{fill:black;stroke:pink;stroke-width:10px;}
 
           //svg path:first-child{fill:$skintone;}
