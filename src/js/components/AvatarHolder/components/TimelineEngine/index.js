@@ -56,8 +56,8 @@ export default class TimelineEngine extends Component {
       if (id == 'nose') diff = 0;
       if (id == 'mouth') diff = '+=15px'
       // subtl.to('.'+id+'.element-holder',.5,{rotationZ:360,repeat:0, ease:Linear.easeNone},0)
-      subtl.to('.'+id+'.element-scale',.5,{scaleX:1.5,scaleY:1.5,yoyo:true, repeat:0, ease:Linear.easeNone},0)
-      subtl.to('.'+id+'.element-holder',.15,{top:diff,yoyo:true, repeat:2, ease:Linear.easeNone},.2)
+      subtl.to('.'+id+'.element-scale',.5,{scaleX:1,scaleY:.5,outlineWidth:'1.75em',yoyo:true, repeat:1, repeatDelay:.5,ease:Linear.easeNone},0)
+      subtl.to('.'+id+'.element-holder',.15,{top:diff,yoyo:true, repeat:3, ease:Linear.easeNone},.2)
       // subtl.pause();
     }
   }

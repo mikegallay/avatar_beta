@@ -3,12 +3,13 @@ import { styles } from './styles.scss';
 // import { connect } from "react-redux"
 
 //import { bindActionCreators } from 'redux'
-const url = '/assets/sprites.svg';
-const Icon = (props) => (
+const url = '/assets/icon-sprite-def.svg';
+const svgScale = 50;
+/*const Icon = (props) => (
 <svg viewBox='0 0 50 50' className={`icon ${props.icon}`}>
   <use xlinkHref={`${url}#${props.icon}`} />
 </svg>
-);
+);*/
 
 export default class ElementLayout extends Component {
   constructor(props){
@@ -21,10 +22,11 @@ export default class ElementLayout extends Component {
       w     : data ? data.w : '100',
       h     : data ? data.h : '100',
       id    : data ? data.id : '',
+      artId : data ? data.artId : '',
       type  : type,
       x     : data ? data.bx : '0%',
       y     : data ? data.by : '0%',
-      spriteURL:'/assets/sprites.svg'
+      spriteURL:'/assets/icon-sprite-def.svg'
     }
   }
   componentDidMount() {
@@ -45,7 +47,7 @@ export default class ElementLayout extends Component {
 
   renderLid(id){
     // console.log('renderSkin',id);
-    let vb = '0 0 ' +this.state.w+' '+this.state.h;
+    let vb = '0 0 ' +(this.state.w * svgScale)+' '+(this.state.h * svgScale);
 
     return(
       <svg
@@ -61,7 +63,7 @@ export default class ElementLayout extends Component {
   renderSkin(id){
     // console.log('renderSkin',id);
     let skinId = id;
-    let vb = '0 0 ' +this.state.w+' '+this.state.h;
+    let vb = '0 0 ' +(this.state.w * svgScale)+' '+(this.state.h * svgScale);
     if (skinId == 'rightEye' || skinId == 'leftEye') skinId='eye';
     if (skinId == 'rightEar' || skinId == 'leftEar') skinId='ear';
     // console.log(id);
@@ -78,18 +80,17 @@ export default class ElementLayout extends Component {
 
 
   renderIcon(){
-    console.log('this.props',this.props);
+    // console.log('this.props',this.props);
     let id = this.state.id;
-    let vb = '0 0 ' +this.state.w+' '+this.state.h;
-    if (id == 'rightEyeBall' || id == 'leftEyeBall') id='eyeBall';
+    let artId = this.state.artId;
+    let vb = '0 0 ' +(this.state.w * svgScale)+' '+(this.state.h * svgScale);
+    if (id == 'rightEyeBall' || id == 'leftEyeBall') artId='eyeBall';
 
     if (id == 'rightEye' || id == 'leftEye') id='eye';
     // if (!this.props.data.useEyeBall && id=='eye') id='noEyeBall';
 
-    if (id == 'eyeBall'/* || id == 'noEyeBall'*/){
-      console.log('set ball',this.props.data.bgColor);
-      TweenMax.set('.element-holder.rightEye,.element-holder.leftEye',{background:this.props.data.bgColor})
-    }
+    if (this.state.id == 'leftEye') TweenMax.set('.element-holder.leftEye',{background:this.props.data.bgColor})
+    if (this.state.id == 'rightEye') TweenMax.set('.element-holder.rightEye',{background:this.props.data.bgColor})
 
     if (id == 'rightBrow' || id == 'leftBrow') id='brow';
     if (id == 'rightEar' || id == 'leftEar') id='ear';
@@ -102,16 +103,16 @@ export default class ElementLayout extends Component {
           className={`icon ${id}`}
           ref={svg => this.$svg = svg}
         >
-          <use xlinkHref={`${this.state.spriteURL}#${id}`} />
+          <use xlinkHref={`${this.state.spriteURL}#${artId}`} />
         </svg>
         {this.state.id == 'rightEye' && this.props.data.useLids && this.renderLid(id)}
-        {this.state.id == 'rightEye' && this.props.data.useMask && this.renderSkin(id)}
+        {this.state.id == 'rightEye' && this.props.data.useMask && this.renderSkin(artId)}
 
         {this.state.id == 'leftEye' && this.props.data.useLids && this.renderLid(id)}
-        {this.state.id == 'leftEye' && this.props.data.useMask && this.renderSkin(id)}
+        {this.state.id == 'leftEye' && this.props.data.useMask && this.renderSkin(artId)}
 
-        {this.state.id == 'rightEar' && this.renderSkin(id)}
-        {this.state.id == 'leftEar' && this.renderSkin(id)}
+        {this.state.id == 'rightEar' && this.renderSkin(artId)}
+        {this.state.id == 'leftEar' && this.renderSkin(artId)}
       </div>
     )
   }
