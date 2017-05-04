@@ -17,6 +17,7 @@ export default function reducer(state={
       }
 
       case "TOGGLE_SPRITE_SHEET_FULFILLED": {
+        // console.log('action OGGLE_SPRITE_SHEET_FULFILLED');
         return {
           ...state,
           fetching: false,
@@ -24,7 +25,7 @@ export default function reducer(state={
           user: {...state.user, spriteSheet: action.payload},
         }
       }
-      case "SET_USER_NAME": {
+      /*case "SET_USER_NAME": {
         return {
           ...state,
           user: {...state.user, name: action.payload},
@@ -35,7 +36,7 @@ export default function reducer(state={
           ...state,
           user: {...state.user, age: action.payload},
         }
-      }
+      }*/
     }
 
     return state

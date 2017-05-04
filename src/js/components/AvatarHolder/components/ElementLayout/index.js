@@ -55,10 +55,13 @@ export default class ElementLayout extends Component {
     }
   }
   componentDidUpdate(){
-    // console.log('ElementLayout Update',this.state.spriteSheet);
-    this.setState({
-      spriteSheet:this.props.user.spriteSheet
-    })
+    console.log('ElementLayout Update',this.state.spriteSheet);
+    if (this.state.spriteSheet != this.props.user.spriteSheet){
+      this.setState({
+        spriteSheet:this.props.user.spriteSheet
+      })
+    }
+
   }
 
   renderLid(id){

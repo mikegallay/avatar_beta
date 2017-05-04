@@ -1,20 +1,22 @@
+import axios from "axios";
+
 export function toggleSpriteSheet(newURL) {
 
 
-  return {
+  /*return {
     type: "TOGGLE_SPRITE_SHEET_FULFILLED",
     payload: newURL
-  }
+  }*/
 
-  /*return function(dispatch) {
-    axios.get("http://rest.learncode.academy/api/test123/tweets")
+  return function(dispatch) {
+    axios.get(newURL)
       .then((response) => {
-        dispatch({type: "TOGGLE_SPRITE_SHEET_FULFILLED", payload: response.data})
+        dispatch({type: "TOGGLE_SPRITE_SHEET_FULFILLED", payload: newURL})
       })
       .catch((err) => {
         dispatch({type: "TOGGLE_SPRITE_SHEET_REJECTED", payload: err})
       })
-  }*/
+  }
 }
 /*export function fetchUser() {
   return {

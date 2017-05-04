@@ -48,7 +48,7 @@ export default class TimelineEngine extends Component {
       masterTimeline.add(subTimelines[id],0)
       this.setState({tlInit:true})
 
-    // }else if (id != 'face'){
+    // set a default tl animation
     }else if (id == 'leftEar' || id == 'rightEar' || id == 'leftBrow' || id == 'rightBrow' || id == 'leftEye' || id == 'rightEye' || id == 'nose' || id == 'mouth'){
       var subtl = subTimelines[id];
       // console.log('here',this.props.data.id);
