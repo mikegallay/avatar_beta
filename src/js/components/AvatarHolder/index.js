@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux'
 
 import { initializeTimeline, initializeSubTimeline } from "../../actions/timelineActions"
 import { toggleActiveControl } from "../../actions/controlsActions"
+import { toggleSpriteSheet } from "../../actions/userActions"
 
 @connect((store) => {
   return {
@@ -19,7 +20,7 @@ import { toggleActiveControl } from "../../actions/controlsActions"
   };
 },(dispatch) => {
   return {
-    actions:bindActionCreators({toggleActiveControl,initializeTimeline,initializeSubTimeline}, dispatch)
+    actions:bindActionCreators({toggleSpriteSheet,toggleActiveControl,initializeTimeline,initializeSubTimeline}, dispatch)
   }
 })
 export default class AvatarHolder extends Component {
@@ -48,10 +49,17 @@ export default class AvatarHolder extends Component {
     var that = this
     // TweenMax.to('.face .element-rotateY',1,{rotationY:45,delay:1,ease:Linear.easeNone})
     this.$clickme.addEventListener('click',function(){
-      // console.log('click2');
       that.playTL();
-      // TweenMax.to('.face.element-rotateZ',.25,{rotationZ:that.state.rot,ease:Linear.easeNone,onComplete: () => {that.setState({rot:that.state.rot+90})}})
-      // TweenMax.to('.rightEye.element-scale',.2,{scaleX:1,scaleY:.1,delay:.3, yoyo:true, repeat:1, ease:Linear.easeNone})
+    })
+
+    this.$toggleSprite.addEventListener('click',function(){
+        console.log('toggleSprite',that.props.user.spriteSheet);
+      let newURL = '/assets/icon-sprite-def01.svg'
+      if (that.props.user.spriteSheet == newURL){
+        newURL = '/assets/icon-sprite-def02.svg'
+      }
+      // console.log('toggleSpriteSheet',newURL);
+      that.props.actions.toggleSpriteSheet(newURL);
     })
 
   }
@@ -65,19 +73,22 @@ export default class AvatarHolder extends Component {
     }
   }
   renderEyeBall(element){
+    // console.log('eyeball',this.props);
     return(
       <KeyableElement
         key={element.id+"Ball"}
         actions={this.props.actions}
         timeline={this.props.timeline}
         activeControl={this.props.avatar.activeControl}
+        user={this.props.user}
         data={{
-          'w'  : element.w,//, * .75,
-          'h'  : element.h,//, * .75,
-          'id' : element.id+'Ball',
-          'x'  : '0%',
-          'y'  : '0%',
-          'bgColor' : element.bgColor
+          'w'         : element.w,//, * .75,
+          'h'         : element.h,//, * .75,
+          'id'        : element.id+'Ball',
+          'eyeBallId' : element.eyeBallId,
+          'x'         : '0%',
+          'y'         : '0%',
+          'bgColor'   : element.bgColor
         }}/>
     )
   }
@@ -96,7 +107,8 @@ export default class AvatarHolder extends Component {
         actions={this.props.actions}
         timeline={this.props.timeline}
         activeControl={this.props.avatar.activeControl}
-        data={element}/>
+        data={element}
+        user={this.props.user}/>
     )
 
     const avatarEyes = this.props.avatar.eyes
@@ -112,7 +124,8 @@ export default class AvatarHolder extends Component {
       actions={this.props.actions}
       timeline={this.props.timeline}
       activeControl={this.props.avatar.activeControl}
-      data={element}>
+      data={element}
+      user={this.props.user}>
       {element.useEyeBall && this.renderEyeBall(element)}
     </TimelineEngine>
     )
@@ -125,6 +138,7 @@ export default class AvatarHolder extends Component {
             actions={this.props.actions}
             timeline={this.props.timeline}
             activeControl={this.props.avatar.activeControl}
+            user={this.props.user}
             data={this.props.avatar.mainElement}
           >
 
@@ -133,6 +147,7 @@ export default class AvatarHolder extends Component {
 
           </TimelineEngine>
           <h6 ref={clickme => this.$clickme = clickme}>CLICK ME!</h6>
+          <h6 className='h62' ref={toggleSprite => this.$toggleSprite = toggleSprite}>TOGGLE SPRITES!</h6>
         </div>
       </div>
     )

@@ -1,10 +1,11 @@
 export default function reducer(state={
     id: null,
+    spriteULR: '',
     mainElement: {artId: 'face',id:'face',w:350,h:376},
     activeControl:'face',
     eyes:{
-      leftEye :       {artId: 'eye02', id:'leftEye',useEyeBall: true, bgColor:'yellow',useLids:true,useMask:true,w:50,h:50,bx:'38%',by:'41%',brx:0,bry:0,brz:0,cx:'30%',cy:'30%'},
-      rightEye :      {artId: 'eye01', id:'rightEye',useEyeBall: true, bgColor:'#ffffff',useLids:false,useMask:true,w:50,h:50,bx:'62%',by:'41%',brx:0,bry:180,brz:0,cx:'70%',cy:'30%'},
+      leftEye :       {artId: 'eye02', id:'leftEye', useEyeBall: true, eyeBallId:'eyeBall', bgColor:'yellow',useLids:true,useMask:true,w:50,h:50,bx:'38%',by:'41%',brx:0,bry:0,brz:0,cx:'30%',cy:'30%'},
+      rightEye :      {artId: 'eyeBall', id:'rightEye', useEyeBall: false, eyeBallId:'eyeBall', bgColor:'none',useLids:false,useMask:false,w:50,h:50,bx:'62%',by:'41%',brx:0,bry:180,brz:0,cx:'70%',cy:'30%'},
 
     },
     elements: {

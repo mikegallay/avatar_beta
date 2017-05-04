@@ -16,7 +16,8 @@ export default class KeyableElement extends Component {
           actions={this.props.actions}
           timeline={this.props.timeline}
           activeControl={this.props.activeControl}
-          data={this.props.data}/>
+          data={this.props.data}
+          user={this.props.user}/>
       </div>
     </div>
     )

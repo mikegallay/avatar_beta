@@ -16,19 +16,32 @@ export default class ElementLayout extends Component {
     super(props)
     console.log('ElementLayout',props);
     const data = this.props.data
+    const user = this.props.user
     const type = data.id === 'face' ? 'main-element' : 'child-element'
 
     this.state = {
-      w     : data ? data.w : '100',
-      h     : data ? data.h : '100',
-      id    : data ? data.id : '',
-      artId : data ? data.artId : '',
-      type  : type,
-      x     : data ? data.bx : '0%',
-      y     : data ? data.by : '0%',
-      spriteURL:'/assets/icon-sprite-def.svg'
+      w         : data ? data.w : '100',
+      h         : data ? data.h : '100',
+      id        : data ? data.id : '',
+      artId     : data ? data.artId : '',
+      eyeBallId : data ? data.eyeBallId : '',
+      type      : type,
+      x         : data ? data.bx : '0%',
+      y         : data ? data.by : '0%',
+      spriteSheet : user ? user.spriteSheet : '/assets/icon-sprite-def01.svg',//:'/assets/icon-sprite-def01.svg'
     }
   }
+  /*updatespriteSheet(){
+    let newURL = '/assets/icon-sprite-def01.svg'
+    if (this.state.spriteSheet == newURL){
+      newURL = '/assets/icon-sprite-def02.svg'
+    }
+
+    this.setState({
+      spriteSheet:newURL
+    })
+  }*/
+
   componentDidMount() {
     var that = this
 
@@ -42,7 +55,10 @@ export default class ElementLayout extends Component {
     }
   }
   componentDidUpdate(){
-
+    // console.log('ElementLayout Update',this.state.spriteSheet);
+    this.setState({
+      spriteSheet:this.props.user.spriteSheet
+    })
   }
 
   renderLid(id){
@@ -55,7 +71,7 @@ export default class ElementLayout extends Component {
         className={`icon eyeLid ${id}Lid`}
         ref={svg => this.$svg = svg}
       >
-        <use xlinkHref={`${this.state.spriteURL}#${id}Lid`} />
+        <use xlinkHref={`${this.state.spriteSheet}#${id}Lid`} />
       </svg>
     )
   }
@@ -73,7 +89,7 @@ export default class ElementLayout extends Component {
         className={`icon skin ${skinId}Skin`}
         ref={svg => this.$svg = svg}
       >
-        <use xlinkHref={`${this.state.spriteURL}#${skinId}Skin`} />
+        <use xlinkHref={`${this.state.spriteSheet}#${skinId}Skin`} />
       </svg>
     )
   }
@@ -83,8 +99,9 @@ export default class ElementLayout extends Component {
     // console.log('this.props',this.props);
     let id = this.state.id;
     let artId = this.state.artId;
+    let eyeBallId = this.state.eyeBallId;
     let vb = '0 0 ' +(this.state.w * svgScale)+' '+(this.state.h * svgScale);
-    if (id == 'rightEyeBall' || id == 'leftEyeBall') artId='eyeBall';
+    if (id == 'rightEyeBall' || id == 'leftEyeBall') artId=eyeBallId;
 
     if (id == 'rightEye' || id == 'leftEye') id='eye';
     // if (!this.props.data.useEyeBall && id=='eye') id='noEyeBall';
@@ -103,7 +120,7 @@ export default class ElementLayout extends Component {
           className={`icon ${id}`}
           ref={svg => this.$svg = svg}
         >
-          <use xlinkHref={`${this.state.spriteURL}#${artId}`} />
+          <use xlinkHref={`${this.state.spriteSheet}#${artId}`} />
         </svg>
         {this.state.id == 'rightEye' && this.props.data.useLids && this.renderLid(id)}
         {this.state.id == 'rightEye' && this.props.data.useMask && this.renderSkin(artId)}

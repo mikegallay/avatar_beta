@@ -27,7 +27,7 @@ export default class TimelineEngine extends Component {
   }
 
   buildSubTL(){
-    console.log('buildSubTL',this.props.data.id);
+    // console.log('buildSubTL',this.props.data.id);
     //for all, scale the svg
     //for eyeballs. translate the svg
     //for all other, translate the element-holder
@@ -62,7 +62,7 @@ export default class TimelineEngine extends Component {
     }
   }
   componentDidMount(){
-    console.log('TimelineEngine',this.props);
+    // console.log('TimelineEngine',this.props);
 
   }
   /*renderAnimationObjects(){
@@ -82,6 +82,7 @@ export default class TimelineEngine extends Component {
         <ElementLayout
           actions={this.props.actions}
           data={this.props.data}
+          user={this.props.user}
         >
           {this.props.children}
         </ElementLayout>
