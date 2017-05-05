@@ -118,6 +118,15 @@ export default class ElementLayout extends Component {
     // console.log('lids/mask',this.props.data.useLids,this.props.data.useMask);
     return (
       <div className={`element-scale ${this.state.id}`}>
+        {this.state.id == 'rightEye' && this.props.data.useLids && this.renderLid(id)}
+        {this.state.id == 'rightEye' && this.props.data.useMask && this.renderSkin(artId)}
+
+        {this.state.id == 'leftEye' && this.props.data.useLids && this.renderLid(id)}
+        {this.state.id == 'leftEye' && this.props.data.useMask && this.renderSkin(artId)}
+        {/*this.state.id == 'leftEye' && this.props.data.useMask && this.renderClipPath(artId)*/}
+
+        {this.state.id == 'rightEar' && this.renderSkin(artId)}
+        {this.state.id == 'leftEar' && this.renderSkin(artId)}
         <svg
           viewBox={vb}
           className={`icon ${id}`}
@@ -125,15 +134,29 @@ export default class ElementLayout extends Component {
         >
           <use xlinkHref={`${this.state.spriteSheet}#${artId}`} />
         </svg>
-        {this.state.id == 'rightEye' && this.props.data.useLids && this.renderLid(id)}
-        {this.state.id == 'rightEye' && this.props.data.useMask && this.renderSkin(artId)}
 
-        {this.state.id == 'leftEye' && this.props.data.useLids && this.renderLid(id)}
-        {this.state.id == 'leftEye' && this.props.data.useMask && this.renderSkin(artId)}
 
-        {this.state.id == 'rightEar' && this.renderSkin(artId)}
-        {this.state.id == 'leftEar' && this.renderSkin(artId)}
+
       </div>
+    )
+  }
+
+  renderClipPath(artId){
+    // console.log('this.props',this.props);
+    // let id = this.state.id;
+    // let artId = this.state.artId;
+    // let vb = '0 0 ' +(this.state.w * svgScale)+' '+(this.state.h * svgScale);
+
+    return (
+
+
+      <svg height="0" width="0">
+    <defs>
+        <clipPath clipPathUnits="objectBoundingBox" id="faceclippath">
+            <use xlinkHref={`${this.state.spriteSheet}#${artId}`} />
+        </clipPath>
+    </defs>
+</svg>
     )
   }
 
@@ -166,6 +189,7 @@ export default class ElementLayout extends Component {
           {/* </div>*/}
 
         </div>
+        {/*this.state.type == 'main-element' && this.renderClipPath()*/}
       </div>
     )
   }

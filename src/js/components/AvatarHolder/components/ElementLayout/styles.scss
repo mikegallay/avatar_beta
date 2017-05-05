@@ -12,6 +12,7 @@ $skintone:lightblue;
     overflow: visible;
     &.main-element{
       // pointer-events: none;
+      // clip-path: url(#faceclippath);
     }
 
     &.child-element{
@@ -22,6 +23,7 @@ $skintone:lightblue;
       .element-holder{
         pointer-events: all;
         cursor:pointer;
+        overflow: hidden;
         // z-index: 100;
       }
     }
@@ -81,7 +83,10 @@ $skintone:lightblue;
         background: none;//black;
         left: -50%;
         &.rightEye,&.leftEye{
-          border-radius: 50%;
+          // border-radius: 50%;
+          .skin{
+            // border-radius: 50%;
+          }
         }
 
           .rightEyeBall,.leftEyeBall{
