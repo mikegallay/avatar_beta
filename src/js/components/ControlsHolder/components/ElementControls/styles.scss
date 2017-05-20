@@ -1,21 +1,63 @@
-:local(.styles) {
-
+// :local(.styles) {
+  // position:relative;
+  // height:100%;
   .element-controls{
-    // position:absolute;
-    width: 120px;
-    right: 0;
+    pointer-events: none;
+    position:absolute;
+    width: 100%;
+    height:100%;
+    left: 0;
     top: 0;
     border: 1px solid black;
-    background: gray;
-    height:auto;
+    // background: gray;
+    // height:auto;
     color:white;
-    text-align: center;
+    z-index:0;
     text-transform: uppercase;
-    button{
-      color:blue;
+    .element-tab{
+
+      pointer-events: all;
+      cursor: pointer;
+      position:absolute;
+      width:75px;
+      overflow: hidden;
+      height:26px;
+      padding:0 0 0 1em;
+      background:gray;
+      border-top:1px solid white;
+      border-left:1px solid white;
+      border-right:1px solid white;
+      // border-bottom:3px solid gray;
+      z-index:2;
+      opacity:.7;
+      h4{
+        font-size:.7em;
+        font-weight: bold;
+        user-select:none;
+      }
     }
+    .element-panel{
+      z-index:1;
+      top:25px;
+      height:100%;
+      position: relative;
+      background: gray;
+      border-top:1px solid white;
+    }
+    .element-buttons{
+      button{
+        color:blue;
+      }
+    }
+
     &.active{
-      border:2px solid yellow;
+      z-index:5;
+      // border:2px solid yellow;
+      .element-tab{
+        border-color:red;
+        opacity:1;
+        // border-bottom:1px solid gray;
+      }
     }
   }
-}
+// }

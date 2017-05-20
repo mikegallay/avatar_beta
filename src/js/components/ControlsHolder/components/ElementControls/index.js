@@ -11,12 +11,14 @@ export default class ElementControls extends Component {
     this.state={
       isActive : this.props.data.id == this.props.data.activeControl,
     }
-    //addkeyframe
-    //toggle hold
-    //condition to determine what controls are available
   }
   componentDidMount() {
+    var that = this
 
+    this.$tab.addEventListener('click',function(){
+      // console.log('clicked');
+      that.props.actions.toggleActiveControl(that.props.data.id);
+    })
   }
   componentWillUpdate(){
     // console.log(this.props.data.id,'willupdate');
@@ -29,12 +31,21 @@ export default class ElementControls extends Component {
     // })
   }
   render() {
+    var left = (this.props.data.index * 75) + 'px';
     return (
-      <div className={ `${styles}` }>
         <div className={ `element-controls ${this.props.data.id} test-${this.props.activeControl} ${this.props.activeControl == this.props.data.id ? 'active' : ''}` }>
-          <h4>{this.props.data.id}</h4>
-          <button>ADD KEYFRAME</button>
-        </div>
+          <div
+            className='element-tab'
+            ref = {tab => this.$tab = tab}
+            style={{'left':left}}>
+            <h4>{this.props.data.id}</h4>
+          </div>
+          <div className='element-panel'>
+            <div className='element-buttons'>
+              <h4>{this.props.data.id}</h4>
+              <button>ADD KEYFRAME</button>
+            </div>
+          </div>
       </div>
     )
   }

@@ -44,24 +44,25 @@ export default class ControlsHolder extends Component {
       allElements.push(avatarEyes[ob]);
     }
 
-    const mappedElements = allElements.map(element =>
+    const mappedElements = allElements.map((element,index) =>
       <ElementControls
 
         key={element.id}
         actions={this.props.actions}
         activeControl={this.props.avatar.activeControl}
         data={{
-          'w'  : element.w,
-          'h'  : element.h,
-          'id' : element.id,
-          'x'  : element.bx,
-          'y'  : element.by
+          'index' : index,
+          //'w'     : element.w,
+          // 'h'     : element.h,
+          'id'    : element.id,
+          // 'x'     : element.bx,
+          // 'y'     : element.by
         }}/>)
 
     return (
       <div className={ `${styles}` }>
         <div className='av-ac-main'>
-          <p>ControlsHolder</p>
+          {/*<p>ControlsHolder</p>*/}
           <ControlsAnimation actions={this.props.actions} activeControl={this.props.avatar.activeControl} data={this.props.avatar.mainElement}/>
           <div className='element-controls-wrapper'>
             {mappedElements}
