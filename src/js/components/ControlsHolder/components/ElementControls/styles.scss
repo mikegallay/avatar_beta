@@ -19,17 +19,18 @@
       pointer-events: all;
       cursor: pointer;
       position:absolute;
-      width:75px;
+      width:auto;//75px;
       overflow: hidden;
       height:26px;
-      padding:0 0 0 1em;
-      background:gray;
+      top: 5px;
+      padding:0 1em;
+      background:black;
       border-top:1px solid white;
       border-left:1px solid white;
       border-right:1px solid white;
       // border-bottom:3px solid gray;
       z-index:2;
-      opacity:.7;
+      // opacity:.7;
       h4{
         font-size:.7em;
         font-weight: bold;
@@ -38,7 +39,7 @@
     }
     .element-panel{
       z-index:1;
-      top:25px;
+      top:30px;
       height:100%;
       position: relative;
       background: gray;
@@ -54,8 +55,10 @@
       z-index:5;
       // border:2px solid yellow;
       .element-tab{
-        border-color:red;
-        opacity:1;
+        //border-color:red;
+        color:yellow;
+        // opacity:1;
+        background:gray;
         // border-bottom:1px solid gray;
       }
     }

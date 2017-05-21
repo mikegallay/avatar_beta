@@ -31,7 +31,11 @@ export default class ElementControls extends Component {
     // })
   }
   render() {
-    var left = (this.props.data.index * 75) + 'px';
+    let padding = 32;// + (this.props.data.index/3);
+    let letterW = 6.5;
+    const base = 4;
+    let left = (base + (this.props.data.charCount * letterW) + (padding * this.props.data.index)) + 'px';
+    // console.log( this.props.data.index,left);
     return (
         <div className={ `element-controls ${this.props.data.id} test-${this.props.activeControl} ${this.props.activeControl == this.props.data.id ? 'active' : ''}` }>
           <div

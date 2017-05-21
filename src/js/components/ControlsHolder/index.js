@@ -36,12 +36,17 @@ export default class ControlsHolder extends Component {
     const avatarEyes = this.props.avatar.eyes
 
     let allElements=[];
+    let charCount = 0;
     for (var ob in avatarElements) {
+      avatarElements[ob].charCount = charCount;
       allElements.push(avatarElements[ob]);
+      charCount += avatarElements[ob].id.length;
     }
 
     for (var ob in avatarEyes) {
+      avatarEyes[ob].charCount = charCount;
       allElements.push(avatarEyes[ob]);
+      charCount += avatarEyes[ob].id.length;
     }
 
     const mappedElements = allElements.map((element,index) =>
@@ -52,6 +57,7 @@ export default class ControlsHolder extends Component {
         activeControl={this.props.avatar.activeControl}
         data={{
           'index' : index,
+          'charCount' : element.charCount,
           //'w'     : element.w,
           // 'h'     : element.h,
           'id'    : element.id,
