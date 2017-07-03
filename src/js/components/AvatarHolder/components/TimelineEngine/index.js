@@ -28,10 +28,10 @@ export default class TimelineEngine extends Component {
 
   buildSubTL(){
     // console.log('buildSubTL',this.props.data.id);
-    //for all, scale the svg
+    //for all, scale on element-scale
     //for eyeballs. translate the svg
-    //for all other, translate the element-holder
-    //for all remove rotateZ and apply it to element-holder
+    //for all other, translate the element-wrapper
+    //for all rotate on their perspective rotation divs
     if (!this.props.timeline.subTimelines[this.props.data.id]){
       this.props.actions.initializeSubTimeline(this.props.data.id);
       // this.props.timeline.masterTimeline.add(this.props.timeline.subTimelines[this.props.data.id])

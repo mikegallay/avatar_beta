@@ -37,8 +37,6 @@ export default class ElementControls extends Component {
       let subTL;// = subtl.to('.'+id+'.element-scale',.25,{scaleX:rand,scaleY:rand, ease:Linear.easeNone},"+=0.25");
       if (id=='leftEye' || id=='rightEye'){
 
-
-        console.log('eyezzzz',rand);
         subTL = subtl.to('.'+id+'.element-scale',.25,{scaleX:rand,scaleY:rand,
           onUpdateParams:["{self}"],
           onUpdate: (tween) => {
@@ -48,14 +46,15 @@ export default class ElementControls extends Component {
             let ow = 0;
             var s = (sx < sy) ? sx : sy;
             if (s < 1) ow = 1 +(5 * (1 - s));
-            // if (ow < 1) ow = 1;
             ow = ow + "em";
-            console.log(ow);
             TweenMax.set('.'+id+'.element-scale',{outlineWidth:ow})
           },
           ease:Linear.easeNone},count);
       }else{
-        subTL = subtl.to('.'+id+'.element-scale',.25,{scaleX:rand,scaleY:rand, ease:Linear.easeNone},count);
+        subTL = subtl.to('.'+id+'.element-scale',.25,{scaleX:rand,scaleY:rand, ease:Linear.easeNone},count)
+                     .to('.'+id+'.element-wrapper',.25,{left:(rand * 50)+'%',ease:Linear.easeNone},count)
+                     .to('.'+id+'.element-rotateY',.25,{rotationY:(rand * 180),ease:Linear.easeNone},count)
+                  //  .to('.'+id+'.element-rotateX',.25,{rotationX:(rand * 180),ease:Linear.easeNone},count);
       }
       that.props.actions.addKeyFrame(id,subTL);//'scale',rand,.25);
         // subtl.from('.'+id+'.element-scale',.25,{scaleX:0,scaleY:0, ease:Linear.easeNone})

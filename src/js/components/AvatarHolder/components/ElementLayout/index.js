@@ -183,10 +183,10 @@ export default class ElementLayout extends Component {
                     {this.renderIcon()}
                     {this.props.children}
                   </div>
-                </div>
-                {/* </div>*/}
+                {/*</div>*/}
+                 </div>
           </div>
-          {/* </div>*/}
+           {/*</div>*/}
 
         </div>
         {/*this.state.type == 'main-element' && this.renderClipPath()*/}
