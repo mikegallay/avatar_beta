@@ -1,17 +1,17 @@
 export default function reducer(state={
     id: null,
     spriteULR: '',
-    mainElement: {artId: 'face',id:'face',w:350,h:376},
+    mainElement: {artId: 'face',id:'face',w:350,h:375},
     activeControl:'face',
     eyes:{
-      leftEye :       {artId: 'eye02', id:'leftEye', useEyeBall: true, eyeBallId:'eyeBall', bgColor:'yellow',useLids:true,useMask:true,w:50,h:50,bx:'38%',by:'41%',brx:0,bry:0,brz:0,cx:'30%',cy:'30%'},
-      rightEye :      {artId: 'eyeBall', id:'rightEye', useEyeBall: false, eyeBallId:'eyeBall', bgColor:'none',useLids:false,useMask:false,w:50,h:50,bx:'62%',by:'41%',brx:0,bry:180,brz:0,cx:'70%',cy:'30%'},
+      leftEye :       {artId: 'eye02', id:'leftEye', useEyeBall: true, eyeBallId:'eyeBall', bgColor:'white',useLids:true,useMask:true,w:60,h:60,bx:'38%',by:'41%',brx:0,bry:0,brz:0,cx:'30%',cy:'30%'},
+      rightEye :      {artId: 'eye02', id:'rightEye', useEyeBall: true, eyeBallId:'eyeBall', bgColor:'white',useLids:false,useMask:true,w:60,h:60,bx:'62%',by:'41%',brx:0,bry:180,brz:0,cx:'70%',cy:'30%'},
 
     },
     elements: {
-      rightEar :      {artId: 'ear', id:'rightEar',w:45,h:108,bx:'83%',by:'43%',brx:0,bry:180,brz:0,cx:'83%',cy:'43%'},
-      leftEar :       {artId: 'ear', id:'leftEar',w:45,h:108,bx:'17%',by:'43%',brx:0,bry:180,brz:0,cx:'17%',cy:'43%'},
-      faceOver:       {artId: 'faceOver', id:'faceOver',w:350,h:376,bx:'50%',by:'0%',brx:0,bry:0,brz:0,cx:'50%',cy:'0%'},
+      rightEar :      {artId: 'ear', id:'rightEar',w:45,h:100,bx:'83%',by:'43%',brx:0,bry:180,brz:0,cx:'83%',cy:'43%'},
+      leftEar :       {artId: 'ear', id:'leftEar',w:45,h:100,bx:'17%',by:'43%',brx:0,bry:180,brz:0,cx:'17%',cy:'43%'},
+      faceOver:       {artId: 'faceOver', id:'faceOver',w:350,h:375,bx:'50%',by:'0%',brx:0,bry:0,brz:0,cx:'50%',cy:'0%'},
       rightBrow :     {artId: 'brow', id:'rightBrow',w:55,h:25,bx:'62%',by:'35%',brx:0,bry:180,brz:0,cx:'70%',cy:'20%'},
       leftBrow :      {artId: 'brow', id:'leftBrow',w:55,h:25,bx:'38%',by:'35%',brx:0,bry:0,brz:0,cx:'30%',cy:'20%'},
       mouth :         {artId: 'mouth', id:'mouth',w:100,h:25,bx:'50%',by:'70%',brx:0,bry:0,brz:0,cx:'50%',cy:'70%'},

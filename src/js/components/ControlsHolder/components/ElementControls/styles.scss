@@ -38,14 +38,34 @@
       }
     }
     .element-panel{
+      padding:1%;
       z-index:1;
       top:30px;
-      height:100%;
+      width:98%;
+      height:98%;
       position: relative;
       background: gray;
       border-top:1px solid white;
     }
+    .element-elements{
+      width:100%;
+      position: relative;
+      display: inline-block;
+      div{
+        float:left;
+        position: relative;
+        user-select:none;
+        cursor:pointer;
+      }
+      .panel-title{
+        font-weight: bold;
+        cursor:default;
+        font-size:.95em;
+      }
+
+    }
     .element-buttons{
+      input{color:black;width:100px;margin-right: 10px;}
       button{
         color:blue;
       }
@@ -53,7 +73,11 @@
 
     &.active{
       z-index:5;
+
       // border:2px solid yellow;
+      .element-panel{
+        pointer-events: all;
+      }
       .element-tab{
         //border-color:red;
         color:yellow;

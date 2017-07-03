@@ -20,7 +20,12 @@ import { toggleSpriteSheet } from "../../actions/userActions"
   };
 },(dispatch) => {
   return {
-    actions:bindActionCreators({toggleSpriteSheet,toggleActiveControl,initializeTimeline,initializeSubTimeline}, dispatch)
+    actions:bindActionCreators({
+      toggleSpriteSheet,
+      toggleActiveControl,
+      initializeTimeline,
+      initializeSubTimeline
+    }, dispatch)
   }
 })
 export default class AvatarHolder extends Component {
@@ -65,6 +70,9 @@ export default class AvatarHolder extends Component {
   }
 
   buildMasterTL(){
+    //this is the master timeline that controls all the other subtimelines
+    //initialized in TimelineEngine components within the KeyableElements
+
     if (!this.props.timeline.masterTimeline){
       let tl = new TimelineMax(/*{onComplete:() => {this.restart()}}*/);
 
@@ -73,6 +81,8 @@ export default class AvatarHolder extends Component {
     }
   }
   renderEyeBall(element){
+    //when used eyeballs are initialized here.
+
     // console.log('eyeball',this.props);
     return(
       <KeyableElement
@@ -132,8 +142,10 @@ export default class AvatarHolder extends Component {
 
     return (
       <div className={ `${styles}` }>
-        <div className="av-ke-main">
-          {/*<TimelineEngine actions={this.props.actions} data={{'id':'masterTL'}}/>*/}
+        <div className="avatarHolder">
+
+          {/*This TimelineEngine builds the master timeline
+          //and the main div that holds every other element of the face*/}
           <TimelineEngine
             actions={this.props.actions}
             timeline={this.props.timeline}
@@ -142,10 +154,12 @@ export default class AvatarHolder extends Component {
             data={this.props.avatar.mainElement}
           >
 
-            {mappedEyes}
+
             {mappedElements}
+            {mappedEyes}
 
           </TimelineEngine>
+
           <h6 ref={clickme => this.$clickme = clickme}>CLICK ME!</h6>
           <h6 className='h62' ref={toggleSprite => this.$toggleSprite = toggleSprite}>TOGGLE SPRITES!</h6>
         </div>

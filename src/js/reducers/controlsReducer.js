@@ -5,10 +5,7 @@ export default function reducer(state={
   }, action) {
 
     switch (action.type) {
-      case "ADD_KEYFRAME": {
-        return {...state}
-      }
-      case "REMOVE_KEYFRAME": {
+      case "ADJUST_KEYABLE_VALUE": {
         return {...state}
       }
       /*case "FETCH_USER_FULFILLED": {

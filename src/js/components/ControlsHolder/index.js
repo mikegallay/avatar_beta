@@ -8,7 +8,7 @@ import ElementControls from './components/ElementControls'
 import { bindActionCreators } from 'redux'
 
 // import { fetchUser } from "../../actions/userActions"
-import { toggleActiveControl } from "../../actions/controlsActions"
+import { toggleActiveControl,adjustKeyableValue } from "../../actions/controlsActions"
 
 @connect((store) => {
   return {
@@ -17,7 +17,7 @@ import { toggleActiveControl } from "../../actions/controlsActions"
   };
 },(dispatch) => {
   return {
-    actions:bindActionCreators({toggleActiveControl}, dispatch)
+    actions:bindActionCreators({toggleActiveControl,adjustKeyableValue}, dispatch)
   }
 })
 export default class ControlsHolder extends Component {
@@ -67,7 +67,7 @@ export default class ControlsHolder extends Component {
 
     return (
       <div className={ `${styles}` }>
-        <div className='av-ac-main'>
+        <div className='avatarControls'>
           {/*<p>ControlsHolder</p>*/}
           <ControlsAnimation actions={this.props.actions} activeControl={this.props.avatar.activeControl} data={this.props.avatar.mainElement}/>
           <div className='element-controls-wrapper'>
