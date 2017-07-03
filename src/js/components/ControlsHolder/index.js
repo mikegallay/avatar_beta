@@ -34,7 +34,8 @@ export default class ControlsHolder extends Component {
     // console.log('Layout update',this.props);
   }
   componentDidMount(){
-    // console.log('mount', this.props);
+    // ugly fix to make the proper tab show up.
+    this.props.actions.toggleActiveControl('rightEar');
   }
 
   change(e){
@@ -76,6 +77,8 @@ export default class ControlsHolder extends Component {
           // 'x'     : element.bx,
           // 'y'     : element.by
         }}/>)
+
+    // allElements.reverse();
 
     const mappedOptions = allElements.map((element,index) =>
       <option

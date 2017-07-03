@@ -26,18 +26,17 @@ export default class ElementControls extends Component {
     var subtl = this.props.timeline.subTimelines[id];
     var bref = this[id + 'Input'];
     var count = 0;
-    const d = 1;
+    const d = .25;
 
     // console.log('test',id,this.props);
     this[id + 'Button'].addEventListener('click',function(){
-      // const inp = docu
-      // console.log('clicked',bref.value, that.props);
-      // that.props.actions.adjustKeyableValue(id,bref.value);
+
       var rand = Math.random()*1.5 + .5;
       //testing added animated kf to sub timeline
-      let subTL;// = subtl.to('.'+id+'.element-scale',.25,{scaleX:rand,scaleY:rand, ease:Linear.easeNone},"+=0.25");
-      if (id=='leftEye' || id=='rightEye'){
+      let subTL;
 
+      //eyes have to be treated a little differently
+      if (id=='leftEye' || id=='rightEye'){
         subTL = subtl.to('.'+id+'.element-scale',d,{scaleX:rand,scaleY:rand,
           onUpdateParams:["{self}"],
           onUpdate: (tween) => {
@@ -52,21 +51,20 @@ export default class ElementControls extends Component {
           },
           ease:Linear.easeNone},count)
           // .to('.'+id+'.element-rotateX',.25,{rotationX:(rand * 180),ease:Linear.easeNone},count)
-          .to('.'+id+'.element-rotateY',d,{rotationY:(rand * 180),ease:Linear.easeNone},count)
+          // .to('.'+id+'.element-rotateY',d,{rotationY:(rand * 180),ease:Linear.easeNone},count)
           .to('.'+id+'.element-rotateZ',d,{rotationZ:(rand * 10)-5,ease:Linear.easeNone},count)
       }else{
         subTL = subtl.to('.'+id+'.element-scale',d,{scaleX:rand,scaleY:rand, ease:Linear.easeNone},count)
-                    //  .to('.'+id+'.element-wrapper',.25,{left:(rand * 50)+'%',ease:Linear.easeNone},count)
-                    .to('.'+id+'.element-rotateX',.25,{rotationX:(rand * 180),ease:Linear.easeNone},count)
-                    .to('.'+id+'.element-rotateY',d,{rotationY:(rand * 180),ease:Linear.easeNone},count)
-                    .to('.'+id+'.element-rotateZ',d,{rotationZ:(rand * 180),ease:Linear.easeNone},count)
+                     //  .to('.'+id+'.element-wrapper',.25,{left:(rand * 50)+'%',ease:Linear.easeNone},count)
+                    //  .to('.'+id+'.element-rotateX',.25,{rotationX:(rand * 180),ease:Linear.easeNone},count)
+                    //  .to('.'+id+'.element-rotateY',d,{rotationY:(rand * 180),ease:Linear.easeNone},count)
+                     .to('.'+id+'.element-rotateZ',d,{rotationZ:(rand * 180),ease:Linear.easeNone},count)
       }
-      that.props.actions.addKeyFrame(id,subTL);//'scale',rand,.25);
-        // subtl.from('.'+id+'.element-scale',.25,{scaleX:0,scaleY:0, ease:Linear.easeNone})
-      // subtl.to('.'+id+'.element-scale',.25,{scaleX:rand,scaleY:rand, ease:Linear.easeNone},"+=0.25")
+
+      //pass the edited subtimeline to the action.
+      that.props.actions.addKeyFrame(id,subTL);
+
       count += d;
-      // console.log(subtl);
-      // console.log(id,rand);
     })
 
     /*this.$ke.addEventListener('click',function(){
