@@ -13,7 +13,7 @@ export default function reducer(state={
 
     switch (action.type) {
       case "INITIALIZE_TIMELINE": {
-        console.log('initt',action.payload);
+        // console.log('initt',action.payload);
         return {...state, masterTimeline: action.payload}
       }
       case "INITIALIZE_SUB_TIMELINE": {
@@ -29,10 +29,17 @@ export default function reducer(state={
           }
         }
       }
-      /*  case "REMOVE_KEYFRAME": {
-        return {...state}
+       case "ADD_KEYFRAME": {
+         console.log('ADD_KEYFRAME',action.payload);
+        //  let newTL = ...state.subTimelines[id].to('.'+id+'.element-scale',.25,{scaleX:action.payload.val,scaleY:action.payload.val, ease:Linear.easeNone},"+=0.25")
+        return {...state,
+          subTimelines: {
+            ...state.subTimelines,
+            [action.payload.id] : action.payload.subTL
+          }
+        }
       }
-      case "FETCH_USER_FULFILLED": {
+      /* case "FETCH_USER_FULFILLED": {
         return {
           ...state,
           fetching: false,

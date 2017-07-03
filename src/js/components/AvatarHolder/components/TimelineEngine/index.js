@@ -45,9 +45,12 @@ export default class TimelineEngine extends Component {
     // const id = this.props.data.id;
     // console.log('id',id);
     if (!this.state.tlInit){
+      console.log('tlinit',id);
       masterTimeline.add(subTimelines[id],0)
+      // subTimelines[id].from('.'+id+'.element-scale',.25,{scaleX:0,scaleY:0, ease:Linear.easeNone})
       this.setState({tlInit:true})
-
+    }
+/*
     // set a default tl animation
     }else if (id == 'leftEar' || id == 'rightEar' || id == 'leftBrow' || id == 'rightBrow' || id == 'leftEye' || id == 'rightEye' || id == 'nose' || id == 'mouth'){
       var subtl = subTimelines[id];
@@ -59,7 +62,8 @@ export default class TimelineEngine extends Component {
       subtl.to('.'+id+'.element-scale',.5,{scaleX:1,scaleY:.5,yoyo:true, repeat:1, repeatDelay:.5,ease:Linear.easeNone},0)
       subtl.to('.'+id+'.element-holder',.15,{top:diff,yoyo:true, repeat:3, ease:Linear.easeNone},.2)
       // subtl.pause();
-    }
+
+    }  */
   }
   componentDidMount(){
     // console.log('TimelineEngine',this.props);

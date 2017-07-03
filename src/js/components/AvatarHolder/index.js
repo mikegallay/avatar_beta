@@ -39,7 +39,7 @@ export default class AvatarHolder extends Component {
   }
 
   playTL(){
-    // console.log('playTL');
+    console.log('playTL');
     this.props.timeline.masterTimeline.restart();
   }
 
@@ -154,9 +154,9 @@ export default class AvatarHolder extends Component {
             data={this.props.avatar.mainElement}
           >
 
-
-            {mappedElements}
             {mappedEyes}
+            {mappedElements}
+
 
           </TimelineEngine>
 

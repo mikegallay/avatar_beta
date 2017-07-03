@@ -9,15 +9,21 @@ import { bindActionCreators } from 'redux'
 
 // import { fetchUser } from "../../actions/userActions"
 import { toggleActiveControl,adjustKeyableValue } from "../../actions/controlsActions"
+import { addKeyFrame } from "../../actions/timelineActions"
 
 @connect((store) => {
   return {
     user: store.rootState.user.user,
-    avatar: store.rootState.avatar
+    avatar: store.rootState.avatar,
+    timeline: store.rootState.timeline,
   };
 },(dispatch) => {
   return {
-    actions:bindActionCreators({toggleActiveControl,adjustKeyableValue}, dispatch)
+    actions:bindActionCreators({
+      toggleActiveControl,
+      adjustKeyableValue,
+      addKeyFrame
+    }, dispatch)
   }
 })
 export default class ControlsHolder extends Component {
@@ -41,28 +47,29 @@ export default class ControlsHolder extends Component {
     const avatarEyes = this.props.avatar.eyes
 
     let allElements=[];
-    let charCount = 0;
+  //  let charCount = 0;
     for (var ob in avatarElements) {
-      avatarElements[ob].charCount = charCount;
+    //  avatarElements[ob].charCount = charCount;
       allElements.push(avatarElements[ob]);
-      charCount += avatarElements[ob].id.length;
+      //charCount += avatarElements[ob].id.length;
     }
 
     for (var ob in avatarEyes) {
-      avatarEyes[ob].charCount = charCount;
+    //  avatarEyes[ob].charCount = charCount;
       allElements.push(avatarEyes[ob]);
-      charCount += avatarEyes[ob].id.length;
+    //  charCount += avatarEyes[ob].id.length;
     }
 
-    const mappedElementsOLD = allElements.map((element,index) =>
+    const mappedElementsPanels = allElements.map((element,index) =>
       <ElementControls
 
         key={element.id}
         actions={this.props.actions}
         activeControl={this.props.avatar.activeControl}
+        timeline={this.props.timeline}
         data={{
           'index' : index,
-          'charCount' : element.charCount,
+          //'charCount' : element.charCount,
           //'w'     : element.w,
           // 'h'     : element.h,
           'id'    : element.id,
@@ -70,12 +77,11 @@ export default class ControlsHolder extends Component {
           // 'y'     : element.by
         }}/>)
 
-    const mappedElements = allElements.map((element,index) =>
+    const mappedOptions = allElements.map((element,index) =>
       <option
         ref = {dd => this.$dd = dd}
         key={element.id}
-        value={element.id}
-        >
+        value={element.id}>
           {element.id}
         </option>)
 
@@ -86,10 +92,9 @@ export default class ControlsHolder extends Component {
           <ControlsAnimation actions={this.props.actions} activeControl={this.props.avatar.activeControl} data={this.props.avatar.mainElement}/>*/}
           <div className='element-controls-wrapper'>
             <select onChange={this.change.bind(this)}>
-            {mappedElements}
-            <option value='test'>test</option>
+            {mappedOptions}
             </select>
-            {mappedElementsOLD}
+            {mappedElementsPanels}
           </div>
         </div>
       </div>

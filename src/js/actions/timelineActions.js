@@ -11,3 +11,15 @@ export function initializeSubTimeline(id) {
     payload: id
   }
 }
+
+export function addKeyFrame(id,subTL){//prop,val,time) {
+  return {
+    type: "ADD_KEYFRAME",
+    payload: {
+      id: id,
+      subTL: subTL,
+      // val:val,
+      // time: time
+    }
+  }
+}

@@ -23,7 +23,7 @@ $skintone:lightblue;
       .element-holder{
         pointer-events: all;
         cursor:pointer;
-        overflow: hidden;
+        // overflow: hidden;
         // z-index: 100;
       }
     }
@@ -130,7 +130,7 @@ $skintone:lightblue;
             // outline: 10px solid $skintone;
             outline-color: $skintone;
             outline-style: solid;
-            outline-width: 5em;
+            outline-width: 0em;
             outline-offset: 0;
             /*&:before{
               content:'';

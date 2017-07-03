@@ -12,6 +12,9 @@ export default class ElementControls extends Component {
       isActive : this.props.data.id == this.props.data.activeControl,
     }
   }
+  checkScale(){
+    console.log('checkScale');
+  }
   componentDidMount() {
     var that = this
 
@@ -19,12 +22,47 @@ export default class ElementControls extends Component {
       // console.log('clicked');
       that.props.actions.toggleActiveControl(that.props.data.id);
     })*/
+    var id = this.props.data.id;
+    var subtl = this.props.timeline.subTimelines[id];
+    var bref = this[id + 'Input'];
+    var count = .25;
 
-    var bref = this[this.props.data.id + 'Input'];
-    this[this.props.data.id + 'Button'].addEventListener('click',function(){
+    // console.log('test',id,this.props);
+    this[id + 'Button'].addEventListener('click',function(){
       // const inp = docu
-      console.log('clicked',bref.value);
-      that.props.actions.adjustKeyableValue(that.props.data.id,bref.value);
+      // console.log('clicked',bref.value, that.props);
+      // that.props.actions.adjustKeyableValue(id,bref.value);
+      var rand = Math.random()*1.5 + .5;
+      //testing added animated kf to sub timeline
+      let subTL;// = subtl.to('.'+id+'.element-scale',.25,{scaleX:rand,scaleY:rand, ease:Linear.easeNone},"+=0.25");
+      if (id=='leftEye' || id=='rightEye'){
+
+
+        console.log('eyezzzz',rand);
+        subTL = subtl.to('.'+id+'.element-scale',.25,{scaleX:rand,scaleY:rand,
+          onUpdateParams:["{self}"],
+          onUpdate: (tween) => {
+            const transform = tween.target[0]._gsTransform;
+            let sx = transform.scaleX;
+            let sy = transform.scaleY;
+            let ow = 0;
+            var s = (sx < sy) ? sx : sy;
+            if (s < 1) ow = 1 +(5 * (1 - s));
+            // if (ow < 1) ow = 1;
+            ow = ow + "em";
+            console.log(ow);
+            TweenMax.set('.'+id+'.element-scale',{outlineWidth:ow})
+          },
+          ease:Linear.easeNone},count);
+      }else{
+        subTL = subtl.to('.'+id+'.element-scale',.25,{scaleX:rand,scaleY:rand, ease:Linear.easeNone},count);
+      }
+      that.props.actions.addKeyFrame(id,subTL);//'scale',rand,.25);
+        // subtl.from('.'+id+'.element-scale',.25,{scaleX:0,scaleY:0, ease:Linear.easeNone})
+      // subtl.to('.'+id+'.element-scale',.25,{scaleX:rand,scaleY:rand, ease:Linear.easeNone},"+=0.25")
+      count += .25;
+      // console.log(subtl);
+      // console.log(id,rand);
     })
 
     /*this.$ke.addEventListener('click',function(){
