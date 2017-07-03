@@ -15,10 +15,10 @@ export default class ElementControls extends Component {
   componentDidMount() {
     var that = this
 
-    /*this.$tab.addEventListener('click',function(){
+    this.$tab.addEventListener('click',function(){
       // console.log('clicked');
       that.props.actions.toggleActiveControl(that.props.data.id);
-    })*/
+    })
 
     var bref = this[this.props.data.id + 'Input'];
     this[this.props.data.id + 'Button'].addEventListener('click',function(){
@@ -62,8 +62,19 @@ export default class ElementControls extends Component {
   }
 
   render() {
+    //crude way to get the tabs to space out correctly.
+    let padding = 32;// + (this.props.data.index/3);
+    let letterW = 6;
+    const base = 4;
+    let left = (base + (this.props.data.charCount * letterW) + (padding * this.props.data.index)) + 'px';
     return (
         <div className={ `element-controls ${this.props.data.id} test-${this.props.activeControl} ${this.props.activeControl == this.props.data.id ? 'active' : ''}` }>
+          <div
+            className='element-tab'
+            ref = {tab => this.$tab = tab}
+            style={{'left':left}}>
+            <h4>{this.props.data.id}</h4>
+          </div>
           <div className='element-panel'>
 
             <div className='element-elements'>

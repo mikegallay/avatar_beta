@@ -28,7 +28,12 @@ export default class ControlsHolder extends Component {
     // console.log('Layout update',this.props);
   }
   componentDidMount(){
-    // console.log('ControlsHolder',this.props);
+    // console.log('mount', this.props);
+  }
+
+  change(e){
+    // console.log('select',e.target);
+    this.props.actions.toggleActiveControl(e.target.value);
   }
 
   render() {
@@ -49,7 +54,7 @@ export default class ControlsHolder extends Component {
       charCount += avatarEyes[ob].id.length;
     }
 
-    const mappedElements = allElements.map((element,index) =>
+    const mappedElementsOLD = allElements.map((element,index) =>
       <ElementControls
 
         key={element.id}
@@ -65,13 +70,26 @@ export default class ControlsHolder extends Component {
           // 'y'     : element.by
         }}/>)
 
+    const mappedElements = allElements.map((element,index) =>
+      <option
+        ref = {dd => this.$dd = dd}
+        key={element.id}
+        value={element.id}
+        >
+          {element.id}
+        </option>)
+
     return (
       <div className={ `${styles}` }>
         <div className='avatarControls'>
-          {/*<p>ControlsHolder</p>*/}
-          <ControlsAnimation actions={this.props.actions} activeControl={this.props.avatar.activeControl} data={this.props.avatar.mainElement}/>
+          {/*<p>ControlsHolder</p>
+          <ControlsAnimation actions={this.props.actions} activeControl={this.props.avatar.activeControl} data={this.props.avatar.mainElement}/>*/}
           <div className='element-controls-wrapper'>
+            <select onChange={this.change.bind(this)}>
             {mappedElements}
+            <option value='test'>test</option>
+            </select>
+            {mappedElementsOLD}
           </div>
         </div>
       </div>
