@@ -50,13 +50,16 @@ export default class ElementControls extends Component {
             ow = ow + "em";
             TweenMax.set('.'+id+'.element-scale',{outlineWidth:ow})
           },
-          ease:Linear.easeNone},count);
+          ease:Linear.easeNone},count)
+          // .to('.'+id+'.element-rotateX',.25,{rotationX:(rand * 180),ease:Linear.easeNone},count)
+          .to('.'+id+'.element-rotateY',d,{rotationY:(rand * 180),ease:Linear.easeNone},count)
+          .to('.'+id+'.element-rotateZ',d,{rotationZ:(rand * 10)-5,ease:Linear.easeNone},count)
       }else{
         subTL = subtl.to('.'+id+'.element-scale',d,{scaleX:rand,scaleY:rand, ease:Linear.easeNone},count)
                     //  .to('.'+id+'.element-wrapper',.25,{left:(rand * 50)+'%',ease:Linear.easeNone},count)
-                    //  .to('.'+id+'.element-rotateY',d,{rotationY:(rand * 180),ease:Linear.easeNone},count)
-                     .to('.'+id+'.element-rotateZ',d,{rotationZ:(rand * 180),ease:Linear.easeNone},count)
-                  //  .to('.'+id+'.element-rotateX',.25,{rotationX:(rand * 180),ease:Linear.easeNone},count);
+                    .to('.'+id+'.element-rotateX',.25,{rotationX:(rand * 180),ease:Linear.easeNone},count)
+                    .to('.'+id+'.element-rotateY',d,{rotationY:(rand * 180),ease:Linear.easeNone},count)
+                    .to('.'+id+'.element-rotateZ',d,{rotationZ:(rand * 180),ease:Linear.easeNone},count)
       }
       that.props.actions.addKeyFrame(id,subTL);//'scale',rand,.25);
         // subtl.from('.'+id+'.element-scale',.25,{scaleX:0,scaleY:0, ease:Linear.easeNone})

@@ -1,4 +1,5 @@
 $skintone:lightblue;
+
 :local(.styles) {
 
   div{
@@ -10,77 +11,40 @@ $skintone:lightblue;
 
   .element-wrapper{
     overflow: visible;
-    &.main-element{
-      // pointer-events: none;
-      // clip-path: url(#faceclippath);
+
+    .element-scale{
+      transform: scale(1);
+    }
+
+    .element-holder{
+      svg.icon.face{
+        fill:$skintone;
+      }
     }
 
     &.child-element{
       .element-scale, .element-rotateX, .element-rotateY, .element-rotateZ{
-        // transform-origin: 0% 50%;
         perspective: 400px;
       }
-      .element-holder{
-        pointer-events: all;
-        cursor:pointer;
-        // overflow: hidden;
-        // z-index: 100;
-      }
-    }
 
-    .element-scale{
-      transform: scale(1);
-      // transition: transform .5s;
-    }
-    .element-rotateX, .element-rotateY, .element-rotateZ{
-      transform: rotate(0deg);
-      transform-origin: 0% 50%;
-      // transition: transform 1s;
-
-    }
-
-
-    .element-holder{
-      // position:relative;
-      // width:100%;
-      // height:100%;
-      svg.icon.face{
-        fill:$skintone;
-      }
-
-    }
-    &.child-element{
-      .rightEye,.rightEar,.rightBrow{
-        &.element-rotateY{
-          transform: rotateY(180deg);
-          transform-origin: 0% 50%;
-        }
-        .rightEyeBall,.leftEyeBall{
-          &.element-rotateY{
-            transform: rotateY(0deg);
-          }
-        }
+      .element-rotateX, .element-rotateY, .element-rotateZ{
+        transform: rotate(0deg);
+        transform-origin: 0% 50%;
       }
 
       .element-holder{
-        background: none;//black;
+        // pointer-events: all;
+        // cursor:pointer;
+        background: none;
         left: -50%;
-        &.rightEye,&.leftEye{
-          // border-radius: 50%;
-          .skin{
-            // border-radius: 50%;
-          }
-        }
 
-          .rightEyeBall,.leftEyeBall{
-            left:0;
-          }
+        .rightEyeBall,.leftEyeBall{
+          left:0;
+        }
 
         .element-scale{
           z-index: 2;
           position: relative;
-
-          // transform: scale(.25);
           .skin{
             position: absolute;
             top:0;
@@ -101,68 +65,52 @@ $skintone:lightblue;
             transform-origin: 0% 0%;
             transform:scale(1,0);
           }
-          &.rightEyeBall,&.leftEyeBall{
-            // background: white;
-            // border-radius: 50%;
-          }
           &.leftEye,&.rightEye{
-            // border-color:$skintone;
-            // border-style: solid;
-            // border-width: 0;
-            //do i need this?
-            // outline: 10px solid $skintone;
             outline-color: $skintone;
             outline-style: solid;
             outline-width: 0em;
             outline-offset: 0;
-            /*&:before{
-              content:'';
-              width:100%;height: 50%;
-              position: absolute;
-              background: $skintone;
-              top:-50%;
-              left:0;
-            }
-            &:after{
-              content:'';
-              width:100%;height: 50%;
-              position: absolute;
-              background: $skintone;
-              top:100%;
-              left:0;
-            }*/
           }
         }
-        &.rightEyeBall,&.leftEyeBall{
-          // border-radius:50%;
-          // background: none;// url('/assets/eyeball.png');
-          background-size: cover;
 
+        &.rightEyeBall,&.leftEyeBall{
+          background-size: cover;
         }
 
         &.rightEye,&.leftEye{
-          // background: url('/assets/eye.png');
           background-size: cover;
-          // overflow: hidden;
           svg.icon.leftEye,svg.icon.rightEye{
             z-index: 2;
             position:relative;
           }
-
-          // svg{fill:black;stroke:pink;stroke-width:10px;}
-
-          //svg path:first-child{fill:$skintone;}
-
         }
+
         .rightEyeBall, .leftEyeBall{
           z-index: 0;
         }
 
-      #skin-tone{
-        stroke:#b52808;
-        stroke-width:.5;
+        #skin-tone{
+          // stroke:#b52808;
+          // stroke-width:.5;
+        }
       }
+
+
+
+      /* all elements that need to be flipped 180 deg */
+      .rightEye,.rightEar,.rightBrow{
+        &.element-rotateY{
+          transform: rotateY(180deg);
+          // transform-origin: 0% 50%;
+        }
+        .rightEyeBall,.leftEyeBall{
+          left:0;
+          &.element-rotateY{
+            // transform: rotateY(0deg);
+          }
+        }
       }
+
     }
   }
 
