@@ -171,25 +171,20 @@ export default class ElementLayout extends Component {
             'left':this.state.x,
             'top':this.state.y,
           }}>
-          {/*<div className={`element-scale ${this.state.id}`}>*/}
             <div className={`element-rotateX ${this.state.id}`}>
               <div className={`element-rotateY ${this.state.id}`}>
-                {/*<div className={`element-rotateZ ${this.state.id}`}>*/}
+                <div className={`element-rotateZ ${this.state.id}`}>
                   <div
                     ref = {element => this.$element = element}
                     className={`element-holder ${this.state.id}`}
-
                     >
                     {this.renderIcon()}
                     {this.props.children}
                   </div>
-                {/*</div>*/}
-                 </div>
+                </div>
+              </div>
           </div>
-           {/*</div>*/}
-
         </div>
-        {/*this.state.type == 'main-element' && this.renderClipPath()*/}
       </div>
     )
   }
