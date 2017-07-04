@@ -10,6 +10,27 @@
       color:black;
     }
     // bottom: 0;
+    .main-timeline{
+      position:relative;
+      height:25px;
+      width:100%;
+      background: lightgray;
+      border-top:2px;
+      border-bottom:2px;
+      border-color:gray;
+      border-left:0;
+      border-right:0;
+      border-style:solid;
+      .main-timeline-playhead{
+        position:absolute;
+        width:10px;
+        height:100%;
+        background:white;
+        border:1px solid red;
+        margin-left:-5px;
+        left:0%;
+      }
+    }
     .element-controls-wrapper{
       display: flex;
       justify-content: flex-start;

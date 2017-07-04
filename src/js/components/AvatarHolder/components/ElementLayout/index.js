@@ -14,7 +14,7 @@ const svgScale = 50;
 export default class ElementLayout extends Component {
   constructor(props){
     super(props)
-    console.log('ElementLayout',props);
+    // console.log('ElementLayout',props);
     const data = this.props.data
     const user = this.props.user
     const type = data.id === 'face' ? 'main-element' : 'child-element'
@@ -55,7 +55,7 @@ export default class ElementLayout extends Component {
     }*/
   }
   componentDidUpdate(){
-    console.log('ElementLayout Update',this.state.spriteSheet);
+    // console.log('ElementLayout Update',this.state.spriteSheet);
     if (this.state.spriteSheet != this.props.user.spriteSheet){
       this.setState({
         spriteSheet:this.props.user.spriteSheet

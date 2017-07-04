@@ -1,6 +1,7 @@
 export default function reducer(state={
     init: false,
     masterTimeline: null,
+    masterProgress:0,
     subTimelines: {},
     //make subTimelines build like this?
     // subTimelines : {
@@ -29,7 +30,11 @@ export default function reducer(state={
           }
         }
       }
-       case "ADD_KEYFRAME": {
+      case "UPDATE_PROGRESS": {
+        console.log('UPDATE_PROGRESS',action.payload);
+        return {...state, masterProgress: action.payload}
+      }
+      case "ADD_KEYFRAME": {
          console.log('ADD_KEYFRAME',action.payload);
         //  let newTL = ...state.subTimelines[id].to('.'+id+'.element-scale',.25,{scaleX:action.payload.val,scaleY:action.payload.val, ease:Linear.easeNone},"+=0.25")
         return {...state,
@@ -39,6 +44,7 @@ export default function reducer(state={
           }
         }
       }
+
       /* case "FETCH_USER_FULFILLED": {
         return {
           ...state,

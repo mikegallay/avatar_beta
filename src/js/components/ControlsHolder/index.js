@@ -22,7 +22,8 @@ import { addKeyFrame } from "../../actions/timelineActions"
     actions:bindActionCreators({
       toggleActiveControl,
       adjustKeyableValue,
-      addKeyFrame
+      addKeyFrame,
+      // updateProgress
     }, dispatch)
   }
 })
@@ -31,7 +32,7 @@ export default class ControlsHolder extends Component {
     super(props)
   }
   componentDidUpdate() {
-    // console.log('Layout update',this.props);
+    // console.log('testing update',this.props);
   }
   componentDidMount(){
     // ugly fix to make the proper tab show up.
@@ -88,15 +89,27 @@ export default class ControlsHolder extends Component {
           {element.id}
         </option>)
 
+    let progress = this.props.timeline.masterTimeline?(this.props.timeline.masterProgress *100)+'%':'0%';
+
     return (
       <div className={ `${styles}` }>
         <div className='avatarControls'>
+          <div className='main-timeline'>
+            <div
+              ref = {playhead => this.$playhead = playhead}
+              className="main-timeline-playhead"
+              style={ {left:progress} }
+              >
+            </div>
+          </div>
           {/*<p>ControlsHolder</p>
           <ControlsAnimation actions={this.props.actions} activeControl={this.props.avatar.activeControl} data={this.props.avatar.mainElement}/>*/}
           <div className='element-controls-wrapper'>
+
             <select onChange={this.change.bind(this)}>
-            {mappedOptions}
+              {mappedOptions}
             </select>
+
             {mappedElementsPanels}
           </div>
         </div>

@@ -8,7 +8,7 @@ import ElementLayout from './components/ElementLayout'
 
 import { bindActionCreators } from 'redux'
 
-import { initializeTimeline, initializeSubTimeline } from "../../actions/timelineActions"
+import { initializeTimeline, initializeSubTimeline,updateProgress } from "../../actions/timelineActions"
 import { toggleActiveControl } from "../../actions/controlsActions"
 import { toggleSpriteSheet } from "../../actions/userActions"
 
@@ -24,16 +24,17 @@ import { toggleSpriteSheet } from "../../actions/userActions"
       toggleSpriteSheet,
       toggleActiveControl,
       initializeTimeline,
-      initializeSubTimeline
+      initializeSubTimeline,
+      updateProgress
     }, dispatch)
   }
 })
 export default class AvatarHolder extends Component {
   constructor(props){
     super(props)
-    this.state={
+    /*this.state={
       rot:90
-    }
+    }*/
 
 
   }
@@ -44,13 +45,14 @@ export default class AvatarHolder extends Component {
   }
 
   componentDidUpdate() {
-    console.log('AvatarHolder update',this.props);
+    // console.log('AvatarHolder update',this.props);
       // let tm = new TweenMax('.face.element-rotateZ',1,{rotationZ:360,ease:Linear.easeNone});
       // this.props.timeline.masterTimeline.to('.face.element-rotateZ',1,{rotationZ:360,ease:Linear.easeNone})
-      this.props.timeline.masterTimeline.pause();
+
   }
   componentDidMount(){
-    console.log('AvatarHolder',this.props);
+    // console.log('AvatarHolder',this.props);
+
     var that = this
     // TweenMax.to('.face .element-rotateY',1,{rotationY:45,delay:1,ease:Linear.easeNone})
     this.$clickme.addEventListener('click',function(){
@@ -58,7 +60,7 @@ export default class AvatarHolder extends Component {
     })
 
     this.$toggleSprite.addEventListener('click',function(){
-        console.log('toggleSprite',that.props.user.spriteSheet);
+        // console.log('toggleSprite',that.props.user.spriteSheet);
       let newURL = '/assets/icon-sprite-def01.svg'
       if (that.props.user.spriteSheet == newURL){
         newURL = '/assets/icon-sprite-def02.svg'
@@ -69,20 +71,37 @@ export default class AvatarHolder extends Component {
 
     this.buildMasterTL();
 
+
+  }
+
+  updateTimelineProgess(progress){
+    this.props.actions.updateProgress(progress);
+      // console.log(progress)
   }
 
   buildMasterTL(){
     //this is the master timeline that controls all the other subtimelines
     //initialized in TimelineEngine components within the KeyableElements
-
+    var that = this;
+    // var progress = this.props.actions.updateProgress().bind(this);
+    // let count = 0;
     if (!this.props.timeline.masterTimeline){
-      let tl = new TimelineMax(/*{repeat:-1}*/);
+      let tl = new TimelineMax({
+        // repeat:-1,
+        timeScale:.1,
+        onUpdateParams:["{self}"],
+        onUpdate: (tween) => {
+          let p = tween.progress();
+          that.updateTimelineProgess(p);
 
+        },
+      });
 
       this.props.actions.initializeTimeline(tl);
 
       //make the master timeline 5 seconds
       tl.to(this.$mainTL,5,{opacity:1});
+      tl.pause();
     }
   }
   renderEyeBall(element){

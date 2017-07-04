@@ -51,10 +51,18 @@ $skintone:lightblue;
             left:0;
             fill:$skintone;
             z-index: 1;
+            width:104%;
+            height:104%;
+            margin-top:-2%;
+            margin-left:-2%;
           }
           .icon.eye,.icon.ear{
             z-index: 2;
             position: relative;
+            width:104%;
+            height:104%;
+            margin-top:-2%;
+            margin-left:-2%;
           }
           .icon.eyeLid{
             z-index: 1;
@@ -65,7 +73,7 @@ $skintone:lightblue;
             transform-origin: 0% 0%;
             transform:scale(1,0);
           }
-          &.leftEye,&.rightEye{
+          &.leftEye,&.rightEye,{
             outline-color: $skintone;
             outline-style: solid;
             outline-width: 0em;
@@ -115,3 +123,156 @@ $skintone:lightblue;
   }
 
 }
+/*
+$skintone:lightblue;
+:local(.styles) {
+
+  div{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
+
+  .element-wrapper{
+    overflow: visible;
+    &.main-element{
+      // pointer-events: none;
+      // clip-path: url(#faceclippath);
+    }
+
+    &.child-element{
+      .element-scale, .element-rotateX, .element-rotateY, .element-rotateZ{
+        // transform-origin: 0% 50%;
+        perspective: 400px;
+      }
+      .element-holder{
+        pointer-events: all;
+        cursor:pointer;
+        // overflow: hidden;
+        // z-index: 100;
+      }
+    }
+
+    .element-scale{
+      transform: scale(1);
+      // transition: transform .5s;
+    }
+    .element-rotateX, .element-rotateY, .element-rotateZ{
+      transform: rotate(0deg);
+      transform-origin: 0% 50%;
+      // transition: transform 1s;
+
+    }
+
+
+    .element-holder{
+      // position:relative;
+      // width:100%;
+      // height:100%;
+      svg.icon.face{
+        fill:$skintone;
+      }
+
+    }
+    &.child-element{
+      .rightEye,.rightEar,.rightBrow{
+        &.element-rotateY{
+          transform: rotateY(180deg);
+          transform-origin: 0% 50%;
+        }
+        .rightEyeBall,.leftEyeBall{
+          &.element-rotateY{
+            transform: rotateY(0deg);
+          }
+        }
+      }
+
+      .element-holder{
+        background: none;//black;
+        left: -50%;
+        &.rightEye,&.leftEye{
+          // border-radius: 50%;
+          .skin{
+            // border-radius: 50%;
+          }
+        }
+
+          .rightEyeBall,.leftEyeBall{
+            left:0;
+          }
+
+        .element-scale{
+          z-index: 2;
+          position: relative;
+
+          // transform: scale(.25);
+          .skin{
+            position: absolute;
+            top:0;
+            left:0;
+            fill:$skintone;
+            z-index: 1;
+          }
+          .icon.eye,.icon.ear{
+            z-index: 2;
+            position: relative;
+          }
+          .icon.eyeLid{
+            z-index: 1;
+            position: absolute;
+            fill:darken($skintone,30%);
+            top:0;
+            left:0;
+            transform-origin: 0% 0%;
+            transform:scale(1,0);
+          }
+          &.rightEyeBall,&.leftEyeBall{
+            // background: white;
+            // border-radius: 50%;
+          }
+          &.leftEye,&.rightEye{
+            // border-color:$skintone;
+            // border-style: solid;
+            // border-width: 0;
+            //do i need this?
+            // outline: 10px solid $skintone;
+            outline-color: $skintone;
+            outline-style: solid;
+            outline-width: 0em;
+            outline-offset: 0;
+
+          }
+        }
+        &.rightEyeBall,&.leftEyeBall{
+          // border-radius:50%;
+          // background: none;// url('/assets/eyeball.png');
+          background-size: cover;
+
+        }
+
+        &.rightEye,&.leftEye{
+          // background: url('/assets/eye.png');
+          background-size: cover;
+          // overflow: hidden;
+          svg.icon.leftEye,svg.icon.rightEye{
+            z-index: 2;
+            position:relative;
+          }
+
+
+        }
+        .rightEyeBall, .leftEyeBall{
+          z-index: 0;
+        }
+
+      #skin-tone{
+        stroke:#b52808;
+        stroke-width:.5;
+      }
+      }
+    }
+  }
+
+}
+*/

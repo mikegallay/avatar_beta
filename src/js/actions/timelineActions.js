@@ -12,6 +12,13 @@ export function initializeSubTimeline(id) {
   }
 }
 
+export function updateProgress(progress) {
+  return {
+    type: "UPDATE_PROGRESS",
+    payload: progress
+  }
+}
+
 export function addKeyFrame(id,subTL){//prop,val,time) {
   return {
     type: "ADD_KEYFRAME",

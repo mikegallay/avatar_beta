@@ -43,9 +43,9 @@ export default class ElementControls extends Component {
             const transform = tween.target[0]._gsTransform;
             let sx = transform.scaleX;
             let sy = transform.scaleY;
-            let ow = 0;
+            let ow = .2;
             var s = (sx < sy) ? sx : sy;
-            if (s < 1) ow = 1 +(5 * (1 - s));
+            if (s < 1) ow = 1.2 + (5 * (1 - s));
             ow = ow + "em";
             TweenMax.set('.'+id+'.element-scale',{outlineWidth:ow})
           },
