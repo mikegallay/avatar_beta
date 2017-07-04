@@ -35,7 +35,7 @@ export default class AvatarHolder extends Component {
       rot:90
     }
 
-    this.buildMasterTL();
+
   }
 
   playTL(){
@@ -67,6 +67,8 @@ export default class AvatarHolder extends Component {
       that.props.actions.toggleSpriteSheet(newURL);
     })
 
+    this.buildMasterTL();
+
   }
 
   buildMasterTL(){
@@ -74,10 +76,13 @@ export default class AvatarHolder extends Component {
     //initialized in TimelineEngine components within the KeyableElements
 
     if (!this.props.timeline.masterTimeline){
-      let tl = new TimelineMax(/*{onComplete:() => {this.restart()}}*/);
+      let tl = new TimelineMax(/*{repeat:-1}*/);
 
 
       this.props.actions.initializeTimeline(tl);
+
+      //make the master timeline 5 seconds
+      tl.to(this.$mainTL,5,{opacity:1});
     }
   }
   renderEyeBall(element){
@@ -147,6 +152,7 @@ export default class AvatarHolder extends Component {
           {/*This TimelineEngine builds the master timeline
           //and the main div that holds every other element of the face*/}
           <TimelineEngine
+            ref={mainTL => this.$mainTL = mainTL}
             actions={this.props.actions}
             timeline={this.props.timeline}
             activeControl={this.props.avatar.activeControl}
