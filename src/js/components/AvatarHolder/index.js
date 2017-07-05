@@ -83,17 +83,14 @@ export default class AvatarHolder extends Component {
     //this is the master timeline that controls all the other subtimelines
     //initialized in TimelineEngine components within the KeyableElements
     var that = this;
-    // var progress = this.props.actions.updateProgress().bind(this);
-    // let count = 0;
     if (!this.props.timeline.masterTimeline){
       let tl = new TimelineMax({
         // repeat:-1,
-        timeScale:.1,
+        // timeScale:.1,
         onUpdateParams:["{self}"],
         onUpdate: (tween) => {
           let p = tween.progress();
           that.updateTimelineProgess(p);
-
         },
       });
 
@@ -105,7 +102,7 @@ export default class AvatarHolder extends Component {
     }
   }
   renderEyeBall(element){
-    //when used eyeballs are initialized here.
+    //when used, eyeballs are initialized here.
 
     // console.log('eyeball',this.props);
     return(

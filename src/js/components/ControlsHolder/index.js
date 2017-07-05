@@ -23,7 +23,6 @@ import { addKeyFrame } from "../../actions/timelineActions"
       toggleActiveControl,
       adjustKeyableValue,
       addKeyFrame,
-      // updateProgress
     }, dispatch)
   }
 })
@@ -49,17 +48,12 @@ export default class ControlsHolder extends Component {
     const avatarEyes = this.props.avatar.eyes
 
     let allElements=[];
-  //  let charCount = 0;
     for (var ob in avatarElements) {
-    //  avatarElements[ob].charCount = charCount;
       allElements.push(avatarElements[ob]);
-      //charCount += avatarElements[ob].id.length;
     }
 
     for (var ob in avatarEyes) {
-    //  avatarEyes[ob].charCount = charCount;
       allElements.push(avatarEyes[ob]);
-    //  charCount += avatarEyes[ob].id.length;
     }
 
     const mappedElementsPanels = allElements.map((element,index) =>
@@ -71,15 +65,8 @@ export default class ControlsHolder extends Component {
         timeline={this.props.timeline}
         data={{
           'index' : index,
-          //'charCount' : element.charCount,
-          //'w'     : element.w,
-          // 'h'     : element.h,
           'id'    : element.id,
-          // 'x'     : element.bx,
-          // 'y'     : element.by
         }}/>)
-
-    // allElements.reverse();
 
     const mappedOptions = allElements.map((element,index) =>
       <option
@@ -94,6 +81,7 @@ export default class ControlsHolder extends Component {
     return (
       <div className={ `${styles}` }>
         <div className='avatarControls'>
+          {/* the main graphic for the animation timeline*/}
           <div className='main-timeline'>
             <div
               ref = {playhead => this.$playhead = playhead}
@@ -102,8 +90,7 @@ export default class ControlsHolder extends Component {
               >
             </div>
           </div>
-          {/*<p>ControlsHolder</p>
-          <ControlsAnimation actions={this.props.actions} activeControl={this.props.avatar.activeControl} data={this.props.avatar.mainElement}/>*/}
+
           <div className='element-controls-wrapper'>
 
             <select onChange={this.change.bind(this)}>

@@ -66,21 +66,12 @@ export default class ElementControls extends Component {
 
       count += d;
     })
-
-    /*this.$ke.addEventListener('click',function(){
-      console.log('clicked');
-      // that.props.actions.toggleActiveControl(that.props.data.id);
-    })*/
   }
   componentWillUpdate(){
     // console.log(this.props.data.id,'willupdate');
   }
   componentDidUpdate(props){
     // console.log(this.props.data.id, props);
-    // if (props.data.id != props.data.activeControl)
-    // this.setState({
-    //   isActive : props.data.id == props.data.activeControl,
-    // })
   }
 
   renderKeyableElementControls(){

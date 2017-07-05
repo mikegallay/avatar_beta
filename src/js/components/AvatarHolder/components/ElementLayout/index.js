@@ -5,11 +5,6 @@ import { styles } from './styles.scss';
 //import { bindActionCreators } from 'redux'
 const url = '/assets/icon-sprite-def.svg';
 const svgScale = 50;
-/*const Icon = (props) => (
-<svg viewBox='0 0 50 50' className={`icon ${props.icon}`}>
-  <use xlinkHref={`${url}#${props.icon}`} />
-</svg>
-);*/
 
 export default class ElementLayout extends Component {
   constructor(props){
@@ -28,36 +23,23 @@ export default class ElementLayout extends Component {
       type      : type,
       x         : data ? data.bx : '0%',
       y         : data ? data.by : '0%',
-      spriteSheet : user ? user.spriteSheet : '/assets/icon-sprite-def01.svg',//:'/assets/icon-sprite-def01.svg'
+      spriteSheet : user ? user.spriteSheet : '/assets/icon-sprite-def01.svg'
     }
   }
-  /*updatespriteSheet(){
-    let newURL = '/assets/icon-sprite-def01.svg'
-    if (this.state.spriteSheet == newURL){
-      newURL = '/assets/icon-sprite-def02.svg'
-    }
 
-    this.setState({
-      spriteSheet:newURL
-    })
-  }*/
 
   componentDidMount() {
     var that = this
     let xs = .5;
 
+    // you have to scale down the assets on load.
+    // this allows for more pixels to render in browser.
+    // your scaling will always be based off of this setting.
+    // scaling should never go over 1.0 which based on this and the styles
+    // would be the equivalent of scaling to 200%
     if( this.state.id == 'face' || this.state.id == 'faceOver') xs = .4;
-      console.log('idssss',this.state.id,xs);
     TweenMax.set('.element-scale.'+this.state.id, {scaleY:0.5, scaleX:xs});
 
-  /*  if (this.state.type == 'child-element'){
-      this.$element.addEventListener('click',function(){
-        console.log('clicked',that.state.id);
-        that.props.actions.toggleActiveControl(that.state.id);
-        // TweenMax.to('.face.element-rotateZ',.25,{rotationZ:that.state.rot,ease:Linear.easeNone,onComplete: () => {that.setState({rot:that.state.rot+90})}})
-        // TweenMax.to('.right-eye.element-scale',.2,{scaleX:1,scaleY:.1,delay:.3, yoyo:true, repeat:1, ease:Linear.easeNone})
-      })
-    }*/
   }
   componentDidUpdate(){
     // console.log('ElementLayout Update',this.state.spriteSheet);
@@ -148,21 +130,14 @@ export default class ElementLayout extends Component {
   }
 
   renderClipPath(artId){
-    // console.log('this.props',this.props);
-    // let id = this.state.id;
-    // let artId = this.state.artId;
-    // let vb = '0 0 ' +(this.state.w * svgScale)+' '+(this.state.h * svgScale);
-
     return (
-
-
       <svg height="0" width="0">
-    <defs>
-        <clipPath clipPathUnits="objectBoundingBox" id="faceclippath">
-            <use xlinkHref={`${this.state.spriteSheet}#${artId}`} />
-        </clipPath>
-    </defs>
-</svg>
+          <defs>
+              <clipPath clipPathUnits="objectBoundingBox" id="faceclippath">
+                  <use xlinkHref={`${this.state.spriteSheet}#${artId}`} />
+              </clipPath>
+          </defs>
+      </svg>
     )
   }
 
