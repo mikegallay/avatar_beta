@@ -9,7 +9,7 @@ const svgScale = 50;
 export default class ElementLayout extends Component {
   constructor(props){
     super(props)
-    // console.log('ElementLayout',props);
+    console.log('ElementLayout',props);
     const data = this.props.data
     const user = this.props.user
     const type = data.id === 'face' ? 'main-element' : 'child-element'
@@ -23,7 +23,8 @@ export default class ElementLayout extends Component {
       type      : type,
       x         : data ? data.bx : '0%',
       y         : data ? data.by : '0%',
-      spriteSheet : user ? user.spriteSheet : '/assets/icon-sprite-def01.svg'
+      spriteSheet : user ? user.spriteSheet : '/assets/icon-sprite-def01.svg',
+      zValue    : 0
     }
   }
 
@@ -48,6 +49,14 @@ export default class ElementLayout extends Component {
         spriteSheet:this.props.user.spriteSheet
       })
     }
+// console.log(this.state.id,this.props.controls[this.state.id+'Z']);
+    if (this.props.controls[this.state.id+'Z'] && this.props.controls[this.state.id+'Z'] != this.state.zValue){
+      console.log('yes set',this.props.controls[this.state.id+'Z'],this.state.zValue);
+      this.setState({
+        zValue: this.props.controls[this.state.id+'Z']
+      })
+    }
+
 
   }
 
@@ -142,6 +151,12 @@ export default class ElementLayout extends Component {
   }
 
   render() {
+
+    // let myZ = 'rotateZ('+this.props.controls[this.state.id+'Z']+')';
+    // let myZ = 'rotateZ('+this.state.zValue+')';
+
+
+
     return (
       <div className={ `${styles} ${this.state.id}` }>
         <div
@@ -154,13 +169,14 @@ export default class ElementLayout extends Component {
           }}>
             <div className={`element-rotateX ${this.state.id}`}>
               <div className={`element-rotateY ${this.state.id}`}>
-                <div className={`element-rotateZ ${this.state.id}`}>
+                <div className={`element-rotateZ ${this.state.id}`} style={{transform:'rotate('+this.state.zValue+'deg)'}}>
                   <div
                     ref = {element => this.$element = element}
                     className={`element-holder ${this.state.id}`}
                     >
                     {this.renderIcon()}
                     {this.props.children}
+                    {/*this.state.zValue*/}
                   </div>
                 </div>
               </div>

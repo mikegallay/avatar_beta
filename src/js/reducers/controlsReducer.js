@@ -1,12 +1,23 @@
 export default function reducer(state={
-    /*init: false,
-    masterTimeline: null,
-    subTimelines: {},*/
+    mouthZ:null,
+    noseZ:null,
+    rightEarZ:null,
+    leftEarZ:null,
+    leftEyeZ:null,
+    rightEyeZ:null,
+    rightBrowZ:null,
+    leftBrowZ:null,
+    faceZ:null,
+    faceOverZ:null,
+    rightEyeBallZ: null,
+    leftEyeBallZ:null
+
   }, action) {
 
     switch (action.type) {
       case "ADJUST_KEYABLE_VALUE": {
-        return {...state}
+        var el = action.payload.id + action.payload.prop;
+        return {...state, [el] : action.payload.value}
       }
       /*case "FETCH_USER_FULFILLED": {
         return {

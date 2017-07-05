@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
 import { styles } from './styles.scss';
-// import { connect } from "react-redux"
 
+// import { connect } from "react-redux"
+import ControlsInput from '../ControlsInput'
 //import { bindActionCreators } from 'redux'
 
 export default class ElementControls extends Component {
   constructor(props){
     super(props)
-    console.log('ElementControls',props);
+    // console.log('ElementControls',props);
     this.state={
       isActive : this.props.data.id == this.props.data.activeControl,
     }
   }
-  checkScale(){
-    console.log('checkScale');
-  }
+
   componentDidMount() {
     var that = this
 
-    /*this.$tab.addEventListener('click',function(){
-      // console.log('clicked');
-      that.props.actions.toggleActiveControl(that.props.data.id);
-    })*/
     var id = this.props.data.id;
     var subtl = this.props.timeline.subTimelines[id];
     var bref = this[id + 'Input'];
@@ -34,7 +29,7 @@ export default class ElementControls extends Component {
       var rand = Math.random()*1;
       //testing added animated kf to sub timeline
       let subTL;
-      console.log(rand);
+
       //eyes have to be treated a little differently
       if (id=='leftEye' || id=='rightEye'){
         subTL = subtl.to('.'+id+'.element-scale',d,{scaleX:rand,scaleY:rand,
@@ -106,6 +101,7 @@ export default class ElementControls extends Component {
 
               <input ref={kfInput => this[this.props.data.id + 'Input'] = kfInput } id={`${this.props.data.id}Input`} name={`${this.props.data.id}Input`}/>
               <button ref={kf => this[this.props.data.id + 'Button'] = kf }>ADD KEYFRAME</button>
+              <ControlsInput id={this.props.data.id} action={this.props.actions.adjustKeyableValue}/>
             </div>
           </div>
       </div>

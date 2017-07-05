@@ -17,6 +17,7 @@ import { toggleSpriteSheet } from "../../actions/userActions"
     user: store.rootState.user.user,
     avatar: store.rootState.avatar,
     timeline: store.rootState.timeline,
+    controls: store.rootState.controls,
   };
 },(dispatch) => {
   return {
@@ -110,6 +111,7 @@ export default class AvatarHolder extends Component {
         key={element.id+"Ball"}
         actions={this.props.actions}
         timeline={this.props.timeline}
+        controls={this.props.controls}
         activeControl={this.props.avatar.activeControl}
         user={this.props.user}
         data={{
@@ -137,6 +139,7 @@ export default class AvatarHolder extends Component {
         key={element.id}
         actions={this.props.actions}
         timeline={this.props.timeline}
+        controls={this.props.controls}
         activeControl={this.props.avatar.activeControl}
         data={element}
         user={this.props.user}/>
@@ -154,6 +157,7 @@ export default class AvatarHolder extends Component {
       key={element.id}
       actions={this.props.actions}
       timeline={this.props.timeline}
+      controls={this.props.controls}
       activeControl={this.props.avatar.activeControl}
       data={element}
       user={this.props.user}>
@@ -171,6 +175,7 @@ export default class AvatarHolder extends Component {
             ref={mainTL => this.$mainTL = mainTL}
             actions={this.props.actions}
             timeline={this.props.timeline}
+            controls={this.props.controls}
             activeControl={this.props.avatar.activeControl}
             user={this.props.user}
             data={this.props.avatar.mainElement}

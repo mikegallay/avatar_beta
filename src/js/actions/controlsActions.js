@@ -14,11 +14,12 @@ export function toggleActiveControl(id) {
   }
 }
 
-export function adjustKeyableValue(id,value) {
+export function adjustKeyableValue(id,prop,value) {
   return {
     type: "ADJUST_KEYABLE_VALUE",
     payload: {
       id: id,
+      prop:prop,
       value: value
     }
   }

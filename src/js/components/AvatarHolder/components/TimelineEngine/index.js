@@ -45,7 +45,7 @@ export default class TimelineEngine extends Component {
     // const id = this.props.data.id;
     // console.log('id',id);
     if (!this.state.tlInit){
-      console.log('tlinit',id);
+      // console.log('tlinit',id);
       masterTimeline.add(subTimelines[id],0)
       // subTimelines[id].from('.'+id+'.element-scale',.25,{scaleX:0,scaleY:0, ease:Linear.easeNone})
       this.setState({tlInit:true})
@@ -87,6 +87,7 @@ export default class TimelineEngine extends Component {
           actions={this.props.actions}
           data={this.props.data}
           user={this.props.user}
+          controls={this.props.controls}
         >
           {this.props.children}
         </ElementLayout>
