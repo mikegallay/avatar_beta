@@ -44,6 +44,11 @@ export default class ElementLayout extends Component {
 
   componentDidMount() {
     var that = this
+    let xs = .5;
+
+    if( this.state.id == 'face' || this.state.id == 'faceOver') xs = .4;
+      console.log('idssss',this.state.id,xs);
+    TweenMax.set('.element-scale.'+this.state.id, {scaleY:0.5, scaleX:xs});
 
   /*  if (this.state.type == 'child-element'){
       this.$element.addEventListener('click',function(){
@@ -118,6 +123,7 @@ export default class ElementLayout extends Component {
     // console.log('lids/mask',this.props.data.useLids,this.props.data.useMask);
     return (
       <div className={`element-scale ${this.state.id}`}>
+      <div className={`element-supersize ${this.state.id}`}>
         {this.state.id == 'rightEye' && this.props.data.useLids && this.renderLid(id)}
         {this.state.id == 'rightEye' && this.props.data.useMask && this.renderSkin(artId)}
 
@@ -135,7 +141,7 @@ export default class ElementLayout extends Component {
           <use xlinkHref={`${this.state.spriteSheet}#${artId}`} />
         </svg>
 
-
+</div>
 
       </div>
     )

@@ -11,9 +11,23 @@ $skintone:lightblue;
 
   .element-wrapper{
     overflow: visible;
-
+    &.rightEar{
+        transform: rotateY(180deg);
+      }
     .element-scale{
-      transform: scale(1);
+      // transform: scale(1);
+      // transform-origin: 50% 50%;
+      .element-supersize{
+        width:200%;
+        height:200%;
+        margin-left: -50%;
+        margin-top: -50%;
+        position:absolute;
+        top:0;
+        left:0;
+        // transform: scale(.5);
+        // transform-origin: 50% 50%;
+      }
     }
 
     .element-holder{
@@ -25,11 +39,6 @@ $skintone:lightblue;
     &.child-element{
       .element-scale, .element-rotateX, .element-rotateY, .element-rotateZ{
         perspective: 400px;
-      }
-
-      .element-rotateX, .element-rotateY, .element-rotateZ{
-        transform: rotate(0deg);
-        transform-origin: 0% 50%;
       }
 
       .element-holder{
@@ -44,7 +53,10 @@ $skintone:lightblue;
 
         .element-scale{
           z-index: 2;
-          position: relative;
+          position: absolute;
+          width:100%;
+          height:100%;
+
           .skin{
             position: absolute;
             top:0;
@@ -56,6 +68,7 @@ $skintone:lightblue;
             margin-top:-2%;
             margin-left:-2%;
           }
+
           .icon.eye,.icon.ear{
             z-index: 2;
             position: relative;
@@ -79,6 +92,7 @@ $skintone:lightblue;
             outline-width: 0em;
             outline-offset: 0;
           }
+
         }
 
         &.rightEyeBall,&.leftEyeBall{
@@ -103,10 +117,26 @@ $skintone:lightblue;
         }
       }
 
+      .element-rotateX, .element-rotateY, .element-rotateZ{
+        transform: rotate(0deg);
+        transform-origin: 0% 50%;
+      }
 
+      &.leftEar,&.rightEar{
+        .element-holder{
+          left:0;
+        }
+          .element-rotateX, .element-rotateY, .element-rotateZ{
+            transform-origin: 100% 50%;
+
+        }
+        /*.element-rotateX, .element-rotateY, .element-rotateZ,.element-scale{
+          transform-origin: 100% 50%;
+        }*/
+      }
 
       /* all elements that need to be flipped 180 deg */
-      .rightEye,.rightEar,.rightBrow{
+      .rightEye,.rightBrow{
         &.element-rotateY{
           transform: rotateY(180deg);
           // transform-origin: 0% 50%;
@@ -118,10 +148,8 @@ $skintone:lightblue;
           }
         }
       }
-
     }
   }
-
 }
 /*
 $skintone:lightblue;

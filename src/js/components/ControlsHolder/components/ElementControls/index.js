@@ -31,10 +31,10 @@ export default class ElementControls extends Component {
     // console.log('test',id,this.props);
     this[id + 'Button'].addEventListener('click',function(){
 
-      var rand = Math.random()*1.5 + .5;
+      var rand = Math.random()*1;
       //testing added animated kf to sub timeline
       let subTL;
-
+      console.log(rand);
       //eyes have to be treated a little differently
       if (id=='leftEye' || id=='rightEye'){
         subTL = subtl.to('.'+id+'.element-scale',d,{scaleX:rand,scaleY:rand,
@@ -45,20 +45,20 @@ export default class ElementControls extends Component {
             let sy = transform.scaleY;
             let ow = .2;
             var s = (sx < sy) ? sx : sy;
-            if (s < 1) ow = 1.2 + (5 * (1 - s));
+            if (s < .5) ow = 1.2 + (10 * (1 - s));
             ow = ow + "em";
             TweenMax.set('.'+id+'.element-scale',{outlineWidth:ow})
           },
           ease:Linear.easeNone},count)
-          // .to('.'+id+'.element-rotateX',.25,{rotationX:(rand * 180),ease:Linear.easeNone},count)
-          // .to('.'+id+'.element-rotateY',d,{rotationY:(rand * 180),ease:Linear.easeNone},count)
-          .to('.'+id+'.element-rotateZ',d,{rotationZ:(rand * 10)-5,ease:Linear.easeNone},count)
+          .to('.'+id+'.element-rotateX',.25,{rotationX:(Math.random()*100 - 50),ease:Linear.easeNone},count)
+          .to('.'+id+'.element-rotateY',d,{rotationY:(Math.random()*100 - 50),ease:Linear.easeNone},count)
+          .to('.'+id+'.element-rotateZ',d,{rotationZ:(Math.random()*100 - 50),ease:Linear.easeNone},count)
       }else{
         subTL = subtl.to('.'+id+'.element-scale',d,{scaleX:rand,scaleY:rand, ease:Linear.easeNone},count)
-                     //  .to('.'+id+'.element-wrapper',.25,{left:(rand * 50)+'%',ease:Linear.easeNone},count)
-                    //  .to('.'+id+'.element-rotateX',.25,{rotationX:(rand * 180),ease:Linear.easeNone},count)
-                    //  .to('.'+id+'.element-rotateY',d,{rotationY:(rand * 180),ease:Linear.easeNone},count)
-                     .to('.'+id+'.element-rotateZ',d,{rotationZ:(rand * 180),ease:Linear.easeNone},count)
+                      // .to('.'+id+'.element-wrapper',d,{left:(rand * 50)+'%',ease:Linear.easeNone},count)
+                     .to('.'+id+'.element-rotateX',d,{rotationX:(Math.random()*100 - 50),ease:Linear.easeNone},count)
+                     .to('.'+id+'.element-rotateY',d,{rotationY:(Math.random()*100 - 50),ease:Linear.easeNone},count)
+                     .to('.'+id+'.element-rotateZ',d,{rotationZ:(Math.random()*100 - 50),ease:Linear.easeNone},count)
       }
 
       //pass the edited subtimeline to the action.
