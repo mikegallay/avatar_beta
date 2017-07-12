@@ -14,6 +14,13 @@ export function toggleActiveControl(id) {
   }
 }
 
+export function toggleActiveInput(input) {
+  return {
+    type: "TOGGLE_INPUT",
+    payload: input
+  }
+}
+
 export function adjustKeyableValue(id,prop,value) {
   return {
     type: "ADJUST_KEYABLE_VALUE",

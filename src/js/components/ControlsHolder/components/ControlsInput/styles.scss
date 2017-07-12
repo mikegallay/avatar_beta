@@ -1,3 +1,20 @@
 :local(.styles) {
-  div{color:purple;}
+  h4{color:white;}
+  .divider{
+    position:relative;
+    height:20px;
+    // border:1px solid blue;
+    width:100%;
+  }
+  .control-input{
+    display:none;
+    visibility: hidden;
+    height:200px;
+    &.active{
+      display: block;
+      visibility: visible;
+    }
+
+  }
+
 }

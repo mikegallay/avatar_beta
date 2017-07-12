@@ -8,7 +8,7 @@ import ElementControls from './components/ElementControls'
 import { bindActionCreators } from 'redux'
 
 // import { fetchUser } from "../../actions/userActions"
-import { toggleActiveControl,adjustKeyableValue } from "../../actions/controlsActions"
+import { toggleActiveControl,adjustKeyableValue,toggleActiveInput } from "../../actions/controlsActions"
 import { addKeyFrame } from "../../actions/timelineActions"
 
 @connect((store) => {
@@ -16,11 +16,13 @@ import { addKeyFrame } from "../../actions/timelineActions"
     user: store.rootState.user.user,
     avatar: store.rootState.avatar,
     timeline: store.rootState.timeline,
+    controls: store.rootState.controls,
   };
 },(dispatch) => {
   return {
     actions:bindActionCreators({
       toggleActiveControl,
+      toggleActiveInput,
       adjustKeyableValue,
       addKeyFrame,
     }, dispatch)
@@ -39,8 +41,9 @@ export default class ControlsHolder extends Component {
   }
 
   change(e){
-    // console.log('select',e.target);
+    // console.log('toggleActiveControl',e.target.value);
     this.props.actions.toggleActiveControl(e.target.value);
+    this.props.actions.toggleActiveInput('rotate');
   }
 
   render() {
@@ -61,8 +64,9 @@ export default class ControlsHolder extends Component {
 
         key={element.id}
         actions={this.props.actions}
-        activeControl={this.props.avatar.activeControl}
+        activeControl={this.props.controls.activeControl}
         timeline={this.props.timeline}
+        controls={this.props.controls}
         data={{
           'index' : index,
           'id'    : element.id,

@@ -12,19 +12,23 @@ export default class ElementLayout extends Component {
     console.log('ElementLayout',props);
     const data = this.props.data
     const user = this.props.user
-    const type = data.id === 'face' ? 'main-element' : 'child-element'
+    const id = data ? data.id : ''
+    const type = id === 'face' ? 'main-element' : 'child-element'
 
     this.state = {
       w         : data ? data.w : '100',
       h         : data ? data.h : '100',
-      id        : data ? data.id : '',
+      id        : id,
       artId     : data ? data.artId : '',
       eyeBallId : data ? data.eyeBallId : '',
       type      : type,
       x         : data ? data.bx : '0%',
       y         : data ? data.by : '0%',
       spriteSheet : user ? user.spriteSheet : '/assets/icon-sprite-def01.svg',
-      zValue    : 0
+      rzValue    : 0,
+      sxValue    : id == 'face' || id == 'faceOver'?.4:.5,
+      syValue    : .5,
+
     }
   }
 
@@ -38,8 +42,8 @@ export default class ElementLayout extends Component {
     // your scaling will always be based off of this setting.
     // scaling should never go over 1.0 which based on this and the styles
     // would be the equivalent of scaling to 200%
-    if( this.state.id == 'face' || this.state.id == 'faceOver') xs = .4;
-    TweenMax.set('.element-scale.'+this.state.id, {scaleY:0.5, scaleX:xs});
+    // if( this.state.id == 'face' || this.state.id == 'faceOver') xs = .4;
+    // TweenMax.set('.element-scale.'+this.state.id, {scaleY:0.5, scaleX:xs});
 
   }
   componentDidUpdate(){
@@ -49,11 +53,26 @@ export default class ElementLayout extends Component {
         spriteSheet:this.props.user.spriteSheet
       })
     }
-// console.log(this.state.id,this.props.controls[this.state.id+'Z']);
-    if (this.props.controls[this.state.id+'Z'] && this.props.controls[this.state.id+'Z'] != this.state.zValue){
-      console.log('yes set',this.props.controls[this.state.id+'Z'],this.state.zValue);
+
+    //set RotateZ
+    if (this.props.controls[this.state.id+'RZ'] && this.props.controls[this.state.id+'RZ'] != this.state.rzValue){
+      // console.log('yes set',this.props.controls[this.state.id+'RZ'],this.state.rzValue);
       this.setState({
-        zValue: this.props.controls[this.state.id+'Z']
+        rzValue: this.props.controls[this.state.id+'RZ']
+      })
+    }
+
+    //set ScaleX
+    if (this.props.controls[this.state.id+'SX'] && this.props.controls[this.state.id+'SX'] != this.state.sxValue){
+      this.setState({
+        sxValue: this.props.controls[this.state.id+'SX']
+      })
+    }
+
+    //set ScaleY
+    if (this.props.controls[this.state.id+'SY'] && this.props.controls[this.state.id+'SY'] != this.state.syValue){
+      this.setState({
+        syValue: this.props.controls[this.state.id+'SY']
       })
     }
 
@@ -111,9 +130,9 @@ export default class ElementLayout extends Component {
     if (id == 'rightBrow' || id == 'leftBrow') id='brow';
     if (id == 'rightEar' || id == 'leftEar') id='ear';
     // console.log(id);
-    // console.log('lids/mask',this.props.data.useLids,this.props.data.useMask);
+    // console.log('lids/mask',this.props.data.useLids,this.props.data.useMask)  ;
     return (
-      <div className={`element-scale ${this.state.id}`}>
+      <div className={`element-scale ${this.state.id}`} style={{transform:'scale('+this.state.sxValue+','+this.state.syValue+')'}}>
       <div className={`element-supersize ${this.state.id}`}>
         {this.state.id == 'rightEye' && this.props.data.useLids && this.renderLid(id)}
         {this.state.id == 'rightEye' && this.props.data.useMask && this.renderSkin(artId)}
@@ -153,7 +172,7 @@ export default class ElementLayout extends Component {
   render() {
 
     // let myZ = 'rotateZ('+this.props.controls[this.state.id+'Z']+')';
-    // let myZ = 'rotateZ('+this.state.zValue+')';
+    // let myZ = 'rotateZ('+this.state.rzValue+')';
 
 
 
@@ -169,14 +188,14 @@ export default class ElementLayout extends Component {
           }}>
             <div className={`element-rotateX ${this.state.id}`}>
               <div className={`element-rotateY ${this.state.id}`}>
-                <div className={`element-rotateZ ${this.state.id}`} style={{transform:'rotate('+this.state.zValue+'deg)'}}>
+                <div className={`element-rotateZ ${this.state.id}`} style={{transform:'rotate('+this.state.rzValue+'deg)'}}>
                   <div
                     ref = {element => this.$element = element}
                     className={`element-holder ${this.state.id}`}
                     >
                     {this.renderIcon()}
                     {this.props.children}
-                    {/*this.state.zValue*/}
+                    {/*this.state.rzValue*/}
                   </div>
                 </div>
               </div>

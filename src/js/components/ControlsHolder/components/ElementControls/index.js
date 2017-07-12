@@ -87,22 +87,40 @@ export default class ElementControls extends Component {
     return mappedElements;
   }
 
+  change(e){
+    // console.log('select',e.target);
+    this.props.actions.toggleActiveInput(e.target.value);
+  }
+
   render() {
+    let allInputs = [/*'RotateX','RotateY','RotateZ',*/'rotate','scale','move']
+
+    const mappedOptions = allInputs.map((element,index) =>
+      <option
+        ref = {dd => this.$dd = dd}
+        key={element}
+        value={element}>
+          {element}
+        </option>)
     return (
         <div className={ `element-controls ${this.props.data.id} test-${this.props.activeControl} ${this.props.activeControl == this.props.data.id ? 'active' : ''}` }>
           <div className='element-panel'>
 
             <div className='element-elements'>
-              <div><span className='panel-title'>{this.props.data.id}&nbsp;-&nbsp;</span></div>
-              {this.renderKeyableElementControls()}
+              <h3 className='panel-title'>{this.props.data.id}</h3>
+              <div>
+                <select onChange={this.change.bind(this)}>
+                  {mappedOptions}
+                </select>
+                <button ref={kf => this[this.props.data.id + 'Button'] = kf }>ADD KEYFRAME</button>
+              </div>
             </div>
-            <div className='element-buttons'>
 
 
-              <input ref={kfInput => this[this.props.data.id + 'Input'] = kfInput } id={`${this.props.data.id}Input`} name={`${this.props.data.id}Input`}/>
-              <button ref={kf => this[this.props.data.id + 'Button'] = kf }>ADD KEYFRAME</button>
-              <ControlsInput id={this.props.data.id} action={this.props.actions.adjustKeyableValue}/>
-            </div>
+
+              {/*<input ref={kfInput => this[this.props.data.id + 'Input'] = kfInput } id={`${this.props.data.id}Input`} name={`${this.props.data.id}Input`}/>*/}
+
+              <ControlsInput id={this.props.data.id} controls={this.props.controls} action={this.props.actions.adjustKeyableValue}/>
           </div>
       </div>
     )

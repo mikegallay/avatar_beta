@@ -2,10 +2,11 @@ export default function reducer(state={
     id: null,
     spriteULR: '',
     mainElement: {artId: 'face',id:'face',w:350,h:350},
-    activeControl:'face',
+    //activeControl:'face',
+    //activeInput:null,
     eyes:{
       leftEye :       {artId: 'eye01', id:'leftEye', useEyeBall: true, eyeBallId:'eyeBall', bgColor:'white',useLids:true,useMask:true,w:60,h:60,bx:'38%',by:'42%',brx:0,bry:0,brz:0,cx:'30%',cy:'30%'},
-      rightEye :      {artId: 'eye01', id:'rightEye', useEyeBall: true, eyeBallId:'eyeBall', bgColor:'white',useLids:false,useMask:true,w:60,h:60,bx:'62%',by:'42%',brx:0,bry:180,brz:0,cx:'70%',cy:'30%'},
+      rightEye :      {artId: 'eye01', id:'rightEye', useEyeBall: true, eyeBallId:'eyeBall', bgColor:'white',useLids:true,useMask:true,w:60,h:60,bx:'62%',by:'42%',brx:0,bry:180,brz:0,cx:'70%',cy:'30%'},
 
     },
     elements: {
@@ -23,11 +24,15 @@ export default function reducer(state={
       case "HIDE_ALL_CONTROLS": {
         return {...state}
       }
-      case "TOGGLE_CONTROL": {
+      /*case "TOGGLE_CONTROL": {
         console.log('otg',action.payload);
         return {...state, activeControl: action.payload}
       }
-      /*case "FETCH_USER_FULFILLED": {
+      case "TOGGLE_INPUT": {
+        console.log('otg',action.payload);
+        return {...state, activeInput: action.payload}
+      }
+      case "FETCH_USER_FULFILLED": {
         return {
           ...state,
           fetching: false,
