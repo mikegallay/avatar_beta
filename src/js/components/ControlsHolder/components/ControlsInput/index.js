@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Knob from 'react-canvas-knob';
+import Draggable from 'react-draggable';
 import { styles } from './styles.scss';
 import Slider from 'rc-slider';
 // import { connect } from "react-redux"
@@ -10,7 +11,11 @@ export default class ControlsInput extends Component {
   constructor(props){
     super(props)
     console.log('ControlsInput',props);
-    this.state = {activeInput:'rotate',rzvalue: 0, rmin:0, rmax:360};
+    this.state = {activeInput:'rotate',rzvalue: 0, rmin:0, rmax:360,
+      deltaPosition: {
+        x: 0, y: 0
+      }
+    };
   }
   componentWillMount() {
 
@@ -37,16 +42,22 @@ export default class ControlsInput extends Component {
     console.log('sx',value/100);
     var id = this.props.id;
     this.props.action(id,'SX',Number(value/100));
-    // this.setState({
-    //   value,
-    // });
   }
   onSliderChangeSY = (value) => {
     var id = this.props.id;
     this.props.action(id,'SY',Number(value/100));
     console.log('sy',value/100); //eslint-disable-line
   }
-
+  handleDrag(e, ui) {
+   const {x, y} = this.state.deltaPosition;
+   console.log(x + ui.deltaX,y + ui.deltaY);
+   this.setState({
+     deltaPosition: {
+       x: x + ui.deltaX,
+       y: y + ui.deltaY,
+     }
+   });
+ }
 
   render() {
     return (
@@ -87,6 +98,19 @@ export default class ControlsInput extends Component {
           />
         </div>
 
+        <div className={ `control-input move-control ${this.state.activeInput=='move'?'active':''}` }>
+          <div className="moveBounds">
+            <Draggable
+              onDrag={this.handleDrag.bind(this)}
+              bounds={{top: -60, left: -60, right: 60, bottom: 60}}
+              >
+              <div className="box">
+                {/*<div>I can only be moved 100px in any direction.</div>
+                <div>x: {this.state.deltaPosition.x.toFixed(0)}, y: {this.state.deltaPosition.y.toFixed(0)}</div>*/}
+              </div>
+            </Draggable>
+          </div>
+        </div>
 
       </div>
     )

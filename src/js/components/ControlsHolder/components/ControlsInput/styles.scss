@@ -14,7 +14,27 @@
       display: block;
       visibility: visible;
     }
-
   }
+  .moveBounds{
+    border: 2px solid white;
+
+    width:154px;
+    height:154px;
+    margin-top:10px;
+    .box {
+        background: #fff;
+        border: 1px solid #999;
+        border-radius: 3px;
+        width: 26px;
+        height: 26px;
+        margin: -13px 0 0 -13px;
+        // padding: 0px;
+        float: left;
+        position: relative;
+        left:75px;
+        top:75px;
+      }
+  }
+
 
 }
