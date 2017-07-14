@@ -28,6 +28,7 @@ export default class ElementLayout extends Component {
       rzValue    : 0,
       sxValue    : id == 'face' || id == 'faceOver'?.4:.5,
       syValue    : .5,
+      fxValue    : 1,
       dx    : 0,
       dy    : 0,
 
@@ -61,6 +62,13 @@ export default class ElementLayout extends Component {
       // console.log('yes set',this.props.controls[this.state.id+'RZ'],this.state.rzValue);
       this.setState({
         rzValue: this.props.controls[this.state.id+'RZ']
+      })
+    }
+
+    //set FlipX
+    if (this.props.controls[this.state.id+'FX'] && this.props.controls[this.state.id+'FX'] != this.state.fxValue){
+      this.setState({
+        fxValue: this.props.controls[this.state.id+'FX']
       })
     }
 
@@ -208,6 +216,7 @@ export default class ElementLayout extends Component {
                   <div
                     ref = {element => this.$element = element}
                     className={`element-holder ${this.state.id}`}
+                    style={{transform:'scaleX('+this.state.fxValue+')'}}
                     >
                     {this.renderIcon()}
                     {this.props.children}

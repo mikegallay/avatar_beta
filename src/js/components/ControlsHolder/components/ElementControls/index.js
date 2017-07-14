@@ -93,7 +93,7 @@ export default class ElementControls extends Component {
   }
 
   render() {
-    let allInputs = [/*'RotateX','RotateY','RotateZ',*/'rotate','scale','move']
+    let allInputs = [/*'RotateX','RotateY','RotateZ',*/'rotate','flip','scale','move']
 
     const mappedOptions = allInputs.map((element,index) =>
       <option

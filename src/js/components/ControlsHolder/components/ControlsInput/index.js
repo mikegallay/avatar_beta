@@ -38,6 +38,10 @@ export default class ControlsInput extends Component {
   knobChangeRZEnd = (newValue) => {
   }
 
+  flipChange = (cb) => {
+    this.props.action(this.props.id,'FX',this.$fxflip.checked?-1:1);
+  }
+
   onSliderChangeSX = (value) => {
     console.log('sx',value/100);
     // var id = this.props.id;
@@ -85,6 +89,15 @@ export default class ControlsInput extends Component {
             onChange={this.knobChangeRZ}
             onChangeEnd={this.knobChangeRZEnd}
           />
+        </div>
+
+        <div className={ `control-input flip-control ${this.state.activeInput=='flip'?'active':''}` }>
+          <input
+            ref={fxflip => this.$fxflip = fxflip}
+            id="checkBox-flip"
+            type="checkbox"
+            onClick={this.flipChange}/>
+          <label for="checkBox-flip">Flip x-axis?</label>
         </div>
 
         <div className={ `control-input scale-control ${this.state.activeInput=='scale'?'active':''}` }>
