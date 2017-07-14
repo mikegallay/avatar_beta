@@ -78,6 +78,9 @@ export default class ControlsInput extends Component {
           <Knob
             min={this.state.rmin}
             max={this.state.rmax}
+            thickness={.2}
+            cursor={true}
+            width={160} height={160}
             value={this.state.rzvalue}
             onChange={this.knobChangeRZ}
             onChangeEnd={this.knobChangeRZEnd}

@@ -9,7 +9,8 @@
   .control-input{
     display:none;
     visibility: hidden;
-    height:200px;
+    height:160px;
+    margin-top: 10px;
     &.active{
       display: block;
       visibility: visible;
@@ -20,7 +21,6 @@
 
     width:160px;
     height:160px;
-    margin-top:10px;
     .box {
         background: #fff;
         width: 26px;
