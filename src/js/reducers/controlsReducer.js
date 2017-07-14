@@ -39,7 +39,35 @@ export default function reducer(state={
     faceSY:null,
     faceOverSY:null,
     rightEyeBallSY: null,
-    leftEyeBallSY:null
+    leftEyeBallSY:null,
+
+    mouthDX:null,
+    noseDX:null,
+    rightEarDX:null,
+    leftEarDX:null,
+    leftEyeDX:null,
+    rightEyeDX:null,
+    rightBrowDX:null,
+    leftBrowDX:null,
+    faceDX:null,
+    faceOverDX:null,
+    rightEyeBallDX: null,
+    leftEyeBallDX:null,
+
+    mouthDY:null,
+    noseDY:null,
+    rightEarDY:null,
+    leftEarDY:null,
+    leftEyeDY:null,
+    rightEyeDY:null,
+    rightBrowDY:null,
+    leftBrowDY:null,
+    faceDY:null,
+    faceOverDY:null,
+    rightEyeBallDY: null,
+    leftEyeBallDY:null
+
+
 
   }, action) {
 

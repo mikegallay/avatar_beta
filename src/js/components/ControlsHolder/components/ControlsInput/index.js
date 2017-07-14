@@ -11,7 +11,7 @@ export default class ControlsInput extends Component {
   constructor(props){
     super(props)
     console.log('ControlsInput',props);
-    this.state = {activeInput:'rotate',rzvalue: 0, rmin:0, rmax:360,
+    this.state = {activeInput:'rotate',rzvalue: 0, rmin:0, rmax:360, xymax:60,
       deltaPosition: {
         x: 0, y: 0
       }
@@ -30,33 +30,40 @@ export default class ControlsInput extends Component {
     }
 
   }
-  handleChange = (newValue) => {
-    var id = this.props.id;
-    this.props.action(id,'RZ',Number(newValue));
+  knobChangeRZ = (newValue) => {
+    // var id = this.props.id;
+    this.props.action(this.props.id,'RZ',Number(newValue));
     this.setState({rzvalue: newValue});
   }
-  handleChangeEnd = (newValue) => {
+  knobChangeRZEnd = (newValue) => {
   }
 
   onSliderChangeSX = (value) => {
     console.log('sx',value/100);
-    var id = this.props.id;
-    this.props.action(id,'SX',Number(value/100));
+    // var id = this.props.id;
+    this.props.action(this.props.id,'SX',Number(value/100));
   }
   onSliderChangeSY = (value) => {
-    var id = this.props.id;
-    this.props.action(id,'SY',Number(value/100));
-    console.log('sy',value/100); //eslint-disable-line
+    // var id = this.props.id;
+    this.props.action(this.props.id,'SY',Number(value/100));
+    //console.log('sy',value/100); //eslint-disable-line
   }
-  handleDrag(e, ui) {
+  handleDragXY(e, ui) {
    const {x, y} = this.state.deltaPosition;
-   console.log(x + ui.deltaX,y + ui.deltaY);
+
    this.setState({
      deltaPosition: {
        x: x + ui.deltaX,
        y: y + ui.deltaY,
      }
    });
+
+
+   let xchange = ((this.state.deltaPosition.x)/this.state.xymax)*25;
+   let ychange = ((this.state.deltaPosition.y)/this.state.xymax)*25;
+   console.log(xchange,ychange);
+   this.props.action(this.props.id,'DX',xchange);
+   this.props.action(this.props.id,'DY',ychange);
  }
 
   render() {
@@ -72,8 +79,8 @@ export default class ControlsInput extends Component {
             min={this.state.rmin}
             max={this.state.rmax}
             value={this.state.rzvalue}
-            onChange={this.handleChange}
-            onChangeEnd={this.handleChangeEnd}
+            onChange={this.knobChangeRZ}
+            onChangeEnd={this.knobChangeRZEnd}
           />
         </div>
 
@@ -101,13 +108,10 @@ export default class ControlsInput extends Component {
         <div className={ `control-input move-control ${this.state.activeInput=='move'?'active':''}` }>
           <div className="moveBounds">
             <Draggable
-              onDrag={this.handleDrag.bind(this)}
-              bounds={{top: -60, left: -60, right: 60, bottom: 60}}
+              onDrag={this.handleDragXY.bind(this)}
+              bounds={{top: this.state.xymax * -1, left: this.state.xymax * -1, right: this.state.xymax, bottom: this.state.xymax}}
               >
-              <div className="box">
-                {/*<div>I can only be moved 100px in any direction.</div>
-                <div>x: {this.state.deltaPosition.x.toFixed(0)}, y: {this.state.deltaPosition.y.toFixed(0)}</div>*/}
-              </div>
+              <div className="box" style={{ border:'none',backgroundColor: '#eeaa22'}}></div>
             </Draggable>
           </div>
         </div>

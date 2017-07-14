@@ -22,12 +22,14 @@ export default class ElementLayout extends Component {
       artId     : data ? data.artId : '',
       eyeBallId : data ? data.eyeBallId : '',
       type      : type,
-      x         : data ? data.bx : '0%',
-      y         : data ? data.by : '0%',
+      x         : data ? data.bx : 0,
+      y         : data ? data.by : 0,
       spriteSheet : user ? user.spriteSheet : '/assets/icon-sprite-def01.svg',
       rzValue    : 0,
       sxValue    : id == 'face' || id == 'faceOver'?.4:.5,
       syValue    : .5,
+      dx    : 0,
+      dy    : 0,
 
     }
   }
@@ -73,6 +75,20 @@ export default class ElementLayout extends Component {
     if (this.props.controls[this.state.id+'SY'] && this.props.controls[this.state.id+'SY'] != this.state.syValue){
       this.setState({
         syValue: this.props.controls[this.state.id+'SY']
+      })
+    }
+
+    //set MoveX
+    if (this.props.controls[this.state.id+'DX'] && this.props.controls[this.state.id+'DX'] != this.state.dx){
+      this.setState({
+        dx: this.props.controls[this.state.id+'DX']
+      })
+    }
+
+    //set MoveY
+    if (this.props.controls[this.state.id+'DY'] && this.props.controls[this.state.id+'DY'] != this.state.dy){
+      this.setState({
+        dy: this.props.controls[this.state.id+'DY']
       })
     }
 
@@ -171,8 +187,8 @@ export default class ElementLayout extends Component {
 
   render() {
 
-    // let myZ = 'rotateZ('+this.props.controls[this.state.id+'Z']+')';
-    // let myZ = 'rotateZ('+this.state.rzValue+')';
+    // let DYZ = 'rotateZ('+this.props.controls[this.state.id+'Z']+')';
+    // let DYZ = 'rotateZ('+this.state.rzValue+')';
 
 
 
@@ -183,8 +199,8 @@ export default class ElementLayout extends Component {
           style={{
             'width':this.state.w + 'px',
             'height':this.state.h + 'px',
-            'left':this.state.x,
-            'top':this.state.y,
+            'left':this.state.x + this.state.dx + '%',
+            'top':this.state.y + this.state.dy + '%',
           }}>
             <div className={`element-rotateX ${this.state.id}`}>
               <div className={`element-rotateY ${this.state.id}`}>
