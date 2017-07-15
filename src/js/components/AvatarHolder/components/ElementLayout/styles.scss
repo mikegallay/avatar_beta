@@ -1,4 +1,4 @@
-$skintone:gold;
+$skintone:pink;
 
 :local(.styles) {
 
@@ -11,10 +11,12 @@ $skintone:gold;
 
   .element-wrapper{
     overflow: visible;
+    pointer-events: none;
     &.rightEar{
         transform: rotateY(180deg);
       }
     .element-scale{
+      pointer-events: none;
       // make the assets twice as big to render more pixels for scaling.
       .element-supersize{
         width:200%;
@@ -28,6 +30,10 @@ $skintone:gold;
     }
 
     .element-holder{
+      pointer-events: all;
+      &.face,&.faceOver{
+        pointer-events: none;
+      }
       svg.icon.face{
         fill:$skintone;
       }

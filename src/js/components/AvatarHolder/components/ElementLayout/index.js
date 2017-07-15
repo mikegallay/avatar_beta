@@ -42,6 +42,13 @@ export default class ElementLayout extends Component {
     var that = this
     let xs = .5;
 
+    this.$element.addEventListener('click',function(){
+      var id = that.props.data.id;
+      // console.log('clicked',that.props.data.id);
+
+      if (id != 'face') that.props.actions.toggleActiveControl(that.props.data.id);
+    })
+
     // you have to scale down the assets on load.
     // this allows for more pixels to render in browser.
     // your scaling will always be based off of this setting.
