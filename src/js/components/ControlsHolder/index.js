@@ -39,12 +39,13 @@ export default class ControlsHolder extends Component {
   componentDidMount(){
     // ugly fix to make the proper tab show up.
     this.props.actions.toggleActiveControl('rightEar');
+    this.props.actions.toggleActiveInput('move');
   }
 
   change(e){
     // console.log('toggleActiveControl',e.target.value);
     this.props.actions.toggleActiveControl(e.target.value);
-    this.props.actions.toggleActiveInput('rotate');
+    this.props.actions.toggleActiveInput('move');
   }
 
   render() {

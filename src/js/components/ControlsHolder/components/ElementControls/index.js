@@ -93,7 +93,10 @@ export default class ElementControls extends Component {
   }
 
   render() {
-    let allInputs = [/*'RotateX','RotateY','RotateZ',*/'rotate','flip','scale','move']
+    var id = this.props.data.id;
+
+    let allInputs = ['move','rotatex','rotatey','rotatez','scale'];
+    if (id == 'mouth' || id=='nose') allInputs.push('flip');
 
     const mappedOptions = allInputs.map((element,index) =>
       <option
@@ -103,16 +106,16 @@ export default class ElementControls extends Component {
           {element}
         </option>)
     return (
-        <div className={ `element-controls ${this.props.data.id} test-${this.props.activeControl} ${this.props.activeControl == this.props.data.id ? 'active' : ''}` }>
+        <div className={ `element-controls ${id} test-${this.props.activeControl} ${this.props.activeControl == id ? 'active' : ''}` }>
           <div className='element-panel'>
 
             <div className='element-elements'>
-              <h3 className='panel-title'>{this.props.data.id}</h3>
+              {/*<h3 className='panel-title'>{this.props.data.id}</h3>*/}
               <div>
                 <select onChange={this.change.bind(this)}>
                   {mappedOptions}
                 </select>
-                <button ref={kf => this[this.props.data.id + 'Button'] = kf }>ADD KEYFRAME</button>
+                <button ref={kf => this[id + 'Button'] = kf }>ADD KEYFRAME</button>
               </div>
             </div>
 
@@ -120,7 +123,7 @@ export default class ElementControls extends Component {
 
               {/*<input ref={kfInput => this[this.props.data.id + 'Input'] = kfInput } id={`${this.props.data.id}Input`} name={`${this.props.data.id}Input`}/>*/}
 
-              <ControlsInput id={this.props.data.id} controls={this.props.controls} action={this.props.actions.adjustKeyableValue}/>
+              <ControlsInput id={id} controls={this.props.controls} action={this.props.actions.adjustKeyableValue}/>
           </div>
       </div>
     )

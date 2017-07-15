@@ -1,12 +1,12 @@
 const keyableElements= [
-  {name:'Right Ear',val:'rightEar'},
-  {name:'Left Ear',val:'leftEar'},
-  {name:'Right Eye',val:'rightEye'},
-  {name:'Left Eye',val:'leftEye'},
-  {name:'Mouth',val:'mouth'},
-  {name:'Right Brow',val:'rightBrow'},
-  {name:'Left Brow',val:'leftBrow'},
-  {name:'Nose',val:'nose'},
+  {name:'Right Ear',val:'rightEar',flip:false},
+  {name:'Left Ear',val:'leftEar',flip:false},
+  {name:'Right Eye',val:'rightEye',flip:false},
+  {name:'Left Eye',val:'leftEye',flip:false},
+  {name:'Mouth',val:'mouth',flip:true},
+  {name:'Right Brow',val:'rightBrow',flip:false},
+  {name:'Left Brow',val:'leftBrow',flip:false},
+  {name:'Nose',val:'nose',flip:true},
   // {name:'Face',val:'face'},
 ]
 
@@ -28,6 +28,8 @@ for (var id of positionID) {
   // initPositionValues[id] = {};
   for (var ke of keyableElements){
     var val = (id=='FX') ? 1 : null;
+    if (id=='FX' && ke.val == 'rightEye') val = -1;
+    if (id=='FX' && ke.val == 'rightBrow') val = -1;
     // if (id='SX' || id=='SY') val = .5;
     initPositionValues[ke.val + id] = val;
   }

@@ -10,8 +10,18 @@ import Slider from 'rc-slider';
 export default class ControlsInput extends Component {
   constructor(props){
     super(props)
-    console.log('ControlsInput',props);
-    this.state = {activeInput:'rotate',rzvalue: 0, rmin:0, rmax:360, xymax:60,
+    // console.log('ControlsInput',props);
+    this.state = {
+      activeInput:'move',
+      rxvalue: 0,
+      ryvalue: 0,
+      rzvalue: 0,
+      sxvalue:.5,
+      syvalue:.5,
+      fxvalue:props.id=='rightEye' || props.id=='rightBrow'?-1:1,
+      rmin:0,
+      rmax:360,
+      xymax:60,
       deltaPosition: {
         x: 0, y: 0
       }
@@ -25,31 +35,46 @@ export default class ControlsInput extends Component {
     var id = this.props.id;
     var that = this;*/
     if (this.props.id == this.props.controls.activeControl && this.props.controls.activeInput != this.state.activeInput){
-      console.log('inputtt',this.props.controls.activeInput,this.state.activeInput);
+      // console.log('inputtt',this.props.controls.activeInput,this.state.activeInput);
       this.setState({activeInput: this.props.controls.activeInput});
     }
 
   }
+  knobChangeRX = (newValue) => {
+    this.props.action(this.props.id,'RX',Number(newValue));
+    this.setState({rxvalue: newValue});
+  }
+  knobChangeRXEnd = (newValue) => {}
+
+  knobChangeRY = (newValue) => {
+    this.props.action(this.props.id,'RY',Number(newValue));
+    this.setState({ryvalue: newValue});
+  }
+  knobChangeRYEnd = (newValue) => {}
+
   knobChangeRZ = (newValue) => {
-    // var id = this.props.id;
     this.props.action(this.props.id,'RZ',Number(newValue));
     this.setState({rzvalue: newValue});
   }
-  knobChangeRZEnd = (newValue) => {
-  }
+  knobChangeRZEnd = (newValue) => {}
 
   flipChange = (cb) => {
-    this.props.action(this.props.id,'FX',this.$fxflip.checked?-1:1);
+    let flip = this.state.fxvalue;
+    this.props.action(this.props.id,'FX',this.$fxflip.checked?flip*-1:flip);
   }
 
   onSliderChangeSX = (value) => {
-    console.log('sx',value/100);
+    // console.log('sx',value/100);
     // var id = this.props.id;
-    this.props.action(this.props.id,'SX',Number(value/100));
+    const val = Number(value/100);
+    this.setState({sxvalue: val});
+    this.props.action(this.props.id,'SX',val);
   }
   onSliderChangeSY = (value) => {
     // var id = this.props.id;
-    this.props.action(this.props.id,'SY',Number(value/100));
+    const val = Number(value/100);
+    this.setState({syvalue: val});
+    this.props.action(this.props.id,'SY',val);
     //console.log('sy',value/100); //eslint-disable-line
   }
   handleDragXY(e, ui) {
@@ -65,7 +90,7 @@ export default class ControlsInput extends Component {
 
    let xchange = ((this.state.deltaPosition.x)/this.state.xymax)*25;
    let ychange = ((this.state.deltaPosition.y)/this.state.xymax)*25;
-   console.log(xchange,ychange);
+
    this.props.action(this.props.id,'DX',xchange);
    this.props.action(this.props.id,'DY',ychange);
  }
@@ -78,7 +103,31 @@ export default class ControlsInput extends Component {
         {/*<input ref={kfInput => this[this.props.id + 'Input'] = kfInput } id={`${this.props.id}Input`} name={`${this.props.id}Input`}/>
         <button ref={kf => this[this.props.id + 'Button'] = kf }>adjust</button>*/}
 
-        <div className={ `control-input rotate-control ${this.state.activeInput=='rotate'?'active':''}` }>
+        <div className={ `control-input rotate-control ${this.state.activeInput=='rotatex'?'active':''}` }>
+          <Knob
+            min={this.state.rmin}
+            max={this.state.rmax}
+            thickness={.2}
+            cursor={true}
+            width={160} height={160}
+            value={this.state.rxvalue}
+            onChange={this.knobChangeRX}
+            onChangeEnd={this.knobChangeRXEnd}
+          />
+        </div>
+        <div className={ `control-input rotate-control ${this.state.activeInput=='rotatey'?'active':''}` }>
+          <Knob
+            min={this.state.rmin}
+            max={this.state.rmax}
+            thickness={.2}
+            cursor={true}
+            width={160} height={160}
+            value={this.state.ryvalue}
+            onChange={this.knobChangeRY}
+            onChangeEnd={this.knobChangeRYEnd}
+          />
+        </div>
+        <div className={ `control-input rotate-control ${this.state.activeInput=='rotatez'?'active':''}` }>
           <Knob
             min={this.state.rmin}
             max={this.state.rmax}
