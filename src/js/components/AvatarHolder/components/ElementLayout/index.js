@@ -31,8 +31,8 @@ export default class ElementLayout extends Component {
       sxValue    : id == 'face' || id == 'faceOver' ? .4 : .5,
       syValue    : .5,
       fxValue    : 1,
-      dx    : 0,
-      dy    : 0,
+      dxValue    : 0,
+      dyValue    : 0,
 
     }
   }
@@ -108,16 +108,16 @@ export default class ElementLayout extends Component {
     }
 
     //set MoveX
-    if (initPosVals && initPosVals[this.state.id+'DX'] != this.state.dx){
+    if (initPosVals && initPosVals[this.state.id+'DX'] != this.state.dxValue){
       this.setState({
-        dx: initPosVals[this.state.id+'DX']
+        dxValue: initPosVals[this.state.id+'DX']
       })
     }
 
     //set MoveY
-    if (initPosVals && initPosVals[this.state.id+'DY'] != this.state.dy){
+    if (initPosVals && initPosVals[this.state.id+'DY'] != this.state.dyValue){
       this.setState({
-        dy: initPosVals[this.state.id+'DY']
+        dyValue: initPosVals[this.state.id+'DY']
       })
     }
 
@@ -219,17 +219,19 @@ export default class ElementLayout extends Component {
     // let DYZ = 'rotateZ('+this.props.controls[this.state.id+'Z']+')';
     // let DYZ = 'rotateZ('+this.state.rzValue+')';
 
-
+    let stateX = this.state.x?this.state.x:0;
+    let stateY = this.state.y?this.state.y:0;
 
     return (
+
       <div className={ `${styles} ${this.state.id}` }>
         <div
           className={`element-wrapper ${this.state.id} ${this.state.type}` }
           style={{
             'width':this.state.w + 'px',
             'height':this.state.h + 'px',
-            'left':this.state.x + this.state.dx + '%',
-            'top':this.state.y + this.state.dy + '%',
+            'left':stateX + this.state.dxValue + '%',
+            'top':stateY + this.state.dyValue + '%',
           }}>
             <div className={`element-rotateX ${this.state.id}`} style={{transform:'rotateX('+this.state.rxValue+'deg)'}}>
               <div className={`element-rotateY ${this.state.id}`} style={{transform:'rotateY('+this.state.ryValue+'deg)'}}>

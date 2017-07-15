@@ -3,9 +3,6 @@ import Knob from 'react-canvas-knob';
 import Draggable from 'react-draggable';
 import { styles } from './styles.scss';
 import Slider from 'rc-slider';
-// import { connect } from "react-redux"
-
-//import { bindActionCreators } from 'redux'
 
 export default class ControlsInput extends Component {
   constructor(props){
@@ -18,11 +15,14 @@ export default class ControlsInput extends Component {
       rzvalue: 0,
       sxvalue:.5,
       syvalue:.5,
-      fxvalue:props.id=='rightEye' || props.id=='rightBrow'?-1:1,
+      fxvalue:props.id=='rightEye' || props.id=='rightBrow' ? -1 : 1,
       rmin:0,
       rmax:360,
       xymax:60,
       deltaPosition: {
+        x: 0, y: 0
+      },
+      eyePosition: {
         x: 0, y: 0
       }
     };
@@ -31,9 +31,7 @@ export default class ControlsInput extends Component {
 
   }
   componentDidUpdate(){
-    /*var bref = this[this.props.id + 'Input'];
-    var id = this.props.id;
-    var that = this;*/
+
     if (this.props.id == this.props.controls.activeControl && this.props.controls.activeInput != this.state.activeInput){
       // console.log('inputtt',this.props.controls.activeInput,this.state.activeInput);
       this.setState({activeInput: this.props.controls.activeInput});
@@ -78,21 +76,38 @@ export default class ControlsInput extends Component {
     //console.log('sy',value/100); //eslint-disable-line
   }
   handleDragXY(e, ui) {
-   const {x, y} = this.state.deltaPosition;
+    console.log(this.props.id);
+    let moveMax = 25;
+    let position = 'deltaPosition';
+
+   if (this.props.id=="eyeFocus"){
+    //  moveMax = 20;
+     position = 'eyePosition';
+   }
+
+   const {x, y} = this.state[position];
 
    this.setState({
-     deltaPosition: {
+     [position]: {
        x: x + ui.deltaX,
        y: y + ui.deltaY,
      }
    });
 
+   let xchange = ((this.state[position].x)/this.state.xymax)*moveMax;
+   let ychange = ((this.state[position].y)/this.state.xymax)*moveMax;
 
-   let xchange = ((this.state.deltaPosition.x)/this.state.xymax)*25;
-   let ychange = ((this.state.deltaPosition.y)/this.state.xymax)*25;
+   if (this.props.id=="eyeFocus"){
+     this.props.action('leftEyeBall','DX',xchange);
+     this.props.action('leftEyeBall','DY',ychange);
+     this.props.action('rightEyeBall','DX',-xchange);
+     this.props.action('rightEyeBall','DY',ychange);
+    //  console.log(xchange,ychange);
+   }else{
+     this.props.action(this.props.id,'DX',xchange);
+     this.props.action(this.props.id,'DY',ychange);
+   }
 
-   this.props.action(this.props.id,'DX',xchange);
-   this.props.action(this.props.id,'DY',ychange);
  }
 
   render() {

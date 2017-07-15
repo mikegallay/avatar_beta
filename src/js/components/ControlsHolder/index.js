@@ -32,6 +32,9 @@ export default class ControlsHolder extends Component {
   constructor(props){
     console.log('ControlsHolder',props);
     super(props)
+    this.state={
+      initInput:'move'
+    }
   }
   componentDidUpdate() {
     // console.log('testing update',this.props);
@@ -39,13 +42,13 @@ export default class ControlsHolder extends Component {
   componentDidMount(){
     // ugly fix to make the proper tab show up.
     this.props.actions.toggleActiveControl('rightEar');
-    this.props.actions.toggleActiveInput('move');
+    this.props.actions.toggleActiveInput(this.state.initInput);
   }
 
   change(e){
     // console.log('toggleActiveControl',e.target.value);
     this.props.actions.toggleActiveControl(e.target.value);
-    this.props.actions.toggleActiveInput('move');
+    this.props.actions.toggleActiveInput(this.state.initInput);
   }
 
   render() {
@@ -60,6 +63,8 @@ export default class ControlsHolder extends Component {
     for (var ob in avatarEyes) {
       allElements.push(avatarEyes[ob]);
     }
+
+    allElements.push({id:'eyeFocus'});
 
     const mappedElementsPanels = allElements.map((element,index) =>
       <ElementControls

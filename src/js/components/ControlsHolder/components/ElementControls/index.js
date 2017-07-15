@@ -69,7 +69,7 @@ export default class ElementControls extends Component {
     // console.log(this.props.data.id, props);
   }
 
-  renderKeyableElementControls(){
+  /*renderKeyableElementControls(){
     const allElements = [{id:'all'},{id:'scale'},{id:'rotate'},{id:'move'}];
 
     const mappedElements = allElements.map((element,index) =>
@@ -85,11 +85,17 @@ export default class ElementControls extends Component {
       )
 
     return mappedElements;
-  }
+  }*/
 
   change(e){
-    // console.log('select',e.target);
+    console.log('select',e.target);
+    /*if (e.target.value == 'eyeFocus'){
+      this.props.actions.toggleActiveInput(e.target.value);
+    }else{
+      this.props.actions.toggleActiveInput(e.target.value);
+    }*/
     this.props.actions.toggleActiveInput(e.target.value);
+
   }
 
   render() {
@@ -97,6 +103,9 @@ export default class ElementControls extends Component {
 
     let allInputs = ['move','rotatex','rotatey','rotatez','scale'];
     if (id == 'mouth' || id=='nose') allInputs.push('flip');
+
+    //only move is keyable element for eyefocus
+    if (id == 'eyeFocus') allInputs = ['move'];
 
     const mappedOptions = allInputs.map((element,index) =>
       <option
@@ -110,7 +119,7 @@ export default class ElementControls extends Component {
           <div className='element-panel'>
 
             <div className='element-elements'>
-              {/*<h3 className='panel-title'>{this.props.data.id}</h3>*/}
+              <h3 className='panel-title'>{this.props.data.id}</h3>
               <div>
                 <select onChange={this.change.bind(this)}>
                   {mappedOptions}

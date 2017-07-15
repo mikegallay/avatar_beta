@@ -1,12 +1,13 @@
 const keyableElements= [
-  {name:'Right Ear',val:'rightEar',flip:false},
-  {name:'Left Ear',val:'leftEar',flip:false},
-  {name:'Right Eye',val:'rightEye',flip:false},
-  {name:'Left Eye',val:'leftEye',flip:false},
-  {name:'Mouth',val:'mouth',flip:true},
-  {name:'Right Brow',val:'rightBrow',flip:false},
-  {name:'Left Brow',val:'leftBrow',flip:false},
-  {name:'Nose',val:'nose',flip:true},
+  {name:'Right Ear',val:'rightEar'},
+  {name:'Left Ear',val:'leftEar'},
+  {name:'Right Eye',val:'rightEye'},
+  {name:'Left Eye',val:'leftEye'},
+  {name:'Mouth',val:'mouth'},
+  {name:'Right Brow',val:'rightBrow'},
+  {name:'Left Brow',val:'leftBrow'},
+  {name:'Nose',val:'nose'},
+  {name:'Eye Focus',val:'eyeFocus'},
   // {name:'Face',val:'face'},
 ]
 
@@ -22,7 +23,7 @@ const positionID = ['RX','RY','RZ','FX','SX','SY','DX','DY'];
   {id:'DY',val:0}
 ];*/
 
-let initPositionValues = {};
+let initPositionValues = {leftEyeBallDX:null,leftEyeBallDY:null,rightEyeBallDX:null,rightEyeBallDY:null};
 
 for (var id of positionID) {
   // initPositionValues[id] = {};
