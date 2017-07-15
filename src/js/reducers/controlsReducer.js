@@ -1,93 +1,59 @@
+const keyableElements= [
+  {name:'Right Ear',val:'rightEar'},
+  {name:'Left Ear',val:'leftEar'},
+  {name:'Right Eye',val:'rightEye'},
+  {name:'Left Eye',val:'leftEye'},
+  {name:'Mouth',val:'mouth'},
+  {name:'Right Brow',val:'rightBrow'},
+  {name:'Left Brow',val:'leftBrow'},
+  {name:'Nose',val:'nose'},
+  {name:'Face',val:'face'},
+]
+
+const positionID = ['RX','RY','RZ','FX','SX','SY','DX','DY'];
+/*const positionID = [
+  {id:'RX',val:null},
+  {id:'RY',val:null},
+  {id:'RZ',val:null},
+  {id:'FX',val:1},
+  {id:'SX',val:.5},
+  {id:'SY',val:.5},
+  {id:'DX',val:0},
+  {id:'DY',val:0}
+];*/
+
+let initPositionValues = {};
+
+for (var id of positionID) {
+  // initPositionValues[id] = {};
+  for (var ke of keyableElements){
+    var val = (id=='FX') ? 1 : null;
+    // if (id='SX' || id=='SY') val = .5;
+    initPositionValues[ke.val + id] = val;
+  }
+}
+
+// console.log('initPositionValues',initPositionValues);
+
 export default function reducer(state={
+    keyableElements : keyableElements,
+    initPositionValues : initPositionValues,
+
     activeControl:'face',
     activeInput:'rotate',
-
-    mouthRZ:null,
-    noseRZ:null,
-    rightEarRZ:null,
-    leftEarRZ:null,
-    leftEyeRZ:null,
-    rightEyeRZ:null,
-    rightBrowRZ:null,
-    leftBrowRZ:null,
-    faceRZ:null,
-    faceOverRZ:null,
-    rightEyeBallRZ: null,
-    leftEyeBallRZ:null,
-
-    mouthFX:1,
-    noseFX:1,
-    rightEarFX:1,
-    leftEarFX:1,
-    leftEyeFX:1,
-    rightEyeFX:1,
-    rightBrowFX:1,
-    leftBrowFX:1,
-    faceFX:1,
-    faceOverFX:1,
-    rightEyeBallFX: 1,
-    leftEyeBallFX:1,
-
-    mouthSX:null,
-    noseSX:null,
-    rightEarSX:null,
-    leftEarSX:null,
-    leftEyeSX:null,
-    rightEyeSX:null,
-    rightBrowSX:null,
-    leftBrowSX:null,
-    faceSX:null,
-    faceOverSX:null,
-    rightEyeBallSX: null,
-    leftEyeBallSX:null,
-
-    mouthSY:null,
-    noseSY:null,
-    rightEarSY:null,
-    leftEarSY:null,
-    leftEyeSY:null,
-    rightEyeSY:null,
-    rightBrowSY:null,
-    leftBrowSY:null,
-    faceSY:null,
-    faceOverSY:null,
-    rightEyeBallSY: null,
-    leftEyeBallSY:null,
-
-    mouthDX:null,
-    noseDX:null,
-    rightEarDX:null,
-    leftEarDX:null,
-    leftEyeDX:null,
-    rightEyeDX:null,
-    rightBrowDX:null,
-    leftBrowDX:null,
-    faceDX:null,
-    faceOverDX:null,
-    rightEyeBallDX: null,
-    leftEyeBallDX:null,
-
-    mouthDY:null,
-    noseDY:null,
-    rightEarDY:null,
-    leftEarDY:null,
-    leftEyeDY:null,
-    rightEyeDY:null,
-    rightBrowDY:null,
-    leftBrowDY:null,
-    faceDY:null,
-    faceOverDY:null,
-    rightEyeBallDY: null,
-    leftEyeBallDY:null
-
-
 
   }, action) {
 
     switch (action.type) {
       case "ADJUST_KEYABLE_VALUE": {
-        var el = action.payload.id + action.payload.prop;
-        return {...state, [el] : action.payload.value}
+        let el = action.payload.id + action.payload.prop;
+        return {
+          ...state,
+          initPositionValues: {
+            ...state.initPositionValues,
+            [el] : action.payload.value
+          }
+        }
       }
       case "TOGGLE_CONTROL": {
         console.log('otg',action.payload);

@@ -30,6 +30,7 @@ import { addKeyFrame } from "../../actions/timelineActions"
 })
 export default class ControlsHolder extends Component {
   constructor(props){
+    console.log('ControlsHolder',props);
     super(props)
   }
   componentDidUpdate() {

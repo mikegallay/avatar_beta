@@ -26,7 +26,7 @@ export default class ElementLayout extends Component {
       y         : data ? data.by : 0,
       spriteSheet : user ? user.spriteSheet : '/assets/icon-sprite-def01.svg',
       rzValue    : 0,
-      sxValue    : id == 'face' || id == 'faceOver'?.4:.5,
+      sxValue    : id == 'face' || id == 'faceOver' ? .4 : .5,
       syValue    : .5,
       fxValue    : 1,
       dx    : 0,
@@ -50,7 +50,9 @@ export default class ElementLayout extends Component {
 
   }
   componentDidUpdate(){
-    // console.log('ElementLayout Update',this.state.spriteSheet);
+    let initPosVals = this.props.controls.initPositionValues
+
+    console.log('initPosVals',initPosVals);
     if (this.state.spriteSheet != this.props.user.spriteSheet){
       this.setState({
         spriteSheet:this.props.user.spriteSheet
@@ -58,45 +60,50 @@ export default class ElementLayout extends Component {
     }
 
     //set RotateZ
-    if (this.props.controls[this.state.id+'RZ'] && this.props.controls[this.state.id+'RZ'] != this.state.rzValue){
-      // console.log('yes set',this.props.controls[this.state.id+'RZ'],this.state.rzValue);
+    // if (initPosVals){console.log((initPosVals[this.state.id+'RZ'],this.state.rzValue))};
+    if (initPosVals && initPosVals[this.state.id+'RZ'] != this.state.rzValue){
+      // console.log('yes set',initPosVals[this.state.id+'RZ'],this.state.rzValue);
       this.setState({
-        rzValue: this.props.controls[this.state.id+'RZ']
+        rzValue: initPosVals[this.state.id+'RZ']
       })
     }
 
     //set FlipX
-    if (this.props.controls[this.state.id+'FX'] && this.props.controls[this.state.id+'FX'] != this.state.fxValue){
+    if (initPosVals && initPosVals[this.state.id+'FX'] != this.state.fxValue){
       this.setState({
-        fxValue: this.props.controls[this.state.id+'FX']
+        fxValue: initPosVals[this.state.id+'FX']
       })
     }
 
     //set ScaleX
-    if (this.props.controls[this.state.id+'SX'] && this.props.controls[this.state.id+'SX'] != this.state.sxValue){
-      this.setState({
-        sxValue: this.props.controls[this.state.id+'SX']
-      })
+    if (initPosVals && initPosVals[this.state.id+'SX'] != this.state.sxValue){
+      if (initPosVals[this.state.id+'SX'] != null){
+        this.setState({
+          sxValue: initPosVals[this.state.id+'SX']
+        })
+      }
     }
 
     //set ScaleY
-    if (this.props.controls[this.state.id+'SY'] && this.props.controls[this.state.id+'SY'] != this.state.syValue){
-      this.setState({
-        syValue: this.props.controls[this.state.id+'SY']
-      })
+    if (initPosVals && initPosVals[this.state.id+'SY'] != this.state.syValue){
+      if (initPosVals[this.state.id+'SY'] != null){
+        this.setState({
+          syValue: initPosVals[this.state.id+'SY']
+        })
+      }
     }
 
     //set MoveX
-    if (this.props.controls[this.state.id+'DX'] && this.props.controls[this.state.id+'DX'] != this.state.dx){
+    if (initPosVals && initPosVals[this.state.id+'DX'] != this.state.dx){
       this.setState({
-        dx: this.props.controls[this.state.id+'DX']
+        dx: initPosVals[this.state.id+'DX']
       })
     }
 
     //set MoveY
-    if (this.props.controls[this.state.id+'DY'] && this.props.controls[this.state.id+'DY'] != this.state.dy){
+    if (initPosVals && initPosVals[this.state.id+'DY'] != this.state.dy){
       this.setState({
-        dy: this.props.controls[this.state.id+'DY']
+        dy: initPosVals[this.state.id+'DY']
       })
     }
 
