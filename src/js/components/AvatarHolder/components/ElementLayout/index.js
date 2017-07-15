@@ -9,7 +9,7 @@ const svgScale = 50;
 export default class ElementLayout extends Component {
   constructor(props){
     super(props)
-    console.log('ElementLayout',props);
+    // console.log('ElementLayout',props);
     const data = this.props.data
     const user = this.props.user
     const id = data ? data.id : ''
@@ -25,6 +25,8 @@ export default class ElementLayout extends Component {
       x         : data ? data.bx : 0,
       y         : data ? data.by : 0,
       spriteSheet : user ? user.spriteSheet : '/assets/icon-sprite-def01.svg',
+      rxValue    : 0,
+      ryValue    : 0,
       rzValue    : 0,
       sxValue    : id == 'face' || id == 'faceOver' ? .4 : .5,
       syValue    : .5,
@@ -52,17 +54,29 @@ export default class ElementLayout extends Component {
   componentDidUpdate(){
     let initPosVals = this.props.controls.initPositionValues
 
-    console.log('initPosVals',initPosVals);
+    // console.log('initPosVals',initPosVals);
     if (this.state.spriteSheet != this.props.user.spriteSheet){
       this.setState({
         spriteSheet:this.props.user.spriteSheet
       })
     }
 
+    //set RotateX
+    if (initPosVals && initPosVals[this.state.id+'RX'] != this.state.rxValue){
+      this.setState({
+        rxValue: initPosVals[this.state.id+'RX']
+      })
+    }
+
+    //set RotateY
+    if (initPosVals && initPosVals[this.state.id+'RY'] != this.state.ryValue){
+      this.setState({
+        ryValue: initPosVals[this.state.id+'RY']
+      })
+    }
+
     //set RotateZ
-    // if (initPosVals){console.log((initPosVals[this.state.id+'RZ'],this.state.rzValue))};
     if (initPosVals && initPosVals[this.state.id+'RZ'] != this.state.rzValue){
-      // console.log('yes set',initPosVals[this.state.id+'RZ'],this.state.rzValue);
       this.setState({
         rzValue: initPosVals[this.state.id+'RZ']
       })

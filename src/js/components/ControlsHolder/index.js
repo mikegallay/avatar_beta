@@ -73,12 +73,12 @@ export default class ControlsHolder extends Component {
           'id'    : element.id,
         }}/>)
 
-    const mappedOptions = allElements.map((element,index) =>
+    const mappedOptions = this.props.controls.keyableElements.map((element,index) =>
       <option
         ref = {dd => this.$dd = dd}
-        key={element.id}
-        value={element.id}>
-          {element.id}
+        key={element.val}
+        value={element.val}>
+          {element.name}
         </option>)
 
     let progress = this.props.timeline.masterTimeline?(this.props.timeline.masterProgress *100)+'%':'0%';
