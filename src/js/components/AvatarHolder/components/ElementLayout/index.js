@@ -245,7 +245,7 @@ export default class ElementLayout extends Component {
 
     if (this.state.id=='leftEye' || this.state.id=='rightEye' && this.props.data.useMask) {
       eyebg = <div
-          className={`eyebg ${this.state.id}` }
+          className={`eyebg ${this.state.id} ${this.state.artId}` }
           style={{
             backgroundColor: this.props.data.bgColor,
             transform:'scale('+sx+','+sy+')',

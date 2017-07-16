@@ -108,8 +108,14 @@ $skintone:pink;
           // -webkit-mask-size:100% 100%;
           // -webkit-mask-position: 57%;
           .eyebg{
-            -webkit-mask-image: url('/assets/eye01.svg');
+            &.eye01{
+              -webkit-mask-image: url('/assets/eye01.svg');
+            }
+            &.eye02{
+              -webkit-mask-image: url('/assets/eye02.svg');
+            }
             -webkit-mask-size:100% 100%;
+
           }
           svg.icon.leftEye,svg.icon.rightEye{
             z-index: 2;
