@@ -176,8 +176,8 @@ export default class ElementLayout extends Component {
     if (id == 'rightEye' || id == 'leftEye') id='eye';
     // if (!this.props.data.useEyeBall && id=='eye') id='noEyeBall';
 
-    if (this.state.id == 'leftEye') TweenMax.set('.element-holder.leftEye',{background:this.props.data.bgColor})
-    if (this.state.id == 'rightEye') TweenMax.set('.element-holder.rightEye',{background:this.props.data.bgColor})
+    // if (this.state.id == 'leftEye') TweenMax.set('.element-holder.leftEye',{background:this.props.data.bgColor})
+    // if (this.state.id == 'rightEye') TweenMax.set('.element-holder.rightEye',{background:this.props.data.bgColor})
 
     if (id == 'rightBrow' || id == 'leftBrow') id='brow';
     if (id == 'rightEar' || id == 'leftEar') id='ear';
@@ -187,10 +187,10 @@ export default class ElementLayout extends Component {
       <div className={`element-scale ${this.state.id}`} style={{transform:'scale('+this.state.sxValue+','+this.state.syValue+')'}}>
       <div className={`element-supersize ${this.state.id}`}>
         {this.state.id == 'rightEye' && this.props.data.useLids && this.renderLid(id)}
-        {this.state.id == 'rightEye' && this.props.data.useMask && this.renderSkin(artId)}
+        {/*this.state.id == 'rightEye' && this.props.data.useMask && this.renderSkin(artId)*/}
 
         {this.state.id == 'leftEye' && this.props.data.useLids && this.renderLid(id)}
-        {this.state.id == 'leftEye' && this.props.data.useMask && this.renderSkin(artId)}
+        {/*this.state.id == 'leftEye' && this.props.data.useMask && this.renderSkin(artId)*/}
         {/*this.state.id == 'leftEye' && this.props.data.useMask && this.renderClipPath(artId)*/}
 
         {this.state.id == 'rightEar' && this.renderSkin(artId)}
@@ -221,6 +221,16 @@ export default class ElementLayout extends Component {
     )
   }
 
+  /*renderBG(){
+    let sx = this.state.sxValue * 2;
+    let sy = this.state.syValue * 2;
+    return (
+      <div className="eyebg" style={{backgroundColor: 'white', transform:'scale('+sx+','+sy+')'}}></div>
+    )
+  }*/
+
+
+
   render() {
 
     // let DYZ = 'rotateZ('+this.props.controls[this.state.id+'Z']+')';
@@ -228,6 +238,21 @@ export default class ElementLayout extends Component {
 
     let stateX = this.state.x?this.state.x:0;
     let stateY = this.state.y?this.state.y:0;
+
+    let sx = this.state.sxValue * 2;
+    let sy = this.state.syValue * 2;
+    let eyebg = null;
+
+    if (this.state.id=='leftEye' || this.state.id=='rightEye' && this.props.data.useMask) {
+      eyebg = <div
+          className={`eyebg ${this.state.id}` }
+          style={{
+            backgroundColor: this.props.data.bgColor,
+            transform:'scale('+sx+','+sy+')',
+            /*maskImage: 'url(/assets/eye01.svg)',
+            maskSize: '100%'*/
+          }}></div>;
+    }
 
     return (
 
@@ -248,6 +273,7 @@ export default class ElementLayout extends Component {
                     className={`element-holder ${this.state.id}`}
                     style={{transform:'scaleX('+this.state.fxValue+')'}}
                     >
+                    {eyebg}
                     {this.renderIcon()}
                     {this.props.children}
                     {/*this.state.rzValue*/}

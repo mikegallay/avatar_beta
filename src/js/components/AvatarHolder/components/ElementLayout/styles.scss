@@ -104,6 +104,13 @@ $skintone:pink;
 
         &.rightEye,&.leftEye{
           background-size: cover;
+          // -webkit-mask-image: url('/assets/eye01.svg');
+          // -webkit-mask-size:100% 100%;
+          // -webkit-mask-position: 57%;
+          .eyebg{
+            -webkit-mask-image: url('/assets/eye01.svg');
+            -webkit-mask-size:100% 100%;
+          }
           svg.icon.leftEye,svg.icon.rightEye{
             z-index: 2;
             position:relative;
@@ -112,6 +119,7 @@ $skintone:pink;
 
         .rightEyeBall, .leftEyeBall{
           z-index: 0;
+
         }
 
         #skin-tone{

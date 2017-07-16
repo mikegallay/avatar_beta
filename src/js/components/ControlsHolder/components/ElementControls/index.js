@@ -26,7 +26,7 @@ export default class ElementControls extends Component {
     // console.log('test',id,this.props);
     this[id + 'Button'].addEventListener('click',function(){
 
-      var rand = Math.random()*1;
+      var rand = Math.random()*.5 + .5;
       //testing added animated kf to sub timeline
       let subTL;
 
@@ -38,15 +38,16 @@ export default class ElementControls extends Component {
             const transform = tween.target[0]._gsTransform;
             let sx = transform.scaleX;
             let sy = transform.scaleY;
-            let ow = .2;
+            /*let ow = .2;
             var s = (sx < sy) ? sx : sy;
             if (s < .5) ow = 1.2 + (10 * (1 - s));
             ow = ow + "em";
-            TweenMax.set('.'+id+'.element-scale',{outlineWidth:ow})
+            TweenMax.set('.'+id+'.element-scale',{outlineWidth:ow})*/
+            TweenMax.set('.'+id+'.eyebg',{scaleX:sx*2,scaleY:sy*2});
           },
           ease:Linear.easeNone},count)
-          .to('.'+id+'.element-rotateX',.25,{rotationX:(Math.random()*100 - 50),ease:Linear.easeNone},count)
-          .to('.'+id+'.element-rotateY',d,{rotationY:(Math.random()*100 - 50),ease:Linear.easeNone},count)
+          // .to('.'+id+'.element-rotateX',.25,{rotationX:(Math.random()*100 - 50),ease:Linear.easeNone},count)
+          // .to('.'+id+'.element-rotateY',d,{rotationY:(Math.random()*100 - 50),ease:Linear.easeNone},count)
           .to('.'+id+'.element-rotateZ',d,{rotationZ:(Math.random()*100 - 50),ease:Linear.easeNone},count)
       }else{
         subTL = subtl.to('.'+id+'.element-scale',d,{scaleX:rand,scaleY:rand, ease:Linear.easeNone},count)
