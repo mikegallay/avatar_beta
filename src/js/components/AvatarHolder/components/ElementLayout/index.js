@@ -166,7 +166,7 @@ export default class ElementLayout extends Component {
 
 
   renderIcon(){
-    // console.log('this.props',this.props);
+    console.log('this.props',this.state.id,this.props);
     let id = this.state.id;
     let artId = this.state.artId;
     let eyeBallId = this.state.eyeBallId;
@@ -254,9 +254,12 @@ export default class ElementLayout extends Component {
           }}></div>;
     }
 
+    let isEyeBall = (this.state.id=='leftEyeBall' || this.state.id=='rightEyeBall')?'isEyeBall '+this.props.data.artid:'';
+    // if(isEyeBall) console.log('pussy',this.props);
+
     return (
 
-      <div className={ `${styles} ${this.state.id}` }>
+      <div className={ `${styles} ${this.state.id} ${isEyeBall}` }>
         <div
           className={`element-wrapper ${this.state.id} ${this.state.type}` }
           style={{

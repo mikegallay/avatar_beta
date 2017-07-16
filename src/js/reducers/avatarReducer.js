@@ -5,7 +5,7 @@ export default function reducer(state={
     //activeControl:'face',
     //activeInput:null,
     eyes:{
-      leftEye :       {artId: 'eye02', id:'leftEye', useEyeBall: true, eyeBallId:'eyeBall', bgColor:'white',useLids:true,useMask:true,w:60,h:60,bx:38,by:42,brx:0,bry:0,brz:0,cx:'30%',cy:'30%'},
+      leftEye :       {artId: 'eye01', id:'leftEye', useEyeBall: true, eyeBallId:'eyeBall', bgColor:'white',useLids:true,useMask:true,w:80,h:80,bx:38,by:42,brx:0,bry:0,brz:0,cx:'30%',cy:'30%'},
       rightEye :      {artId: 'eye02', id:'rightEye', useEyeBall: true, eyeBallId:'eyeBall', bgColor:'white',useLids:true,useMask:true,w:60,h:60,bx:62,by:42,brx:0,bry:180,brz:0,cx:'70%',cy:'30%'},
 
     },
