@@ -9,7 +9,7 @@ const svgScale = 50;
 export default class ElementLayout extends Component {
   constructor(props){
     super(props)
-    // console.log('ElementLayout',props);
+    console.log('ElementLayout',this.props.data.id,props);
     const data = this.props.data
     const user = this.props.user
     const id = data ? data.id : ''
@@ -28,7 +28,7 @@ export default class ElementLayout extends Component {
       rxValue    : 0,
       ryValue    : 0,
       rzValue    : 0,
-      sxValue    : id == 'face' || id == 'faceOver' ? .4 : .5,
+      sxValue    : .5,//id == 'face' || id == 'faceOver' ? .4 : .5,
       syValue    : .5,
       fxValue    : 1,
       dxValue    : 0,
@@ -182,9 +182,13 @@ export default class ElementLayout extends Component {
     if (id == 'rightBrow' || id == 'leftBrow') id='brow';
     if (id == 'rightEar' || id == 'leftEar') id='ear';
     // console.log(id);
-    // console.log('lids/mask',this.props.data.useLids,this.props.data.useMask)  ;
+    // console.log('lids/mask',this.props.data.useLids,this.props.data.useMask);
+
+    let scaleStyle = 'scale('+this.state.sxValue+','+this.state.syValue+')';
+    if (this.state.id == 'face') scaleStyle = 'scale('+this.props.data.sx+','+this.props.data.sy+')';
+
     return (
-      <div className={`element-scale ${this.state.id}`} style={{transform:'scale('+this.state.sxValue+','+this.state.syValue+')'}}>
+      <div className={`element-scale ${this.state.id}`} style={{transform:scaleStyle}}>
       <div className={`element-supersize ${this.state.id}`}>
         {this.state.id == 'rightEye' && this.props.data.useLids && this.renderLid(id)}
         {/*this.state.id == 'rightEye' && this.props.data.useMask && this.renderSkin(artId)*/}
@@ -257,6 +261,9 @@ export default class ElementLayout extends Component {
     let isEyeBall = (this.state.id=='leftEyeBall' || this.state.id=='rightEyeBall')?'isEyeBall '+this.props.data.artid:'';
     // if(isEyeBall) console.log('pussy',this.props);
 
+    let scaleStyle = 'scaleX('+this.state.fxValue+')';
+    if (this.state.id == 'face') scaleStyle = 'scale('+(this.state.sxValue * 2)+','+(this.state.syValue * 2)+')';
+
     return (
 
       <div className={ `${styles} ${this.state.id} ${isEyeBall}` }>
@@ -274,7 +281,7 @@ export default class ElementLayout extends Component {
                   <div
                     ref = {element => this.$element = element}
                     className={`element-holder ${this.state.id}`}
-                    style={{transform:'scaleX('+this.state.fxValue+')'}}
+                    style={{transform:scaleStyle}}
                     >
                     {eyebg}
                     {this.renderIcon()}

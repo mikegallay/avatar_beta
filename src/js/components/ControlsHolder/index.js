@@ -64,7 +64,7 @@ export default class ControlsHolder extends Component {
       allElements.push(avatarEyes[ob]);
     }
 
-    allElements.push({id:'eyeFocus'});
+    allElements.push({id:'eyeFocus'},{id:'face'});
 
     const mappedElementsPanels = allElements.map((element,index) =>
       <ElementControls

@@ -22,6 +22,10 @@ $skintone:pink;
   .element-wrapper{
     overflow: visible;
     pointer-events: none;
+    &.face{
+      margin:0 auto;
+      position: relative;
+    }
     &.rightEar{
         transform: rotateY(180deg);
       }

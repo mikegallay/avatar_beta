@@ -8,7 +8,7 @@ const keyableElements= [
   {name:'Left Brow',val:'leftBrow'},
   {name:'Nose',val:'nose'},
   {name:'Eye Focus',val:'eyeFocus'},
-  // {name:'Face',val:'face'},
+  {name:'Face',val:'face'},
 ]
 
 const positionID = ['RX','RY','RZ','FX','SX','SY','DX','DY'];
