@@ -24,7 +24,7 @@ $skintone:pink;
     pointer-events: none;
     &.face{
       margin:0 auto;
-      position: relative;
+      position: absolute;
     }
     &.rightEar{
         transform: rotateY(180deg);

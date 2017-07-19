@@ -22,14 +22,14 @@ export default class ElementLayout extends Component {
       artId     : data ? data.artId : '',
       eyeBallId : data ? data.eyeBallId : '',
       type      : type,
-      x         : data ? data.bx : 0,
-      y         : data ? data.by : 0,
+      x         : data ? data.x : 0,
+      y         : data ? data.y : 0,
       spriteSheet : user ? user.spriteSheet : '/assets/icon-sprite-def01.svg',
       rxValue    : 0,
       ryValue    : 0,
       rzValue    : 0,
-      sxValue    : .5,//id == 'face' || id == 'faceOver' ? .4 : .5,
-      syValue    : .5,
+      sxValue    : data ? data.sx : .5,//.5,//id == 'face' || id == 'faceOver' ? .4 : .5,
+      syValue    : data ? data.sy : .5,
       fxValue    : 1,
       dxValue    : 0,
       dyValue    : 0,
@@ -185,7 +185,7 @@ export default class ElementLayout extends Component {
     // console.log('lids/mask',this.props.data.useLids,this.props.data.useMask);
 
     let scaleStyle = 'scale('+this.state.sxValue+','+this.state.syValue+')';
-    if (this.state.id == 'face') scaleStyle = 'scale('+this.props.data.sx+','+this.props.data.sy+')';
+    if (this.state.id == 'face') scaleStyle = 'scale('+this.props.data.artSx+','+this.props.data.artSy+')';
 
     return (
       <div className={`element-scale ${this.state.id}`} style={{transform:scaleStyle}}>

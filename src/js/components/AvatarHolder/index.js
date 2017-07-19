@@ -117,6 +117,8 @@ export default class AvatarHolder extends Component {
         data={{
           'w'         : element.w,//, * .75,
           'h'         : element.h,//, * .75,
+          'sx'        : .5,
+          'sy'        : .5,
           'id'        : element.id+'Ball',
           'artid'     : element.artId,
           'eyeBallId' : element.eyeBallId,
