@@ -62,21 +62,34 @@ export default class ControlsInput extends Component {
   }
 
   onSliderChangeSX = (value) => {
-    // console.log('sx',value/100);
-    // var id = this.props.id;
     const val = Number(value/100);
     this.setState({sxvalue: val});
     this.props.action(this.props.id,'SX',val);
   }
   onSliderChangeSY = (value) => {
-    // var id = this.props.id;
     const val = Number(value/100);
     this.setState({syvalue: val});
     this.props.action(this.props.id,'SY',val);
-    //console.log('sy',value/100); //eslint-disable-line
   }
+  handleScaleXInput(e) {
+    const val = e.target.value/100;
+    // this.$sxSlider.value = e.target.value;
+    if (val != this.state.sxvalue){
+      this.setState({sxvalue: val});
+      this.props.action(this.props.id,'SX',val);
+    }
+  }
+  handleScaleYInput(e) {
+    const val = e.target.value/100;
+    // this.$sySlider.value = e.target.value;
+    if (val != this.state.syvalue){
+      this.setState({syvalue: val});
+      this.props.action(this.props.id,'SY',val);
+    }
+  }
+
   handleDragXY(e, ui) {
-    console.log(this.props.id);
+    // console.log(this.props.id);
     let moveMax = 25;
     let position = 'deltaPosition';
 
@@ -165,19 +178,22 @@ export default class ControlsInput extends Component {
         </div>
 
         <div className={ `control-input scale-control ${this.state.activeInput=='scale'?'active':''}` }>
-          <h4>Scale X</h4>
+          <h4>Scale X</h4><input type="text" value={Math.round(this.state.sxvalue*100)} onChange={this.handleScaleXInput.bind(this)} />
           <Slider
+          ref={sxSlider => this.$sxSlider = sxSlider}
             className="sliderSX"
-            defaultValue={50}
+            defaultValue={this.state.sxvalue*100}
+            value={this.state.sxvalue*100}
             trackStyle={{ backgroundColor: '#eeaa22', height: 20, position:'relative' }}
             handleStyle={{ display:'none' }}
             railStyle={{ backgroundColor: '#eeeeee', height: 20, width: '100%', position:'absolute'}}
             onChange={this.onSliderChangeSX}
           />
-          <h4>Scale Y</h4>
+          <h4>Scale Y</h4><input type="text" value={Math.round(this.state.syvalue*100)} onChange={this.handleScaleYInput.bind(this)} />
           <Slider
             className="sliderSY"
-            defaultValue={50}
+            defaultValue={this.state.syvalue*100}
+            value={this.state.syvalue*100}
             trackStyle={{ backgroundColor: '#eeaa22', height: 20, position:'relative' }}
             handleStyle={{ display:'none' }}
             railStyle={{ backgroundColor: '#eeeeee', height: 20, width: '100%', position:'absolute'}}
