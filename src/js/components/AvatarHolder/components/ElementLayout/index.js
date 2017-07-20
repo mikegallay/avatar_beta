@@ -166,7 +166,7 @@ export default class ElementLayout extends Component {
 
 
   renderIcon(){
-    console.log('this.props',this.state.id,this.props);
+    // console.log('this.props',this.state.id,this.props);
     let id = this.state.id;
     let artId = this.state.artId;
     let eyeBallId = this.state.eyeBallId;
@@ -247,6 +247,8 @@ export default class ElementLayout extends Component {
     let sy = this.state.syValue * 2;
     let eyebg = null;
 
+
+
     if (this.state.id=='leftEye' || this.state.id=='rightEye' && this.props.data.useMask) {
       eyebg = <div
           className={`eyebg ${this.state.id} ${this.state.artId}` }
@@ -264,6 +266,7 @@ export default class ElementLayout extends Component {
     let scaleStyle = 'scaleX('+this.state.fxValue+')';
     if (this.state.id == 'face') scaleStyle = 'scale('+(this.state.sxValue * 2)+','+(this.state.syValue * 2)+')';
 
+    
     return (
 
       <div className={ `${styles} ${this.state.id} ${isEyeBall}` }>

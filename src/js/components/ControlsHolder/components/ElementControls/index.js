@@ -107,7 +107,7 @@ export default class ElementControls extends Component {
 
     //only move is keyable element for eyefocus
     if (id == 'eyeFocus') allInputs = ['move'];
-    console.log('id',id,allInputs);
+    // console.log('id',id,allInputs);
 
     const mappedOptions = allInputs.map((element,index) =>
       <option

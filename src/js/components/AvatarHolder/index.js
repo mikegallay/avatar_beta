@@ -122,8 +122,8 @@ export default class AvatarHolder extends Component {
           'id'        : element.id+'Ball',
           'artid'     : element.artId,
           'eyeBallId' : element.eyeBallId,
-          'x'         : '0%',
-          'y'         : '0%',
+          'x'         : 0,
+          'y'         : 0,
           'bgColor'   : element.bgColor
         }}/>
     )
