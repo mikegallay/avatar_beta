@@ -19,6 +19,7 @@ export default class ControlsInput extends Component {
       rmin:0,
       rmax:360,
       xymax:60,
+      moveMax:25,
       deltaPosition: {
         x: 0, y: 0
       },
@@ -71,59 +72,131 @@ export default class ControlsInput extends Component {
     this.setState({syvalue: val});
     this.props.action(this.props.id,'SY',val);
   }
+  handleScaleKeyUp(e){
+    if (e.keyCode == 38 || e.keyCode == 40){
+      let input = e.target;
+      let delta = 0;
+      if (e.keyCode == 38) delta = 1;
+      if (e.keyCode == 40) delta = -1;
+
+      var val = Number(input.value);
+      val += delta;
+
+      if (isNaN(val)) val = 0;
+      if (val > 100) val = 100;
+      if (val < 0) val = 0;
+
+      input.value = val;
+
+      if (e.target == this.$scaleInputX){
+        this.handleScaleXInput(e);
+      }else if (e.target == this.$scaleInputY){
+          this.handleScaleYInput(e);
+      }
+
+    }
+  }
+
   handleScaleXInput(e) {
-    const val = e.target.value/100;
-    // this.$sxSlider.value = e.target.value;
+    let val = e.target.value/100;
+    if (isNaN(val)) val = 0;
+    if (val > 100) val = 100;
+    if (val < 0) val = 0;
     if (val != this.state.sxvalue){
       this.setState({sxvalue: val});
       this.props.action(this.props.id,'SX',val);
     }
   }
   handleScaleYInput(e) {
-    const val = e.target.value/100;
-    // this.$sySlider.value = e.target.value;
+    let val = e.target.value/100;
+    if (isNaN(val)) val = 0;
+    if (val > 100) val = 100;
+    if (val < 0) val = 0;
     if (val != this.state.syvalue){
       this.setState({syvalue: val});
       this.props.action(this.props.id,'SY',val);
     }
   }
 
-  handleDragXY(e, ui) {
-    // console.log(this.props.id);
-    let moveMax = 25;
-    let position = 'deltaPosition';
+  setMovePosition(x,y){
+    let xchange = (x/this.state.xymax)*this.state.moveMax;
+    let ychange = (y/this.state.xymax)*this.state.moveMax;
 
-   if (this.props.id=="eyeFocus"){
-    //  moveMax = 20;
-     position = 'eyePosition';
-   }
-
-   const {x, y} = this.state[position];
-
-   this.setState({
-     [position]: {
-       x: x + ui.deltaX,
-       y: y + ui.deltaY,
-     }
-   });
-
-   let xchange = ((this.state[position].x)/this.state.xymax)*moveMax;
-   let ychange = ((this.state[position].y)/this.state.xymax)*moveMax;
-
-   if (this.props.id=="eyeFocus"){
+    if (this.props.id=="eyeFocus"){
      this.props.action('leftEyeBall','DX',xchange);
      this.props.action('leftEyeBall','DY',ychange);
      this.props.action('rightEyeBall','DX',-xchange);
      this.props.action('rightEyeBall','DY',ychange);
-    //  console.log(xchange,ychange);
-   }else{
+    }else{
      this.props.action(this.props.id,'DX',xchange);
      this.props.action(this.props.id,'DY',ychange);
-   }
+    }
+  }
+
+  handleMoveXYKeyUp(e){
+    if (e.keyCode == 38 || e.keyCode == 40){
+      let input = e.target;
+      let delta = 0;
+      if (e.keyCode == 38) delta = 1;
+      if (e.keyCode == 40) delta = -1;
+
+      var val = Number(input.value);
+      val += delta;
+
+      if (isNaN(val)) val = 0;
+      if (val > 100) val = 100;
+      if (val < -100) val = -100;
+
+      input.value = val;
+
+      this.handleMoveXYInput(e);
+    }
+  }
+
+  handleMoveXYInput(e) {
+    let valX = (this.$moveInputX.value/100)*this.state.xymax;
+    let valY = (this.$moveInputY.value/100)*this.state.xymax;
+
+    let position = (this.props.id=="eyeFocus") ? 'eyePosition' : 'deltaPosition';
+
+    if (isNaN(valX)) valX = 0;
+    if (isNaN(valY)) valY = 0;
+
+    if (valX > this.state.xymax) valX = this.state.xymax;
+    if (valY > this.state.xymax) valY = this.state.xymax;
+
+    if (valX < -this.state.xymax) valX = -this.state.xymax;
+    if (valY < -this.state.xymax) valY = -this.state.xymax;
+
+    // console.log(this.$moveInputX.value,this.$moveInputY.value);
+    // console.log(valX,this.state[position].x,valY,this.state[position].y);
+    if (valX != this.state[position].x || valY != this.state[position].y){
+      this.setState({[position]: {x:valX,y:valY}});
+      this.setMovePosition(valX,valY);
+    }
+  }
+
+  handleDragXY(e, ui) {
+    let position = (this.props.id=="eyeFocus") ? 'eyePosition' : 'deltaPosition';
+
+    const {x, y} = this.state[position];
+    let dx = x + ui.deltaX;
+    let dy = y + ui.deltaY;
+
+    this.setState({
+     [position]: {
+       x: dx,
+       y: dy,
+     }
+    });
+
+    this.setMovePosition(dx,dy);
 
  }
 
   render() {
+    let position = (this.props.id=="eyeFocus") ? 'eyePosition' : 'deltaPosition';
+
     return (
       <div className={ `${styles}` }>
         {/*<div>ControlsInput</div>*/}
@@ -178,9 +251,8 @@ export default class ControlsInput extends Component {
         </div>
 
         <div className={ `control-input scale-control ${this.state.activeInput=='scale'?'active':''}` }>
-          <h4>Scale X</h4><input type="text" value={Math.round(this.state.sxvalue*100)} onChange={this.handleScaleXInput.bind(this)} />
+          <h4>Scale X</h4><input ref={scaleInputX => this.$scaleInputX = scaleInputX} type="text" value={Math.round(this.state.sxvalue*1000)/10} onChange={this.handleScaleXInput.bind(this)} onKeyUp={this.handleScaleKeyUp.bind(this)}/>
           <Slider
-          ref={sxSlider => this.$sxSlider = sxSlider}
             className="sliderSX"
             defaultValue={this.state.sxvalue*100}
             value={this.state.sxvalue*100}
@@ -189,7 +261,7 @@ export default class ControlsInput extends Component {
             railStyle={{ backgroundColor: '#eeeeee', height: 20, width: '100%', position:'absolute'}}
             onChange={this.onSliderChangeSX}
           />
-          <h4>Scale Y</h4><input type="text" value={Math.round(this.state.syvalue*100)} onChange={this.handleScaleYInput.bind(this)} />
+          <h4>Scale Y</h4><input ref={scaleInputY => this.$scaleInputY = scaleInputY} type="text" value={Math.round(this.state.syvalue*1000)/10} onChange={this.handleScaleYInput.bind(this)} onKeyUp={this.handleScaleKeyUp.bind(this)}/>
           <Slider
             className="sliderSY"
             defaultValue={this.state.syvalue*100}
@@ -202,8 +274,11 @@ export default class ControlsInput extends Component {
         </div>
 
         <div className={ `control-input move-control ${this.state.activeInput=='move'?'active':''}` }>
+          <input ref={moveInputX => this.$moveInputX = moveInputX} type="text" value={Math.round((this.state[position].x/this.state.xymax)*1000)/10} onKeyUp={this.handleMoveXYKeyUp.bind(this)} onChange={this.handleMoveXYInput.bind(this)}/>
+          <input ref={moveInputY => this.$moveInputY = moveInputY} type="text" value={Math.round((this.state[position].y/this.state.xymax)*1000)/10} onKeyUp={this.handleMoveXYKeyUp.bind(this)} onChange={this.handleMoveXYInput.bind(this)}/>
           <div className="moveBounds">
             <Draggable
+              position={this.state[position]}
               onDrag={this.handleDragXY.bind(this)}
               bounds={{top: this.state.xymax * -1, left: this.state.xymax * -1, right: this.state.xymax, bottom: this.state.xymax}}
               >

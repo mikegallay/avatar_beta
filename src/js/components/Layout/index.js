@@ -31,7 +31,7 @@ export default class Layout extends Component {
     // console.log('Layout update',this.props);
   }
   componentDidMount(){
-    console.log('Layout',this.props);
+    // console.log('Layout',this.props);
   }
 
   render() {

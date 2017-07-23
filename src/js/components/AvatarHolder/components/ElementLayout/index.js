@@ -9,7 +9,7 @@ const svgScale = 50;
 export default class ElementLayout extends Component {
   constructor(props){
     super(props)
-    console.log('ElementLayout',this.props.data.id,props);
+    // console.log('ElementLayout',this.props.data.id,props);
     const data = this.props.data
     const user = this.props.user
     const id = data ? data.id : ''
@@ -114,20 +114,13 @@ export default class ElementLayout extends Component {
       }
     }
 
-    //set MoveX
-    if (initPosVals && initPosVals[this.state.id+'DX'] != this.state.dxValue){
+    //set MoveXY
+    if (initPosVals && initPosVals[this.state.id+'DX'] != this.state.dxValue || initPosVals[this.state.id+'DY'] != this.state.dyValue){
       this.setState({
-        dxValue: initPosVals[this.state.id+'DX']
-      })
-    }
-
-    //set MoveY
-    if (initPosVals && initPosVals[this.state.id+'DY'] != this.state.dyValue){
-      this.setState({
+        dxValue: initPosVals[this.state.id+'DX'],
         dyValue: initPosVals[this.state.id+'DY']
       })
     }
-
 
   }
 
@@ -184,6 +177,7 @@ export default class ElementLayout extends Component {
     // console.log(id);
     // console.log('lids/mask',this.props.data.useLids,this.props.data.useMask);
 
+    //set scale style depending on whether or not you are controlling the face element
     let scaleStyle = 'scale('+this.state.sxValue+','+this.state.syValue+')';
     if (this.state.id == 'face') scaleStyle = 'scale('+this.props.data.artSx+','+this.props.data.artSy+')';
 
@@ -240,8 +234,8 @@ export default class ElementLayout extends Component {
     // let DYZ = 'rotateZ('+this.props.controls[this.state.id+'Z']+')';
     // let DYZ = 'rotateZ('+this.state.rzValue+')';
 
-    let stateX = this.state.x?this.state.x:0;
-    let stateY = this.state.y?this.state.y:0;
+    let stateX = this.state.x ? this.state.x : 0;
+    let stateY = this.state.y ? this.state.y : 0;
 
     let sx = this.state.sxValue * 2;
     let sy = this.state.syValue * 2;
@@ -266,7 +260,7 @@ export default class ElementLayout extends Component {
     let scaleStyle = 'scaleX('+this.state.fxValue+')';
     if (this.state.id == 'face') scaleStyle = 'scale('+(this.state.sxValue * 2)+','+(this.state.syValue * 2)+')';
 
-    
+
     return (
 
       <div className={ `${styles} ${this.state.id} ${isEyeBall}` }>

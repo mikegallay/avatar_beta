@@ -59,11 +59,11 @@ export default function reducer(state={
         }
       }
       case "TOGGLE_CONTROL": {
-        console.log('otg',action.payload);
+        // console.log('otg',action.payload);
         return {...state, activeControl: action.payload}
       }
       case "TOGGLE_INPUT": {
-        console.log('otg',action.payload);
+        // console.log('otg',action.payload);
         return {...state, activeInput: action.payload}
       }
       /*case "FETCH_USER_FULFILLED": {
