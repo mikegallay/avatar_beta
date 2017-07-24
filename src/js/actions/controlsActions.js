@@ -21,6 +21,16 @@ export function toggleActiveInput(input) {
   }
 }
 
+export function setActiveInput(id,input) {
+  return {
+    type: "SET_INPUT",
+    payload: {
+      id: id,
+      input:input
+    }
+  }
+}
+
 export function adjustKeyableValue(id,prop,value) {
   return {
     type: "ADJUST_KEYABLE_VALUE",

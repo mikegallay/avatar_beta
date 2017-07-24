@@ -8,7 +8,7 @@ import ElementControls from './components/ElementControls'
 import { bindActionCreators } from 'redux'
 
 // import { fetchUser } from "../../actions/userActions"
-import { toggleActiveControl,adjustKeyableValue,toggleActiveInput } from "../../actions/controlsActions"
+import { toggleActiveControl,adjustKeyableValue,toggleActiveInput,setActiveInput } from "../../actions/controlsActions"
 import { addKeyFrame } from "../../actions/timelineActions"
 
 @connect((store) => {
@@ -23,6 +23,7 @@ import { addKeyFrame } from "../../actions/timelineActions"
     actions:bindActionCreators({
       toggleActiveControl,
       toggleActiveInput,
+      setActiveInput,
       adjustKeyableValue,
       addKeyFrame,
     }, dispatch)
@@ -46,9 +47,9 @@ export default class ControlsHolder extends Component {
   }
 
   change(e){
-    // console.log('toggleActiveControl',e.target.value);
+    console.log('toggleActiveControl',e.target.value,this.props.controls.activeInputs[e.target.value]);
     this.props.actions.toggleActiveControl(e.target.value);
-    this.props.actions.toggleActiveInput(this.state.initInput);
+    this.props.actions.toggleActiveInput(this.props.controls.activeInputs[e.target.value]);
   }
 
   render() {

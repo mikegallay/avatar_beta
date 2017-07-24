@@ -89,13 +89,16 @@ export default class ElementControls extends Component {
   }*/
 
   change(e){
-    console.log('select',e.target);
+    console.log('select',e.target.value);
     /*if (e.target.value == 'eyeFocus'){
       this.props.actions.toggleActiveInput(e.target.value);
     }else{
       this.props.actions.toggleActiveInput(e.target.value);
     }*/
+
+
     this.props.actions.toggleActiveInput(e.target.value);
+    this.props.actions.setActiveInput(this.props.data.id,e.target.value);
 
   }
 

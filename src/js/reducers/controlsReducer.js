@@ -23,6 +23,7 @@ const positionID = ['RX','RY','RZ','FX','SX','SY','DX','DY'];
   {id:'DY',val:0}
 ];*/
 
+let activeInputs = {};
 let initPositionValues = {leftEyeBallDX:null,leftEyeBallDY:null,rightEyeBallDX:null,rightEyeBallDY:null};
 
 for (var id of positionID) {
@@ -33,15 +34,19 @@ for (var id of positionID) {
     if (id=='FX' && ke.val == 'rightBrow') val = -1;
     // if (id='SX' || id=='SY') val = .5;
     initPositionValues[ke.val + id] = val;
+
   }
 }
 
+for (var ke of keyableElements){
+  activeInputs[ke.val] = 'move';
+}
 // console.log('initPositionValues',initPositionValues);
 
 export default function reducer(state={
     keyableElements : keyableElements,
     initPositionValues : initPositionValues,
-
+    activeInputs : activeInputs,
     activeControl:'face',
     activeInput:'rotate',
 
@@ -65,6 +70,16 @@ export default function reducer(state={
       case "TOGGLE_INPUT": {
         // console.log('otg',action.payload);
         return {...state, activeInput: action.payload}
+      }
+      case "SET_INPUT": {
+        console.log('set active input',action.payload);
+        return {
+          ...state,
+          activeInputs: {
+            ...state.activeInputs,
+            [action.payload.id] : action.payload.input
+          }
+        }
       }
       /*case "FETCH_USER_FULFILLED": {
         return {
