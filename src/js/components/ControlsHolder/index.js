@@ -60,8 +60,9 @@ export default class ControlsHolder extends Component {
   }
 
   render() {
-    const avatarElements = this.props.avatar.elements
-    const avatarEyes = this.props.avatar.eyes
+    let activeAvatar = this.props.avatar.avatars[this.props.avatar.activeAvatar];
+    const avatarElements = activeAvatar.elements
+    const avatarEyes = activeAvatar.eyes
 
     let allElements=[];
     for (var ob in avatarElements) {

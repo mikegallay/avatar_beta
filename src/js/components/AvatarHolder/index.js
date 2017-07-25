@@ -112,7 +112,6 @@ export default class AvatarHolder extends Component {
         actions={this.props.actions}
         timeline={this.props.timeline}
         controls={this.props.controls}
-        activeControl={this.props.avatar.activeControl}
         user={this.props.user}
         data={{
           'w'         : element.w,//, * .75,
@@ -130,38 +129,37 @@ export default class AvatarHolder extends Component {
   }
 
   render() {
-    const avatarElements = this.props.avatar.elements
+    let activeAvatar = this.props.avatar.avatars[this.props.avatar.activeAvatar];
+    let avatarElements = activeAvatar.elements
 
     let allElements=[];
     for (var ob in avatarElements) {
       allElements.push(avatarElements[ob]);
     }
 
-    const mappedElements = allElements.map(element =>
+    let mappedElements = allElements.map(element =>
       <KeyableElement
         key={element.id}
         actions={this.props.actions}
         timeline={this.props.timeline}
         controls={this.props.controls}
-        activeControl={this.props.avatar.activeControl}
         data={element}
         user={this.props.user}/>
     )
 
-    const avatarEyes = this.props.avatar.eyes
+    let avatarEyes = activeAvatar.eyes
 
     let allEyes=[];
     for (var ob in avatarEyes) {
       allEyes.push(avatarEyes[ob]);
     }
 
-    const mappedEyes = allEyes.map(element =>
+    let mappedEyes = allEyes.map(element =>
     <TimelineEngine
       key={element.id}
       actions={this.props.actions}
       timeline={this.props.timeline}
       controls={this.props.controls}
-      activeControl={this.props.avatar.activeControl}
       data={element}
       user={this.props.user}>
       {element.useEyeBall && this.renderEyeBall(element)}
@@ -179,9 +177,8 @@ export default class AvatarHolder extends Component {
             actions={this.props.actions}
             timeline={this.props.timeline}
             controls={this.props.controls}
-            activeControl={this.props.avatar.activeControl}
             user={this.props.user}
-            data={this.props.avatar.mainElement}
+            data={activeAvatar.mainElement}
           >
 
             {mappedEyes}
