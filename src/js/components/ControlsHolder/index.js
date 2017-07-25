@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { styles } from './styles.scss';
-import { connect } from "react-redux"
+import { connect } from "react-redux";
+import Slider from 'rc-slider';
 
 import ControlsAnimation from './components/ControlsAnimation'
 import ElementControls from './components/ElementControls'
@@ -47,9 +48,15 @@ export default class ControlsHolder extends Component {
   }
 
   change(e){
-    console.log('toggleActiveControl',e.target.value,this.props.controls.activeInputs[e.target.value]);
+    // console.log('toggleActiveControl',e.target.value,this.props.controls.activeInputs[e.target.value]);
     this.props.actions.toggleActiveControl(e.target.value);
     this.props.actions.toggleActiveInput(this.props.controls.activeInputs[e.target.value]);
+  }
+
+  onSliderChange = (value) => {
+    this.props.timeline.masterTimeline.pause();
+    const val = Number(value/100);
+    this.props.timeline.masterTimeline.progress(val);
   }
 
   render() {
@@ -88,21 +95,20 @@ export default class ControlsHolder extends Component {
           {element.name}
         </option>)
 
-    let progress = this.props.timeline.masterTimeline?(this.props.timeline.masterProgress *100)+'%':'0%';
+    let progress = this.props.timeline.masterTimeline ? this.props.timeline.masterProgress : 0;
 
     return (
       <div className={ `${styles}` }>
         <div className='avatarControls'>
-          {/* the main graphic for the animation timeline*/}
-          <div className='main-timeline'>
-            <div
-              ref = {playhead => this.$playhead = playhead}
-              className="main-timeline-playhead"
-              style={ {left:progress} }
-              >
-            </div>
-          </div>
-
+          <Slider
+            className="main-timeline"
+            defaultValue={0}
+            value={progress*100}
+            trackStyle={{ backgroundColor: '#eeaa22', height: 20, position:'relative' }}
+            handleStyle={{ position:'absolute', width:10, height:'100%',backgroundColor:'white', border:'1px solid red', marginLeft:-5, top:0,left:0, }}
+            railStyle={{ backgroundColor: '#eeeeee', height: 20, width: '100%', position:'absolute'}}
+            onChange={this.onSliderChange}
+          />
           <div className='element-controls-wrapper'>
 
             <select onChange={this.change.bind(this)}>
