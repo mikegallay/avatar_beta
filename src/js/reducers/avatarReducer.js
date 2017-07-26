@@ -1,7 +1,5 @@
 export default function reducer(state={
     id: null,
-    // spriteUrl: '',
-    // activeAvatar:'avatar02',
     activeInput:null,
     assets:{
       eyes:['eye01','eye02'],

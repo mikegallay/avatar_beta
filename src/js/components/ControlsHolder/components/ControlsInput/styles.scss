@@ -1,5 +1,9 @@
 :local(.styles) {
-  h4{color:white;}
+  h4{
+    color:white;
+    font-weight: bold;
+    font-size: 15px;
+  }
   .divider{
     position:relative;
     height:20px;

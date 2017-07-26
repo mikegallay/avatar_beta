@@ -82,6 +82,7 @@ export default class ControlsHolder extends Component {
         actions={this.props.actions}
         activeControl={this.props.controls.activeControl}
         timeline={this.props.timeline}
+        user={this.props.user}
         controls={this.props.controls}
         data={{
           'index' : index,

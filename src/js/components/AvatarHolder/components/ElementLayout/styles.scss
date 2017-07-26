@@ -10,10 +10,10 @@ $skintone:pink;
   }
 
   .rightEyeBall.isEyeBall,.leftEyeBall.isEyeBall,.rightEye .eyebg,.leftEye .eyebg{
-      &.eye01{
+      &.eye0{
         -webkit-mask-image: url('/assets/eye01.svg');
       }
-      &.eye02{
+      &.eye1{
         -webkit-mask-image: url('/assets/eye02.svg');
       }
       -webkit-mask-size:100% 100%;

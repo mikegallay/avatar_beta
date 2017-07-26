@@ -107,6 +107,7 @@ export default class ElementControls extends Component {
 
     let allInputs = ['move','rotatex','rotatey','rotatez','scale'];
     if (id == 'mouth' || id=='nose') allInputs.push('flip');
+    if (id == 'mouth' || id=='leftEye' || id=='rightEye') allInputs.push('swapArt');
 
     //only move is keyable element for eyefocus
     if (id == 'eyeFocus') allInputs = ['move'];
@@ -137,7 +138,12 @@ export default class ElementControls extends Component {
 
               {/*<input ref={kfInput => this[this.props.data.id + 'Input'] = kfInput } id={`${this.props.data.id}Input`} name={`${this.props.data.id}Input`}/>*/}
 
-              <ControlsInput id={id} controls={this.props.controls} action={this.props.actions.adjustKeyableValue}/>
+              <ControlsInput
+                id={id}
+                controls={this.props.controls}
+                user={this.props.user}
+                action={this.props.actions.adjustKeyableValue}
+              />
           </div>
       </div>
     )

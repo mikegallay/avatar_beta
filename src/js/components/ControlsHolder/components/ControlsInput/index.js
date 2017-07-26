@@ -3,6 +3,7 @@ import Knob from 'react-canvas-knob';
 import Draggable from 'react-draggable';
 import { styles } from './styles.scss';
 import Slider from 'rc-slider';
+import AssetGrid from '../AssetGrid'
 
 export default class ControlsInput extends Component {
   constructor(props){
@@ -204,6 +205,14 @@ export default class ControlsInput extends Component {
         {/*<input ref={kfInput => this[this.props.id + 'Input'] = kfInput } id={`${this.props.id}Input`} name={`${this.props.id}Input`}/>
         <button ref={kf => this[this.props.id + 'Button'] = kf }>adjust</button>*/}
 
+        <div className={ `control-input swapArt-control ${this.state.activeInput=='swapArt'?'active':''}` }>
+          <h4>Select Different Art.</h4>
+          <AssetGrid
+            avatarBuilt={true}
+            id={this.props.id}
+            user={this.props.user}
+          />
+        </div>
         <div className={ `control-input rotate-control ${this.state.activeInput=='rotatex'?'active':''}` }>
           <Knob
             min={this.state.rmin}
