@@ -14,7 +14,7 @@ import { toggleSpriteSheet } from "../../actions/userActions"
 
 @connect((store) => {
   return {
-    user: store.rootState.user.user,
+    user: store.rootState.user,
     avatar: store.rootState.avatar,
     timeline: store.rootState.timeline,
     controls: store.rootState.controls,
@@ -63,7 +63,7 @@ export default class AvatarHolder extends Component {
     this.$toggleSprite.addEventListener('click',function(){
         // console.log('toggleSprite',that.props.user.spriteSheet);
       let newURL = '/assets/icon-sprite-def01.svg'
-      if (that.props.user.spriteSheet == newURL){
+      if (that.props.user.user.spriteSheet == newURL){
         newURL = '/assets/icon-sprite-def02.svg'
       }
       // console.log('toggleSpriteSheet',newURL);
@@ -129,7 +129,7 @@ export default class AvatarHolder extends Component {
   }
 
   render() {
-    let activeAvatar = this.props.avatar.avatars[this.props.avatar.activeAvatar];
+    let activeAvatar = this.props.user.avatars[this.props.user.user.activeAvatar];
     let avatarElements = activeAvatar.elements
 
     let allElements=[];

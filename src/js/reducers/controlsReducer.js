@@ -12,16 +12,6 @@ const keyableElements= [
 ]
 
 const positionID = ['RX','RY','RZ','FX','SX','SY','DX','DY'];
-/*const positionID = [
-  {id:'RX',val:null},
-  {id:'RY',val:null},
-  {id:'RZ',val:null},
-  {id:'FX',val:1},
-  {id:'SX',val:.5},
-  {id:'SY',val:.5},
-  {id:'DX',val:0},
-  {id:'DY',val:0}
-];*/
 
 let activeInputs = {};
 let initPositionValues = {leftEyeBallDX:null,leftEyeBallDY:null,rightEyeBallDX:null,rightEyeBallDY:null};
@@ -41,7 +31,6 @@ for (var id of positionID) {
 for (var ke of keyableElements){
   activeInputs[ke.val] = 'move';
 }
-// console.log('initPositionValues',initPositionValues);
 
 export default function reducer(state={
     keyableElements : keyableElements,
@@ -81,26 +70,6 @@ export default function reducer(state={
           }
         }
       }
-      /*case "FETCH_USER_FULFILLED": {
-        return {
-          ...state,
-          fetching: false,
-          fetched: true,
-          user: action.payload,
-        }
-      }
-      case "SET_USER_NAME": {
-        return {
-          ...state,
-          user: {...state.user, name: action.payload},
-        }
-      }
-      case "SET_USER_AGE": {
-        return {
-          ...state,
-          user: {...state.user, age: action.payload},
-        }
-      }*/
     }
 
     return state

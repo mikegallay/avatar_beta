@@ -11,7 +11,7 @@ export default class ElementLayout extends Component {
     super(props)
     // console.log('ElementLayout',this.props.data.id,props);
     const data = this.props.data
-    const user = this.props.user
+    const user = this.props.user.user
     const id = data ? data.id : ''
     const type = id === 'face' ? 'main-element' : 'child-element'
 
@@ -62,9 +62,9 @@ export default class ElementLayout extends Component {
     let initPosVals = this.props.controls.initPositionValues
 
     // console.log('initPosVals',initPosVals);
-    if (this.state.spriteSheet != this.props.user.spriteSheet){
+    if (this.state.spriteSheet != this.props.user.user.spriteSheet){
       this.setState({
-        spriteSheet:this.props.user.spriteSheet
+        spriteSheet:this.props.user.user.spriteSheet
       })
     }
 

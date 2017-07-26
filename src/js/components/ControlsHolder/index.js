@@ -14,7 +14,7 @@ import { addKeyFrame } from "../../actions/timelineActions"
 
 @connect((store) => {
   return {
-    user: store.rootState.user.user,
+    user: store.rootState.user,
     avatar: store.rootState.avatar,
     timeline: store.rootState.timeline,
     controls: store.rootState.controls,
@@ -60,7 +60,7 @@ export default class ControlsHolder extends Component {
   }
 
   render() {
-    let activeAvatar = this.props.avatar.avatars[this.props.avatar.activeAvatar];
+    let activeAvatar = this.props.user.avatars[this.props.user.user.activeAvatar];
     const avatarElements = activeAvatar.elements
     const avatarEyes = activeAvatar.eyes
 
