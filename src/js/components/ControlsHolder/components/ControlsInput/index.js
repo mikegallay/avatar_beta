@@ -16,6 +16,7 @@ export default class ControlsInput extends Component {
       rzvalue: 0,
       sxvalue:.5,
       syvalue:.5,
+      fyvalue:1,
       fxvalue:props.id=='rightEye' || props.id=='rightBrow' ? -1 : 1,
       rmin:0,
       rmax:360,
@@ -58,7 +59,12 @@ export default class ControlsInput extends Component {
   }
   knobChangeRZEnd = (newValue) => {}
 
-  flipChange = (cb) => {
+  flipChangeY = (cb) => {
+    let flip = this.state.fyvalue;
+    this.props.action(this.props.id,'FY',this.$fyflip.checked?flip*-1:flip);
+  }
+
+  flipChangeX = (cb) => {
     let flip = this.state.fxvalue;
     this.props.action(this.props.id,'FX',this.$fxflip.checked?flip*-1:flip);
   }
@@ -252,11 +258,19 @@ export default class ControlsInput extends Component {
 
         <div className={ `control-input flip-control ${this.state.activeInput=='flip'?'active':''}` }>
           <input
-            ref={fxflip => this.$fxflip = fxflip}
-            id="checkBox-flip"
+            className="checkbox"
+            ref={fyflip => this.$fyflip = fyflip}
+            id="checkBox-flipY"
             type="checkbox"
-            onClick={this.flipChange}/>
-          <label for="checkBox-flip">Flip x-axis?</label>
+            onClick={this.flipChangeY}/>
+          <label for="checkBox-flipY">Flip y-scale?</label><br/>
+          <input
+            className="checkbox"
+            ref={fxflip => this.$fxflip = fxflip}
+            id="checkBox-flipX"
+            type="checkbox"
+            onClick={this.flipChangeX}/>
+          <label for="checkBox-flipX">Flip x-scale?</label>
         </div>
 
         <div className={ `control-input scale-control ${this.state.activeInput=='scale'?'active':''}` }>

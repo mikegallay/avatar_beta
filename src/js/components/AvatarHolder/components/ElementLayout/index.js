@@ -31,6 +31,7 @@ export default class ElementLayout extends Component {
       sxValue    : data ? data.sx : .5,//.5,//id == 'face' || id == 'faceOver' ? .4 : .5,
       syValue    : data ? data.sy : .5,
       fxValue    : 1,
+      fyValue    : 1,
       dxValue    : 0,
       dyValue    : 0,
 
@@ -93,6 +94,13 @@ export default class ElementLayout extends Component {
     if (initPosVals && initPosVals[this.state.id+'FX'] != this.state.fxValue){
       this.setState({
         fxValue: initPosVals[this.state.id+'FX']
+      })
+    }
+
+    //set FlipY
+    if (initPosVals && initPosVals[this.state.id+'FY'] != this.state.fyValue){
+      this.setState({
+        fyValue: initPosVals[this.state.id+'FY']
       })
     }
 
@@ -257,7 +265,7 @@ export default class ElementLayout extends Component {
     let isEyeBall = (this.state.id=='leftEyeBall' || this.state.id=='rightEyeBall')?'isEyeBall '+this.props.data.artid:'';
     // if(isEyeBall) console.log('pussy',this.props);
 
-    let scaleStyle = 'scaleX('+this.state.fxValue+')';
+    let scaleStyle = 'scale('+this.state.fxValue+','+this.state.fyValue+')';
     if (this.state.id == 'face') scaleStyle = 'scale('+(this.state.sxValue * 2)+','+(this.state.syValue * 2)+')';
 
 

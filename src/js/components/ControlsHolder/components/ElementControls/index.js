@@ -106,7 +106,7 @@ export default class ElementControls extends Component {
     var id = this.props.data.id;
 
     let allInputs = ['move','rotatex','rotatey','rotatez','scale'];
-    if (id == 'mouth' || id=='nose') allInputs.push('flip');
+    if (id == 'mouth' || id=='nose' || id=='rightBrow' || id=='leftBrow') allInputs.push('flip');
     if (id == 'mouth' || id=='leftEye' || id=='rightEye') allInputs.push('swapArt');
 
     //only move is keyable element for eyefocus

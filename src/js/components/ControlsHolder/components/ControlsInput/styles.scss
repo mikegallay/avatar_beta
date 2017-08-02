@@ -15,6 +15,10 @@
     visibility: hidden;
     height:160px;
     margin-top: 10px;
+    .checkbox{
+      width: 14px;
+      display: inline-block;
+    }
     &.active{
       display: block;
       visibility: visible;

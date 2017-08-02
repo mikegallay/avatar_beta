@@ -11,7 +11,7 @@ const keyableElements= [
   {name:'Face',val:'face'},
 ]
 
-const positionID = ['RX','RY','RZ','FX','SX','SY','DX','DY'];
+const positionID = ['RX','RY','RZ','FX','FY','SX','SY','DX','DY'];
 
 let activeInputs = {};
 let initPositionValues = {leftEyeBallDX:null,leftEyeBallDY:null,rightEyeBallDX:null,rightEyeBallDY:null};
@@ -19,7 +19,7 @@ let initPositionValues = {leftEyeBallDX:null,leftEyeBallDY:null,rightEyeBallDX:n
 for (var id of positionID) {
   // initPositionValues[id] = {};
   for (var ke of keyableElements){
-    var val = (id=='FX') ? 1 : null;
+    var val = (id=='FY' || id=='FX') ? 1 : null;
     if (id=='FX' && ke.val == 'rightEye') val = -1;
     if (id=='FX' && ke.val == 'rightBrow') val = -1;
     // if (id='SX' || id=='SY') val = .5;
