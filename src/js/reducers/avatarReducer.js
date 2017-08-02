@@ -2,11 +2,11 @@ export default function reducer(state={
     id: null,
     activeInput:null,
     assets:{
-      eyes:['eye01','eye02'],
+      eyes:['eye0','eye1'],
       ears:['ear'],
       eyeBall:['eyeBall'],
-      mouth:['mouth'],
-      nose:['nose01','nose02'],
+      mouth:['mouth0'],
+      nose:['nose0','nose1'],
       brow:['brow'],
     },
 

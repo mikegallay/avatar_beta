@@ -142,6 +142,7 @@ export default class ElementControls extends Component {
                 id={id}
                 controls={this.props.controls}
                 user={this.props.user}
+                avatar={this.props.avatar}
                 action={this.props.actions.adjustKeyableValue}
               />
           </div>

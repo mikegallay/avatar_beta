@@ -217,6 +217,7 @@ export default class ControlsInput extends Component {
             avatarBuilt={true}
             id={this.props.id}
             user={this.props.user}
+            avatar={this.props.avatar}
           />
         </div>
         <div className={ `control-input rotate-control ${this.state.activeInput=='rotatex'?'active':''}` }>

@@ -84,6 +84,7 @@ export default class ControlsHolder extends Component {
         timeline={this.props.timeline}
         user={this.props.user}
         controls={this.props.controls}
+        avatar={this.props.avatar}
         data={{
           'index' : index,
           'id'    : element.id,
