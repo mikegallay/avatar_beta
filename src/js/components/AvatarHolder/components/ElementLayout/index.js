@@ -70,9 +70,9 @@ export default class ElementLayout extends Component {
     }
 
     //set ART
-    if (initPosVals && initPosVals[this.state.id+'ART'] != null && initPosVals[this.state.id+'ART'] != this.state.artId){
+    if (initPosVals && initPosVals[this.state.id+'ID'] != null && initPosVals[this.state.id+'ID'] != this.state.artId){
       this.setState({
-        artId: initPosVals[this.state.id+'ART']
+        artId: initPosVals[this.state.id+'ID']
       })
     }
 

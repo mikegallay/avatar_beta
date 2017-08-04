@@ -11,7 +11,7 @@ const keyableElements= [
   {name:'Face',val:'face'},
 ]
 
-const positionID = ['RX','RY','RZ','FX','FY','SX','SY','DX','DY','ART'];
+const positionID = ['RX','RY','RZ','FX','FY','SX','SY','DX','DY','ID'];
 
 let activeInputs = {};
 let initPositionValues = {leftEyeBallDX:null,leftEyeBallDY:null,rightEyeBallDX:null,rightEyeBallDY:null};
@@ -53,7 +53,7 @@ export default function reducer(state={
         }
       }
       /*case "SWAP_KEYABLE_ART": {
-        let el = action.payload.id + 'ART';
+        let el = action.payload.id + 'ID';
         return {
           ...state,
           initPositionValues: {

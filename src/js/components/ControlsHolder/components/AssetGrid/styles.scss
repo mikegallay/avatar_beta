@@ -15,9 +15,18 @@
     background: white;
     margin-right: 1%;
     &.no-art{
-      color:black;
+      color: #666;
       display: flex;
       justify-content: center;
+      text-align: center;
+      align-items: center;
+      font-size: 20px;
+    }
+    &.active{
+      border:3px solid red;
+    }
+    &:hover{
+      border:3px solid blue;
     }
     svg{
       pointer-events: none;

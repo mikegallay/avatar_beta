@@ -18,26 +18,47 @@ export default class AssetGrid extends Component {
   componentDidMount() {
     var that = this
 
+    this.setActiveArt();
     /*this.$cell.addEventListener('click',function(e){
       // console.log('click',this.artId);
-      that.props.action(that.state.id,'ART',this.id);
-      // this.props.action(this.state.id,'ART',this.artId);
+      that.props.action(that.state.id,'ID',this.id);
+      // this.props.action(this.state.id,'ID',this.artId);
     })*/
 
   }
+  setActiveArt(){
+    if (this.state.id == 'face') return;
+    let artAsset = 'elements';
+    let artKey = 'artId';
+    let artId = this.state.id == 'eyeFocus'?'leftEye':this.state.id;
+    if (this.state.id == 'eyeFocus') artKey = 'eyeBallId';
+    if (this.state.id == 'leftEye' || this.state.id == 'rightEye' || this.state.id == 'eyeFocus') artAsset = 'eyes';
+    let activeAsset = this.props.user.avatars[this.props.user.user.activeAvatar][artAsset][artId];//.artId;
+    // console.log(this.state.id);
+    console.log('set active art',activeAsset[artKey]);
+    this.setState({
+      activeArt:activeAsset[artKey]
+    })
+    this.props.action(this.state.id,'ID',activeAsset[artKey]);
+
+  }
+
   componentWillUpdate(){
     // console.log(this.props.data.id,'willupdate');
   }
   componentDidUpdate(props){
-    // console.log(this.props.data.id, props);
+    // console.log('update props asset', props);
   }
 
   clickHandler(e) {
        // Getting an array of DOM elements
        // Then finding which element was clicked
       //  console.log('click',e.target);
-      //  console.log(e.target.id);
-       this.props.action(this.state.id,'ART',e.target.id);
+       console.log('click',e.target.id);
+      this.setState({
+        activeArt:e.target.id
+      })
+      this.props.action(this.state.id,'ID',e.target.id);
 
    }
 
@@ -52,7 +73,7 @@ export default class AssetGrid extends Component {
         key={element}
         ref={cell => this.$cell = cell}
         id={element}
-        className='grid-cell'
+        className={ `grid-cell ${this.state.activeArt==element?'active':''}` }
         onClick={ this.clickHandler.bind(this) }
       >
         <svg
@@ -72,7 +93,7 @@ export default class AssetGrid extends Component {
             <div
               ref={cell => this.$cell = cell}
               id='none'
-              className='grid-cell no-art'
+              className={ `grid-cell no-art ${this.state.activeArt=='none'?'active':''}` }
               onClick={ this.clickHandler.bind(this) }
             >NO ART</div>
             {mappedElements}
