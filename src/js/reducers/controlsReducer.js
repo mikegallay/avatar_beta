@@ -11,7 +11,7 @@ const keyableElements= [
   {name:'Face',val:'face'},
 ]
 
-const positionID = ['RX','RY','RZ','FX','FY','SX','SY','DX','DY'];
+const positionID = ['RX','RY','RZ','FX','FY','SX','SY','DX','DY','ART'];
 
 let activeInputs = {};
 let initPositionValues = {leftEyeBallDX:null,leftEyeBallDY:null,rightEyeBallDX:null,rightEyeBallDY:null};
@@ -52,6 +52,16 @@ export default function reducer(state={
           }
         }
       }
+      /*case "SWAP_KEYABLE_ART": {
+        let el = action.payload.id + 'ART';
+        return {
+          ...state,
+          initPositionValues: {
+            ...state.initPositionValues,
+            [el] : action.payload.value
+          }
+        }
+      }*/
       case "TOGGLE_CONTROL": {
         // console.log('otg',action.payload);
         return {...state, activeControl: action.payload}
@@ -61,7 +71,7 @@ export default function reducer(state={
         return {...state, activeInput: action.payload}
       }
       case "SET_INPUT": {
-        console.log('set active input',action.payload);
+        // console.log('set active input',action.payload);
         return {
           ...state,
           activeInputs: {

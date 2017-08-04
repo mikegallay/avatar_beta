@@ -41,3 +41,13 @@ export function adjustKeyableValue(id,prop,value) {
     }
   }
 }
+
+/*export function swapKeyableArt(id,prop,value) {
+  return {
+    type: "SWAP_KEYABLE_ART",
+    payload: {
+      id: id,
+      value: value
+    }
+  }
+}*/

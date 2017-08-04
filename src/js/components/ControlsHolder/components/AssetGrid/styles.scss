@@ -6,16 +6,26 @@
   }
   .grid-row{
     display: flex;
-    justify-content: space-between;
+    justify-content:  flex-start;
   }
   .grid-cell{
     width: 24%;
     // height:12.5vh;
-    border: 2px solid white;
+    border: 2px solid black;
+    background: white;
+    margin-right: 1%;
+    &.no-art{
+      color:black;
+      display: flex;
+      justify-content: center;
+    }
+    svg{
+      pointer-events: none;
+    }
     /*&:before{
     	content: "";
     	display: block;
-    	padding-top: 100%; 
+    	padding-top: 100%;
     }*/
   }
 //}

@@ -5,7 +5,7 @@ import { styles } from './styles.scss';
 export default class AssetGrid extends Component {
   constructor(props){
     super(props)
-    console.log('Asset Grid',props);
+    // console.log('Asset Grid',props);
     this.state={
       id:props.id,
       activeAvatar:props.user.user.activeAvatar,
@@ -18,15 +18,11 @@ export default class AssetGrid extends Component {
   componentDidMount() {
     var that = this
 
-    /*let assetId = this.state.assetId;
-    if (assetId=='leftEye' || assetId=='rightEye') assetId = 'eyes';
-
-    if (assetId != this.state.assetId){
-      this.setState({assetId:assetId,assets:this.props.avatar.assets[assetId]});
-    }*/
-
-    console.log(this.state.id,this.state.assetId,this.state.assets);
-    // console.log('AssetGrid for '+this.state.id+' contains '+this.state.assets.length+'assets.');
+    /*this.$cell.addEventListener('click',function(e){
+      // console.log('click',this.artId);
+      that.props.action(that.state.id,'ART',this.id);
+      // this.props.action(this.state.id,'ART',this.artId);
+    })*/
 
   }
   componentWillUpdate(){
@@ -36,6 +32,15 @@ export default class AssetGrid extends Component {
     // console.log(this.props.data.id, props);
   }
 
+  clickHandler(e) {
+       // Getting an array of DOM elements
+       // Then finding which element was clicked
+      //  console.log('click',e.target);
+      //  console.log(e.target.id);
+       this.props.action(this.state.id,'ART',e.target.id);
+
+   }
+
   render() {
     let assetId = this.state.id;
     if (assetId=='leftEye' || assetId=='rightEye') assetId = 'eyes';
@@ -43,12 +48,18 @@ export default class AssetGrid extends Component {
     let assets = this.state.assets[assetId]?this.state.assets[assetId]:[];
 
     let mappedElements = assets.map(element =>
-      <div className='grid-cell'>
+      <div
+        key={element}
+        ref={cell => this.$cell = cell}
+        id={element}
+        className='grid-cell'
+        onClick={ this.clickHandler.bind(this) }
+      >
         <svg
           key={element}
           viewBox='0 0 100 100'
           className='icon'
-          ref={svg => this.$svg = svg}
+
         >
           <use xlinkHref={`${this.props.user.user.spriteSheet}#${element}`} />
         </svg>
@@ -58,7 +69,12 @@ export default class AssetGrid extends Component {
     return (
       <div className={ `asset-grid ${this.state.id}` }>
           <div className='grid-row'>
-            <div className='grid-cell'>NO ART</div>
+            <div
+              ref={cell => this.$cell = cell}
+              id='none'
+              className='grid-cell no-art'
+              onClick={ this.clickHandler.bind(this) }
+            >NO ART</div>
             {mappedElements}
           </div>
       </div>

@@ -5,7 +5,7 @@ export default function reducer(state={
       eyes:['eye0','eye1'],
       ears:['ear'],
       eyeBall:['eyeBall'],
-      mouth:['mouth0'],
+      mouth:['mouth0','nose0','nose1'],
       nose:['nose0','nose1'],
       brow:['brow'],
     },

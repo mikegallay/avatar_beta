@@ -69,6 +69,13 @@ export default class ElementLayout extends Component {
       })
     }
 
+    //set ART
+    if (initPosVals && initPosVals[this.state.id+'ART'] != null && initPosVals[this.state.id+'ART'] != this.state.artId){
+      this.setState({
+        artId: initPosVals[this.state.id+'ART']
+      })
+    }
+
     //set RotateX
     if (initPosVals && initPosVals[this.state.id+'RX'] != this.state.rxValue){
       this.setState({
@@ -175,15 +182,8 @@ export default class ElementLayout extends Component {
     if (id == 'rightEyeBall' || id == 'leftEyeBall') artId=eyeBallId;
 
     if (id == 'rightEye' || id == 'leftEye') id='eye';
-    // if (!this.props.data.useEyeBall && id=='eye') id='noEyeBall';
-
-    // if (this.state.id == 'leftEye') TweenMax.set('.element-holder.leftEye',{background:this.props.data.bgColor})
-    // if (this.state.id == 'rightEye') TweenMax.set('.element-holder.rightEye',{background:this.props.data.bgColor})
-
     if (id == 'rightBrow' || id == 'leftBrow') id='brow';
     if (id == 'rightEar' || id == 'leftEar') id='ear';
-    // console.log(id);
-    // console.log('lids/mask',this.props.data.useLids,this.props.data.useMask);
 
     //set scale style depending on whether or not you are controlling the face element
     let scaleStyle = 'scale('+this.state.sxValue+','+this.state.syValue+')';
@@ -193,14 +193,11 @@ export default class ElementLayout extends Component {
       <div className={`element-scale ${this.state.id}`} style={{transform:scaleStyle}}>
       <div className={`element-supersize ${this.state.id}`}>
         {this.state.id == 'rightEye' && this.props.data.useLids && this.renderLid(id)}
-        {/*this.state.id == 'rightEye' && this.props.data.useMask && this.renderSkin(artId)*/}
-
         {this.state.id == 'leftEye' && this.props.data.useLids && this.renderLid(id)}
-        {/*this.state.id == 'leftEye' && this.props.data.useMask && this.renderSkin(artId)*/}
-        {/*this.state.id == 'leftEye' && this.props.data.useMask && this.renderClipPath(artId)*/}
 
         {this.state.id == 'rightEar' && this.renderSkin(artId)}
         {this.state.id == 'leftEar' && this.renderSkin(artId)}
+
         <svg
           viewBox={vb}
           className={`icon ${id}`}
@@ -209,7 +206,7 @@ export default class ElementLayout extends Component {
           <use xlinkHref={`${this.state.spriteSheet}#${artId}`} />
         </svg>
 
-</div>
+        </div>
 
       </div>
     )
