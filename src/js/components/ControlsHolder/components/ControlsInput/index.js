@@ -78,6 +78,8 @@ export default class ControlsInput extends Component {
     const val = Number(value/100);
     this.setState({syvalue: val});
     this.props.action(this.props.id,'SY',val);
+    if (this.props.id == "leftEye") this.props.action('leftEyeBall','SY',val);
+    if (this.props.id == "rightEye") this.props.action('rightEyeBall','SY',val);
   }
   handleScaleKeyUp(e){
     if (e.keyCode == 38 || e.keyCode == 40){
@@ -122,6 +124,8 @@ export default class ControlsInput extends Component {
     if (val != this.state.syvalue){
       this.setState({syvalue: val});
       this.props.action(this.props.id,'SY',val);
+      if (this.props.id == "leftEye") this.props.action('leftEyeBall','SY',val);
+      if (this.props.id == "rightEye") this.props.action('rightEyeBall','SY',val);
     }
   }
 

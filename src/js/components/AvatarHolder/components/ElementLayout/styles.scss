@@ -11,12 +11,24 @@ $skintone:pink;
 
   .rightEyeBall.isEyeBall,.leftEyeBall.isEyeBall,.rightEye .eyebg,.leftEye .eyebg{
       &.eye0{
-        -webkit-mask-image: url('/assets/eye01.svg');
+        -webkit-mask-image: url('/assets/eye01.png');
       }
       &.eye1{
         -webkit-mask-image: url('/assets/eye02.svg');
       }
       -webkit-mask-size:100% 100%;
+      -webkit-mask-position-y: 50%;
+      -webkit-mask-repeat: no-repeat;
+
+      @for $i from 1 through 200 {
+
+          &.mis#{$i} {
+              -webkit-mask-size:100% $i+%
+          }
+      }
+      /*&.mis40{
+        -webkit-mask-size:100% 40%;
+      }*/
   }
 
   .element-wrapper{

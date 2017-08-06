@@ -187,6 +187,9 @@ export default class ElementLayout extends Component {
 
     //set scale style depending on whether or not you are controlling the face element
     let scaleStyle = 'scale('+this.state.sxValue+','+this.state.syValue+')';
+
+    //make sure the eyeballs never scale even when the eyes do.
+    if (this.state.id == 'leftEyeBall' || this.state.id == 'rightEyeBall') scaleStyle = 'scale(.5,.5)';
     if (this.state.id == 'face') scaleStyle = 'scale('+this.props.data.artSx+','+this.props.data.artSy+')';
 
     return (
@@ -260,15 +263,16 @@ export default class ElementLayout extends Component {
     }
 
     let isEyeBall = (this.state.id=='leftEyeBall' || this.state.id=='rightEyeBall')?'isEyeBall '+this.props.data.artid:'';
-    // if(isEyeBall) console.log('pussy',this.props);
+    // if(isEyeBall) console.log('pussy',this.props);    -webkit-mask-size: 100% 40%;
+    let isEyeBallStyle = (this.state.id=='leftEyeBall' || this.state.id=='rightEyeBall')?'mis'+(Math.round(sy*100)+5):'';
 
     let scaleStyle = 'scale('+this.state.fxValue+','+this.state.fyValue+')';
-    if (this.state.id == 'face') scaleStyle = 'scale('+(this.state.sxValue * 2)+','+(this.state.syValue * 2)+')';
+    if (this.state.id == 'face') scaleStyle = 'scale('+sx+','+sy+')';
 
 
     return (
 
-      <div className={ `${styles} ${this.state.id} ${isEyeBall}` }>
+      <div className={ `${styles} ${this.state.id} ${isEyeBall} ${isEyeBallStyle}` }>
         <div
           className={`element-wrapper ${this.state.id} ${this.state.type}` }
           style={{
