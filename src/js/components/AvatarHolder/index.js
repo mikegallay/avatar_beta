@@ -62,9 +62,9 @@ export default class AvatarHolder extends Component {
 
     this.$toggleSprite.addEventListener('click',function(){
         // console.log('toggleSprite',that.props.user.spriteSheet);
-      let newURL = '/assets/icon-sprite-def01.svg'
+      let newURL = 'assets/icon-sprite-def01.svg'
       if (that.props.user.user.spriteSheet == newURL){
-        newURL = '/assets/icon-sprite-def02.svg'
+        newURL = 'assets/icon-sprite-def02.svg'
       }
       // console.log('toggleSpriteSheet',newURL);
       that.props.actions.toggleSpriteSheet(newURL);

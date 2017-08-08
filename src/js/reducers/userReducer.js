@@ -3,7 +3,7 @@ export default function reducer(state={
       id: null,
       name: null,
       age: null,
-      spriteSheet: '/assets/icon-sprite-def02.svg',
+      spriteSheet: 'assets/icon-sprite-def02.svg',
       activeAvatar:'avatar02',
     },
     avatars:{
