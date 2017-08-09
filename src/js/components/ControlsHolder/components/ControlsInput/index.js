@@ -3,7 +3,7 @@ import Knob from 'react-canvas-knob';
 import Draggable from 'react-draggable';
 import { styles } from './styles.scss';
 import Slider from 'rc-slider';
-import AssetGrid from '../AssetGrid'
+import AssetGrid from '../../../Global/AssetGrid'
 
 export default class ControlsInput extends Component {
   constructor(props){

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router'
 
-import Archives from "./pages/Archives"
-import News from "./pages/News"
+import Archives from "./containers/Archives"
+import News from "./containers/News"
 
 // import KeyableElement from "./components/KeyableElement"
-import App from "./components/App"
-import Layout from "./components/Layout"
+import App from "./containers/App"
+import Layout from "./containers/Layout"
 
 export default (
   <Route path="/" component={Layout}>
