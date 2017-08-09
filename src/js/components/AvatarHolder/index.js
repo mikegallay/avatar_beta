@@ -184,10 +184,9 @@ export default class AvatarHolder extends Component {
             {mappedEyes}
             {mappedElements}
 
-
           </TimelineEngine>
 
-          <h6 ref={clickme => this.$clickme = clickme}>CLICK ME!</h6>
+          <h6 ref={clickme => this.$clickme = clickme}>PLAY TIMELINE!</h6>
           <h6 className='h62' ref={toggleSprite => this.$toggleSprite = toggleSprite}>TOGGLE SPRITES!</h6>
         </div>
       </div>

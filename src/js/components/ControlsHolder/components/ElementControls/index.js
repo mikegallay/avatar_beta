@@ -125,7 +125,7 @@ export default class ElementControls extends Component {
           <div className='element-panel'>
 
             <div className='element-elements'>
-              <h3 className='panel-title'>{this.props.data.id}</h3>
+              {/*<h3 className='panel-title'>{this.props.data.id}</h3>*/}
               <div>
                 <select onChange={this.change.bind(this)}>
                   {mappedOptions}

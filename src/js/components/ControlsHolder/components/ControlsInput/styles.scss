@@ -13,7 +13,7 @@
   .control-input{
     display:none;
     visibility: hidden;
-    height:160px;
+    height:190px;
     margin-top: 10px;
     .checkbox{
       width: 14px;
@@ -32,16 +32,22 @@
 
     width:160px;
     height:160px;
+    margin:10px auto 0;
     .box {
         background: #fff;
         width: 26px;
         height: 26px;
         margin: -13px 0 0 -13px;
-        float: left;
+      //  float: left;
         position: relative;
         left:75px;
         top:75px;
       }
+  }
+  .swapArt-control {
+    width: 100%;
+    max-width: 475px;
+    margin: 0 auto;
   }
 
 

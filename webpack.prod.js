@@ -3,8 +3,8 @@ const webpack = require('webpack');
 
 module.exports = {
   output: {
-    path: path.join(__dirname, '../dist'),
-    filename: 'avatar.bundle.js',
+    path: __dirname + "/src/",
+    filename: "client.min.js",
     publicPath: publicPath,
     sourceMapFilename: '[name].map'
   },

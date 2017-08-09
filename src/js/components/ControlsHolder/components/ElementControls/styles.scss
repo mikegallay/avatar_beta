@@ -46,13 +46,14 @@
       position: relative;
       background: gray;
       border-top:1px solid white;
+      text-align:center;
     }
     .element-elements{
       width:100%;
       position: relative;
       display: inline-block;
       div{
-        float:left;
+        //float:left;
         position: relative;
         user-select:none;
         cursor:pointer;
