@@ -1,0 +1,55 @@
+:local(.styles) {
+  h4{
+    color:white;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  .divider{
+    position:relative;
+    height:20px;
+    // border:1px solid blue;
+    width:100%;
+  }
+  .control-input{
+    display:none;
+    visibility: hidden;
+    height:190px;
+    margin-top: 10px;
+    .checkbox{
+      width: 14px;
+      display: inline-block;
+    }
+    &.active{
+      display: block;
+      visibility: visible;
+    }
+    #checkBox-flip{
+      width:auto;
+    }
+  }
+  .moveBounds{
+    border: 5px solid white;
+
+    width:160px;
+    height:160px;
+    margin:10px auto 0;
+    .box {
+        background: #fff;
+        width: 26px;
+        height: 26px;
+        margin: -13px 0 0 -13px;
+      //  float: left;
+        position: relative;
+        left:75px;
+        top:75px;
+      }
+  }
+  .swapArt-control {
+    width: 100%;
+    max-width: 475px;
+    height:200px;
+    margin: 0 auto;
+  }
+
+
+}

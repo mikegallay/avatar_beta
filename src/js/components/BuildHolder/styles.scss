@@ -1,0 +1,25 @@
+:local(.styles) {
+  width: 100%;
+  height: 45vh;
+  .buildHolder{
+    //display:none;//temp hide
+    color:white;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: gray;
+    text-align: center;
+    padding-top: 10px;
+    .panel-title{
+      font-weight: bold;
+      cursor:default;
+      font-size:.95em;
+    }
+    .grid-holder{
+      width: 100%;
+      max-width: 475px;
+      height:200px;
+      margin: 10px auto 0;
+    }
+  }
+}
