@@ -19,6 +19,7 @@ export default class ElementLayout extends Component {
       w         : data ? data.w : '100',
       h         : data ? data.h : '100',
       id        : id,
+      useEyeBg  : false,
       artId     : data ? data.artId : '',
       eyeBallId : data ? data.eyeBallId : '',
       type      : type,
@@ -71,8 +72,14 @@ export default class ElementLayout extends Component {
 
     //set ART
     if (initPosVals && initPosVals[this.state.id+'ID'] != null && initPosVals[this.state.id+'ID'] != this.state.artId){
+      let useEyeBg = false;
+      const artId = initPosVals[this.state.id+'ID'];
+      if (this.state.id == 'leftEye' || this.state.id == 'rightEye' ) {
+        if (isNaN(artId.substr(artId.length - 1))) useEyeBg = true;
+      }
+      console.log(isNaN(artId.substr(artId.length - 1)));
       this.setState({
-        artId: initPosVals[this.state.id+'ID']
+        artId, useEyeBg
       })
     }
 
@@ -149,7 +156,7 @@ export default class ElementLayout extends Component {
         className={`icon eyeLid ${id}Lid`}
         ref={svg => this.$svg = svg}
       >
-        <use xlinkHref={`${this.state.spriteSheet}#${id}Lid`} />
+        <use xlinkHref={`${this.state.spriteSheet}#eyeLid`} />
       </svg>
     )
   }
@@ -195,15 +202,15 @@ export default class ElementLayout extends Component {
     return (
       <div className={`element-scale ${this.state.id}`} style={{transform:scaleStyle}}>
       <div className={`element-supersize ${this.state.id}`}>
-        {this.state.id == 'rightEye' && this.props.data.useLids && this.renderLid(id)}
-        {this.state.id == 'leftEye' && this.props.data.useLids && this.renderLid(id)}
+        {this.state.id == 'rightEye' && this.props.data.useLids && this.renderLid(this.state.id)}
+        {this.state.id == 'leftEye' && this.props.data.useLids && this.renderLid(this.state.id)}
 
         {this.state.id == 'rightEar' && this.renderSkin(artId)}
         {this.state.id == 'leftEar' && this.renderSkin(artId)}
 
         <svg
           viewBox={vb}
-          className={`icon ${id}`}
+          className={`icon ${id} ${this.state.useEyeBg?'useEyeBg':''}`}
           ref={svg => this.$svg = svg}
         >
           <use xlinkHref={`${this.state.spriteSheet}#${artId}`} />

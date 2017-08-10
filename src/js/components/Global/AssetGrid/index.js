@@ -5,11 +5,12 @@ import { styles } from './styles.scss';
 export default class AssetGrid extends Component {
   constructor(props){
     super(props)
-    // console.log('Asset Grid',props);
+    console.log('Asset Grid',props);
     this.state={
       id:props.id,
       activeAvatar:props.user.user.activeAvatar,
       activeArt:null,
+      initArt:null,
       // assetId:props.id=='mouth'?'mouth':'eyes',
       assets:props.avatar.assets
     }
@@ -27,7 +28,7 @@ export default class AssetGrid extends Component {
 
   }
   setActiveArt(){
-    if (this.state.id == 'face') return;
+    if (this.state.id == 'face' || this.state.id == 'leftEyeLid' || this.state.id == 'rightEyeLid') return;
     let artAsset = 'elements';
     let artKey = 'artId';
     let artId = this.state.id == 'eyeFocus'?'leftEye':this.state.id;
@@ -35,9 +36,10 @@ export default class AssetGrid extends Component {
     if (this.state.id == 'leftEye' || this.state.id == 'rightEye' || this.state.id == 'eyeFocus') artAsset = 'eyes';
     let activeAsset = this.props.user.avatars[this.props.user.user.activeAvatar][artAsset][artId];//.artId;
     // console.log(this.state.id);
-    console.log('set active art',activeAsset[artKey]);
+    // console.log('set active art',activeAsset[artKey]);
     this.setState({
-      activeArt:activeAsset[artKey]
+      activeArt:activeAsset[artKey],
+      initArt:activeAsset[artKey]
     })
     this.props.action(this.state.id,'ID',activeAsset[artKey]);
 
@@ -70,10 +72,10 @@ export default class AssetGrid extends Component {
 
     let mappedElements = assets.map(element =>
       <div
-        key={element}
+        key={`${this.state.initArt}${element}`}
         ref={cell => this.$cell = cell}
-        id={element}
-        className={ `grid-cell ${this.state.activeArt==element?'active':''}` }
+        id={`${this.state.initArt}${element}`}
+        className={ `grid-cell ${this.state.activeArt==(this.state.initArt+element)?'active':''}` }
         onClick={ this.clickHandler.bind(this) }
       >
         <svg
@@ -82,7 +84,7 @@ export default class AssetGrid extends Component {
           className='icon'
 
         >
-          <use xlinkHref={`${this.props.user.user.spriteSheet}#${element}`} />
+          <use xlinkHref={`${this.props.user.user.spriteSheet}#${this.state.initArt}${element}`} />
         </svg>
       </div>
     )

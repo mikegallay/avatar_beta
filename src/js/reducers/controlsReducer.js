@@ -3,6 +3,8 @@ const keyableElements= [
   {name:'Left Ear',val:'leftEar'},
   {name:'Right Eye',val:'rightEye'},
   {name:'Left Eye',val:'leftEye'},
+  // {name:'Right Lid',val:'rightEyeLid'},
+  // {name:'Left Lid',val:'leftEyeLid'},
   {name:'Mouth',val:'mouth'},
   {name:'Right Brow',val:'rightBrow'},
   {name:'Left Brow',val:'leftBrow'},

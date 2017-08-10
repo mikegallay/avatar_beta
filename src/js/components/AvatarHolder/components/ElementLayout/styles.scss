@@ -11,10 +11,16 @@ $skintone:pink;
 
   .rightEyeBall.isEyeBall,.leftEyeBall.isEyeBall,.rightEye .eyebg,.leftEye .eyebg{
       &.eye0{
-        -webkit-mask-image: url('/assets/eye01.png');
+        -webkit-mask-image: url('/assets/eye0.png');
+      }
+      &.eye0a{
+        background-color:$skintone;
       }
       &.eye1{
-        -webkit-mask-image: url('/assets/eye02.svg');
+        -webkit-mask-image: url('/assets/eye1.png');
+      }
+      &.eye2{
+        -webkit-mask-image: url('/assets/eye2.png');
       }
       -webkit-mask-size:100% 100%;
       -webkit-mask-position-y: 50%;
@@ -52,6 +58,11 @@ $skintone:pink;
         position:absolute;
         top:0;
         left:0;
+        &.rightEye,&.leftEye{
+          .icon.eye.useEyeBg{
+            background-color: $skintone;
+          }
+        }
       }
     }
 

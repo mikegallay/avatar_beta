@@ -10,7 +10,7 @@ import Layout from "./containers/Layout"
 import Build from "./containers/Build"
 
 export default (
-  <Route path="/" component={Build}>
+  <Route path="/" component={Layout}>
     <IndexRoute component={Archives}></IndexRoute>
     <Route path="archives" name="archives" component={Archives}></Route>
     <Route path="news" name="news" component={News}></Route>
