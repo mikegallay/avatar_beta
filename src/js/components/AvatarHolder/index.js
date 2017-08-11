@@ -124,6 +124,7 @@ export default class AvatarHolder extends Component {
             'eyeBallId' : element.eyeBallId,
             'x'         : 0,
             'y'         : 0,
+            'eyeColor'  : element.eyeColor,
             'bgColor'   : element.bgColor
           },
           skinColor:skinColor
@@ -166,7 +167,7 @@ export default class AvatarHolder extends Component {
         controls={this.props.controls}
         data={{element:element,skinColor:activeAvatar.skinColor}}
         user={this.props.user}>
-        {element.useEyeBall && this.renderEyeBall(element,activeAvatar.skinColor)}
+        {element.useEyeBall && this.renderEyeBall(element,activeAvatar.skinColor,element.eyeColor)}
       </TimelineEngine>
     )
     return (

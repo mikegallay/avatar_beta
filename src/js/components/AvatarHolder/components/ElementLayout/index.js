@@ -36,6 +36,7 @@ export default class ElementLayout extends Component {
       dxValue    : 0,
       dyValue    : 0,
       skinColor  : data ? data.skinColor : 'yellow',
+      eyeColor  : data ? data.element.eyeColor : 'none',
     }
   }
 
@@ -218,7 +219,7 @@ export default class ElementLayout extends Component {
 
         <svg
           viewBox={vb}
-          className={`icon ${id} ${this.state.useEyeBg?'useEyeBg':''}`}
+          className={`icon ${id}`}
           ref={svg => this.$svg = svg}
           style={skinStyle}
         >
@@ -265,7 +266,15 @@ export default class ElementLayout extends Component {
     let sy = this.state.syValue * 2;
     let eyebg = null;
 
-
+    if (this.state.id=='leftEyeBall' || this.state.id=='rightEyeBall' && this.state.eyeColor != 'none') {
+      eyebg = <svg
+        viewBox='0 0 60 60'
+        className={`icon ${this.state.id}Color`}
+        style={{fill:this.state.eyeColor}}
+      >
+          <circle cx="30" cy="30" r="13" />
+      </svg>;
+    }
 
     if (this.state.id=='leftEye' || this.state.id=='rightEye' && this.props.data.element.useMask) {
       eyebg = <div
@@ -277,6 +286,8 @@ export default class ElementLayout extends Component {
             maskSize: '100%'*/
           }}></div>;
     }
+
+    console.log(this.state.id,this.state.eyeColor);
 
     let isEyeBall = (this.state.id=='leftEyeBall' || this.state.id=='rightEyeBall')?'isEyeBall '+this.props.data.element.artid:'';
     // if(isEyeBall) console.log('pussy',this.props);    -webkit-mask-size: 100% 40%;
