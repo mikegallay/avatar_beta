@@ -296,6 +296,11 @@ export default class ElementLayout extends Component {
     let scaleStyle = 'scale('+this.state.fxValue+','+this.state.fyValue+')';
     if (this.state.id == 'face') scaleStyle = 'scale('+sx+','+sy+')';
 
+    let mL = 0;//-Math.round(this.state.w/2);
+
+    if (this.state.id == 'leftBrow' || this.state.id == 'leftEye' || this.state.id == 'rightBrow' || this.state.id == 'rightEye' || this.state.id == 'mouth' || this.state.id == 'nose'){
+      mL = -Math.round(this.state.w/2);
+    }
 
     return (
 
@@ -307,6 +312,7 @@ export default class ElementLayout extends Component {
             'height':this.state.h + 'px',
             'left':stateX + this.state.dxValue + '%',
             'top':stateY + this.state.dyValue + '%',
+            'marginLeft':mL + 'px',
           }}>
             <div className={`element-rotateX ${this.state.id}`} style={{transform:'rotateX('+this.state.rxValue+'deg)'}}>
               <div className={`element-rotateY ${this.state.id}`} style={{transform:'rotateY('+this.state.ryValue+'deg)'}}>
