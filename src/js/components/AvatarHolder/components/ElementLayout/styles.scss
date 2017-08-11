@@ -37,6 +37,8 @@ $skintone:pink;
   .element-wrapper{
     overflow: visible;
     pointer-events: none;
+    perspective: 1000px;
+    perspective-origin: center;
     &.face{
       margin:0 auto;
       position: absolute;
@@ -89,14 +91,14 @@ $skintone:pink;
 
     &.child-element{
       .element-scale, .element-rotateX, .element-rotateY, .element-rotateZ{
-        perspective: 400px;
+        // perspective: 400px;
       }
 
       .element-holder{
         // pointer-events: all;
         // cursor:pointer;
         background: none;
-        left: -50%;
+        // left: -50%;
 
         .rightEyeBall,.leftEyeBall{
           left:0;

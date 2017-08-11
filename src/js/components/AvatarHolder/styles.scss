@@ -33,7 +33,8 @@
   .element-wrapper{
     .element-scale, .element-rotateX, .element-rotateY, .element-rotateZ{
       // transform-origin: 50% 50%;
-      perspective: 400px;
+      perspective: 1000px;
+      perspective-origin: center;
     }
     .element-holder{
       //background: lightgreen;
