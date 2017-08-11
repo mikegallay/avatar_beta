@@ -203,7 +203,7 @@ export default class ElementLayout extends Component {
     if (this.state.id == 'face') scaleStyle = 'scale('+this.props.data.element.artSx+','+this.props.data.element.artSy+')';
 
     let skinStyle = this.state.useEyeBg?{backgroundColor:this.state.skinColor}:{}
-    if (this.state.id == 'face') skinStyle={fill:this.state.skinColor}
+    // if (this.state.id == 'face') skinStyle={fill:this.state.skinColor}
 
     return (
       <div className={`element-scale ${this.state.id}`} style={{transform:scaleStyle}}>
@@ -213,6 +213,8 @@ export default class ElementLayout extends Component {
 
         {this.state.id == 'rightEar' && this.renderSkin(artId)}
         {this.state.id == 'leftEar' && this.renderSkin(artId)}
+
+        {this.state.id == 'face' && this.renderSkin(artId)}
 
         <svg
           viewBox={vb}
@@ -229,7 +231,7 @@ export default class ElementLayout extends Component {
     )
   }
 
-  renderClipPath(artId){
+  /*renderClipPath(artId){
     return (
       <svg height="0" width="0">
           <defs>
@@ -239,7 +241,7 @@ export default class ElementLayout extends Component {
           </defs>
       </svg>
     )
-  }
+  }*/
 
   /*renderBG(){
     let sx = this.state.sxValue * 2;

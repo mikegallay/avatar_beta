@@ -55,10 +55,24 @@ $skintone:pink;
         position:absolute;
         top:0;
         left:0;
+        svg{
+          z-index: 1;
+        }
         &.rightEye,&.leftEye{
           .icon.eye.useEyeBg{
             // background-color: $skintone;
           }
+        }
+        .skin{
+          position: absolute;
+          top:0;
+          left:0;
+          // fill:$skintone;
+          z-index: -1;
+          width:100%;
+          height:100%;
+          margin-top:0;
+          margin-left:0;
         }
       }
     }
@@ -94,17 +108,7 @@ $skintone:pink;
           width:100%;
           height:100%;
 
-          .skin{
-            position: absolute;
-            top:0;
-            left:0;
-            // fill:$skintone;
-            z-index: 1;
-            width:104%;
-            height:104%;
-            margin-top:-2%;
-            margin-left:-2%;
-          }
+
 
           .icon.eye,.icon.ear{
             z-index: 2;
