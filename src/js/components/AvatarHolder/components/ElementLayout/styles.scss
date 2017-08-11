@@ -13,9 +13,6 @@ $skintone:pink;
       &.eye0{
         -webkit-mask-image: url('/assets/eye0.png');
       }
-      &.eye0a{
-        background-color:$skintone;
-      }
       &.eye1{
         -webkit-mask-image: url('/assets/eye1.png');
       }
@@ -60,7 +57,7 @@ $skintone:pink;
         left:0;
         &.rightEye,&.leftEye{
           .icon.eye.useEyeBg{
-            background-color: $skintone;
+            // background-color: $skintone;
           }
         }
       }
@@ -72,7 +69,7 @@ $skintone:pink;
         pointer-events: none;
       }
       svg.icon.face{
-        fill:$skintone;
+        // fill:$skintone;
       }
     }
 
@@ -101,7 +98,7 @@ $skintone:pink;
             position: absolute;
             top:0;
             left:0;
-            fill:$skintone;
+            // fill:$skintone;
             z-index: 1;
             width:104%;
             height:104%;

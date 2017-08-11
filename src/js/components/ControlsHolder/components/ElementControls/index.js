@@ -89,7 +89,7 @@ export default class ElementControls extends Component {
   }*/
 
   change(e){
-    console.log('select',e.target.value);
+    // console.log('select',e.target.value);
     /*if (e.target.value == 'eyeFocus'){
       this.props.actions.toggleActiveInput(e.target.value);
     }else{
@@ -111,7 +111,7 @@ export default class ElementControls extends Component {
 
     //only move is keyable element for eyefocus
     if (id == 'eyeFocus') allInputs = ['move'];
-    console.log('id',id,allInputs);
+    // console.log('id',id,allInputs);
 
     const mappedOptions = allInputs.map((element,index) =>
       <option

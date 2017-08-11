@@ -8,6 +8,7 @@ export default function reducer(state={
     },
     avatars:{
       avatar01:{
+        skinColor: 'pink',
         mainElement: {artId: 'face0',id:'face',w:350,h:350,sx:.5,sy:.5,artSx:.4,artSy:.5},
         eyes:{
           leftEye :       {artId: 'eye1', id:'leftEye', useEyeBall: false, eyeBallId:'eyeBall0', bgColor:'white',useLids:true,useMask:true,w:60,h:60,x:38,y:42,sx:.5,sy:.5},
@@ -24,10 +25,11 @@ export default function reducer(state={
         },
       },
       avatar02:{
+        skinColor: 'lightblue',
         mainElement: {artId: 'face0',id:'face',w:350,h:350,sx:.5,sy:.5,artSx:.4,artSy:.5},
         eyes:{
-          leftEye :       {artId: 'eye1', id:'leftEye', useEyeBall: true, eyeBallId:'eyeBall0', bgColor:'white',useLids:true,useMask:true,w:60,h:60,x:38,y:42,sx:.5,sy:.5},
-          rightEye :      {artId: 'eye1', id:'rightEye', useEyeBall: true, eyeBallId:'eyeBall0', bgColor:'white',useLids:true,useMask:true,w:60,h:60,x:62,y:42,sx:.5,sy:.5},
+          leftEye :       {artId: 'eye0', id:'leftEye', useEyeBall: true, eyeBallId:'eyeBall0', bgColor:'white',useLids:true,useMask:true,w:60,h:60,x:38,y:42,sx:.5,sy:.5},
+          rightEye :      {artId: 'eye0', id:'rightEye', useEyeBall: true, eyeBallId:'eyeBall0', bgColor:'white',useLids:true,useMask:true,w:60,h:60,x:62,y:42,sx:.5,sy:.5},
         },
         elements: {
           rightEar :      {artId: 'ear1', id:'rightEar',w:100,h:100,x:80,y:43,sx:.5,sy:.5},

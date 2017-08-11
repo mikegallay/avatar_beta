@@ -5,7 +5,7 @@ import { styles } from './styles.scss';
 export default class AssetGrid extends Component {
   constructor(props){
     super(props)
-    console.log('Asset Grid',props);
+    // console.log('Asset Grid',props);
     this.state={
       id:props.id,
       activeAvatar:props.user.user.activeAvatar,
@@ -56,7 +56,7 @@ export default class AssetGrid extends Component {
        // Getting an array of DOM elements
        // Then finding which element was clicked
       //  console.log('click',e.target);
-       console.log('click',e.target.id);
+      //  console.log('click',e.target.id);
       this.setState({
         activeArt:e.target.id
       })

@@ -7,7 +7,7 @@ import ElementLayout from '../ElementLayout'
 export default class TimelineEngine extends Component {
   constructor(props){
     super(props)
-
+    console.log('TLE',props);
     // const tl = new TimelineMax();
 
     this.state={
@@ -81,7 +81,7 @@ export default class TimelineEngine extends Component {
   }*/
   render() {
     return (
-      <div className={ `${styles} ${this.props.data.id}` }>
+      <div className={ `${styles} ${this.props.data.element.id}` }>
 
         <ElementLayout
           actions={this.props.actions}

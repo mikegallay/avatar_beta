@@ -9,33 +9,33 @@ const svgScale = 50;
 export default class ElementLayout extends Component {
   constructor(props){
     super(props)
-    // console.log('ElementLayout',this.props.data.id,props);
+    console.log('ElementLayout',props);
     const data = this.props.data
     const user = this.props.user.user
-    const id = data ? data.id : ''
+    const id = data ? data.element.id : ''
     const type = id === 'face' ? 'main-element' : 'child-element'
 
     this.state = {
-      w         : data ? data.w : '100',
-      h         : data ? data.h : '100',
+      w         : data ? data.element.w : '100',
+      h         : data ? data.element.h : '100',
       id        : id,
       useEyeBg  : false,
-      artId     : data ? data.artId : '',
-      eyeBallId : data ? data.eyeBallId : '',
+      artId     : data ? data.element.artId : '',
+      eyeBallId : data ? data.element.eyeBallId : '',
       type      : type,
-      x         : data ? data.x : 0,
-      y         : data ? data.y : 0,
+      x         : data ? data.element.x : 0,
+      y         : data ? data.element.y : 0,
       spriteSheet : user ? user.spriteSheet : '/assets/icon-sprite-def01.svg',
       rxValue    : 0,
       ryValue    : 0,
       rzValue    : 0,
-      sxValue    : data ? data.sx : .5,//.5,//id == 'face' || id == 'faceOver' ? .4 : .5,
-      syValue    : data ? data.sy : .5,
+      sxValue    : data ? data.element.sx : .5,//.5,//id == 'face' || id == 'faceOver' ? .4 : .5,
+      syValue    : data ? data.element.sy : .5,
       fxValue    : 1,
       fyValue    : 1,
       dxValue    : 0,
       dyValue    : 0,
-
+      skinColor  : data ? data.skinColor : 'yellow',
     }
   }
 
@@ -45,11 +45,13 @@ export default class ElementLayout extends Component {
     let xs = .5;
 
     this.$element.addEventListener('click',function(){
-      var id = that.props.data.id;
+      var id = that.props.data.element.id;
       // console.log('clicked',that.props.data.id);
 
-      if (id != 'face') that.props.actions.toggleActiveControl(that.props.data.id);
+      if (id != 'face') that.props.actions.toggleActiveControl(that.props.data.element.id);
     })
+
+    // console.log('GOSTATE',this.state);
 
     // you have to scale down the assets on load.
     // this allows for more pixels to render in browser.
@@ -77,7 +79,7 @@ export default class ElementLayout extends Component {
       if (this.state.id == 'leftEye' || this.state.id == 'rightEye' ) {
         if (isNaN(artId.substr(artId.length - 1))) useEyeBg = true;
       }
-      console.log(isNaN(artId.substr(artId.length - 1)));
+      // console.log(isNaN(artId.substr(artId.length - 1)));
       this.setState({
         artId, useEyeBg
       })
@@ -173,6 +175,7 @@ export default class ElementLayout extends Component {
         viewBox={vb}
         className={`icon skin ${skinId}Skin`}
         ref={svg => this.$svg = svg}
+        style={{fill:this.state.skinColor}}
       >
         <use xlinkHref={`${this.state.spriteSheet}#${skinId}Skin`} />
       </svg>
@@ -197,13 +200,16 @@ export default class ElementLayout extends Component {
 
     //make sure the eyeballs never scale even when the eyes do.
     if (this.state.id == 'leftEyeBall' || this.state.id == 'rightEyeBall') scaleStyle = 'scale(.5,.5)';
-    if (this.state.id == 'face') scaleStyle = 'scale('+this.props.data.artSx+','+this.props.data.artSy+')';
+    if (this.state.id == 'face') scaleStyle = 'scale('+this.props.data.element.artSx+','+this.props.data.element.artSy+')';
+
+    let skinStyle = this.state.useEyeBg?{backgroundColor:this.state.skinColor}:{}
+    if (this.state.id == 'face') skinStyle={fill:this.state.skinColor}
 
     return (
       <div className={`element-scale ${this.state.id}`} style={{transform:scaleStyle}}>
       <div className={`element-supersize ${this.state.id}`}>
-        {this.state.id == 'rightEye' && this.props.data.useLids && this.renderLid(this.state.id)}
-        {this.state.id == 'leftEye' && this.props.data.useLids && this.renderLid(this.state.id)}
+        {this.state.id == 'rightEye' && this.props.data.element.useLids && this.renderLid(this.state.id)}
+        {this.state.id == 'leftEye' && this.props.data.element.useLids && this.renderLid(this.state.id)}
 
         {this.state.id == 'rightEar' && this.renderSkin(artId)}
         {this.state.id == 'leftEar' && this.renderSkin(artId)}
@@ -212,6 +218,7 @@ export default class ElementLayout extends Component {
           viewBox={vb}
           className={`icon ${id} ${this.state.useEyeBg?'useEyeBg':''}`}
           ref={svg => this.$svg = svg}
+          style={skinStyle}
         >
           <use xlinkHref={`${this.state.spriteSheet}#${artId}`} />
         </svg>
@@ -258,18 +265,18 @@ export default class ElementLayout extends Component {
 
 
 
-    if (this.state.id=='leftEye' || this.state.id=='rightEye' && this.props.data.useMask) {
+    if (this.state.id=='leftEye' || this.state.id=='rightEye' && this.props.data.element.useMask) {
       eyebg = <div
           className={`eyebg ${this.state.id} ${this.state.artId}` }
           style={{
-            backgroundColor: this.props.data.bgColor,
+            backgroundColor: this.props.data.element.bgColor,
             transform:'scale('+sx+','+sy+')',
             /*maskImage: 'url(/assets/eye01.svg)',
             maskSize: '100%'*/
           }}></div>;
     }
 
-    let isEyeBall = (this.state.id=='leftEyeBall' || this.state.id=='rightEyeBall')?'isEyeBall '+this.props.data.artid:'';
+    let isEyeBall = (this.state.id=='leftEyeBall' || this.state.id=='rightEyeBall')?'isEyeBall '+this.props.data.element.artid:'';
     // if(isEyeBall) console.log('pussy',this.props);    -webkit-mask-size: 100% 40%;
     let isEyeBallStyle = (this.state.id=='leftEyeBall' || this.state.id=='rightEyeBall')?'mis'+(Math.round(sy*100)+5):'';
 

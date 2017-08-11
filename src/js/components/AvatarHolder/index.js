@@ -36,7 +36,7 @@ export default class AvatarHolder extends Component {
     /*this.state={
       rot:90
     }*/
-
+    console.log('AH',props);
 
   }
 
@@ -102,7 +102,7 @@ export default class AvatarHolder extends Component {
       tl.pause();
     }
   }
-  renderEyeBall(element){
+  renderEyeBall(element,skinColor){
     //when used, eyeballs are initialized here.
 
     // console.log('eyeball',this.props);
@@ -114,16 +114,20 @@ export default class AvatarHolder extends Component {
         controls={this.props.controls}
         user={this.props.user}
         data={{
-          'w'         : element.w,//, * .75,
-          'h'         : element.h,//, * .75,
-          'sx'        : .5,
-          'sy'        : .5,
-          'id'        : element.id+'Ball',
-          'artid'     : element.artId,
-          'eyeBallId' : element.eyeBallId,
-          'x'         : 0,
-          'y'         : 0,
-          'bgColor'   : element.bgColor
+          element:{
+            'w'         : element.w,//, * .75,
+            'h'         : element.h,//, * .75,
+            'sx'        : .5,
+            'sy'        : .5,
+            'id'        : element.id+'Ball',
+            'artid'     : element.artId,
+            'eyeBallId' : element.eyeBallId,
+            'x'         : 0,
+            'y'         : 0,
+            'bgColor'   : element.bgColor
+          },
+          skinColor:skinColor
+
         }}/>
     )
   }
@@ -143,7 +147,7 @@ export default class AvatarHolder extends Component {
         actions={this.props.actions}
         timeline={this.props.timeline}
         controls={this.props.controls}
-        data={element}
+        data={{element:element,skinColor:activeAvatar.skinColor}}
         user={this.props.user}/>
     )
 
@@ -155,17 +159,16 @@ export default class AvatarHolder extends Component {
     }
 
     let mappedEyes = allEyes.map(element =>
-    <TimelineEngine
-      key={element.id}
-      actions={this.props.actions}
-      timeline={this.props.timeline}
-      controls={this.props.controls}
-      data={element}
-      user={this.props.user}>
-      {element.useEyeBall && this.renderEyeBall(element)}
-    </TimelineEngine>
+      <TimelineEngine
+        key={element.id}
+        actions={this.props.actions}
+        timeline={this.props.timeline}
+        controls={this.props.controls}
+        data={{element:element,skinColor:activeAvatar.skinColor}}
+        user={this.props.user}>
+        {element.useEyeBall && this.renderEyeBall(element,activeAvatar.skinColor)}
+      </TimelineEngine>
     )
-
     return (
       <div className={ `${styles}` }>
         <div className="avatarHolder">
@@ -178,7 +181,7 @@ export default class AvatarHolder extends Component {
             timeline={this.props.timeline}
             controls={this.props.controls}
             user={this.props.user}
-            data={activeAvatar.mainElement}
+            data={{element:activeAvatar.mainElement,skinColor:activeAvatar.skinColor}}
           >
 
             {mappedEyes}
