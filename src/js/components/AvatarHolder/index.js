@@ -102,7 +102,7 @@ export default class AvatarHolder extends Component {
       tl.pause();
     }
   }
-  renderEyeBall(element,skinColor){
+  renderEyeBall(element,colors){
     //when used, eyeballs are initialized here.
 
     // console.log('eyeball',this.props);
@@ -127,7 +127,7 @@ export default class AvatarHolder extends Component {
             'eyeColor'  : element.eyeColor,
             'bgColor'   : element.bgColor
           },
-          skinColor:skinColor
+          colors:colors
 
         }}/>
     )
@@ -148,7 +148,7 @@ export default class AvatarHolder extends Component {
         actions={this.props.actions}
         timeline={this.props.timeline}
         controls={this.props.controls}
-        data={{element:element,skinColor:activeAvatar.skinColor}}
+        data={{element:element,colors:activeAvatar.colors}}
         user={this.props.user}/>
     )
 
@@ -165,9 +165,9 @@ export default class AvatarHolder extends Component {
         actions={this.props.actions}
         timeline={this.props.timeline}
         controls={this.props.controls}
-        data={{element:element,skinColor:activeAvatar.skinColor}}
+        data={{element:element,colors:activeAvatar.colors}}
         user={this.props.user}>
-        {element.useEyeBall && this.renderEyeBall(element,activeAvatar.skinColor,element.eyeColor)}
+        {element.useEyeBall && this.renderEyeBall(element,activeAvatar.colors)}
       </TimelineEngine>
     )
     return (
@@ -182,7 +182,7 @@ export default class AvatarHolder extends Component {
             timeline={this.props.timeline}
             controls={this.props.controls}
             user={this.props.user}
-            data={{element:activeAvatar.mainElement,skinColor:activeAvatar.skinColor}}
+            data={{element:activeAvatar.mainElement.face,colors:activeAvatar.colors,extras:activeAvatar.mainElement}}
           >
 
             {mappedEyes}

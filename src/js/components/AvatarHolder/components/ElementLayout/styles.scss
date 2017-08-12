@@ -9,6 +9,14 @@ $skintone:pink;
     top: 0;
   }
 
+  /*.hairBackShape{z-index: 1;}
+  .hairBack{z-index: 2;}
+  .faceShape{z-index:3;}
+  .face{z-index:4!important;}
+  .faceElement{z-index: 5;}*/
+  .hairFrontShape{z-index: 99;position:absolute;}
+  .hairFront{z-index: 100;position:absolute;}
+
   .rightEyeBall.isEyeBall,.leftEyeBall.isEyeBall,.rightEye .eyebg,.leftEye .eyebg{
       &.eye0{
         -webkit-mask-image: url('/assets/eye0.png');
@@ -57,20 +65,20 @@ $skintone:pink;
         position:absolute;
         top:0;
         left:0;
-        svg{
-          z-index: 1;
+        svg.face{
+          position: absolute;
         }
         &.rightEye,&.leftEye{
           .icon.eye.useEyeBg{
             // background-color: $skintone;
           }
         }
-        .skin{
+        .shape{
           position: absolute;
           top:0;
           left:0;
           // fill:$skintone;
-          z-index: -1;
+          // z-index: -1;
           width:100%;
           height:100%;
           margin-top:0;

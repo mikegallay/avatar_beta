@@ -9,7 +9,12 @@ export default function reducer(state={
     avatars:{
       avatar01:{
         skinColor: 'pink',
-        mainElement: {artId: 'face0',id:'face',w:350,h:350,sx:.5,sy:.5,artSx:.4,artSy:.5},
+        hairColor: 'cyan',
+        mainElement:      {
+          face:   {artId:'face0',id:'face',w:350,h:350,sx:.5,sy:.5,artSx:.4,artSy:.5},
+          // hairColor: 'cyan',
+          hairBack:  'hair0',
+        },
         eyes:{
           leftEye :       {artId: 'eye1', id:'leftEye', eyeColor:'blue',useEyeBall: false, eyeBallId:'eyeBall0', bgColor:'white',useLids:true,useMask:true,w:60,h:60,x:38,y:42,sx:.5,sy:.5},
           rightEye :      {artId: 'eye1', id:'rightEye', eyeColor:'blue',useEyeBall: false, eyeBallId:'eyeBall0', bgColor:'white',useLids:true,useMask:true,w:60,h:60,x:62,y:42,sx:.5,sy:.5},
@@ -22,11 +27,18 @@ export default function reducer(state={
           leftBrow :      {artId: 'brow0', id:'leftBrow',w:60,h:60,x:36,y:33,sx:.5,sy:.5},
           mouth :         {artId: 'mouth0', id:'mouth',w:110,h:110,x:50,y:62,sx:.5,sy:.5},
           nose :          {artId: 'nose0', id:'nose',w:100,h:100,x:50,y:43,sx:.5,sy:.5},
+          hairFront :     {artId: 'hair0', id:'hairFront',w:350,h:350,x:0,y:0,sx:.4,sy:.5},
         },
       },
       avatar02:{
-        skinColor: 'lightblue',
-        mainElement: {artId: 'face3',id:'face',w:350,h:350,sx:.5,sy:.5,artSx:.4,artSy:.5},
+        colors: {
+          skinColor: 'lightblue',
+          hairColor: 'cyan',
+        },
+        mainElement:      {
+          face:   {artId:'face3',id:'face',w:350,h:350,sx:.5,sy:.5,artSx:.4,artSy:.5},
+          hairBack:  'hair0',
+        },
         eyes:{
           leftEye :       {artId: 'eye0', id:'leftEye', eyeColor:'lightblue',useEyeBall: true, eyeBallId:'eyeBall1', bgColor:'white',useLids:true,useMask:true,w:60,h:60,x:38,y:42,sx:.5,sy:.5},
           rightEye :      {artId: 'eye0', id:'rightEye', eyeColor:'lightgreen',useEyeBall: true, eyeBallId:'eyeBall1', bgColor:'white',useLids:true,useMask:true,w:60,h:60,x:62,y:42,sx:.5,sy:.5},
@@ -39,6 +51,7 @@ export default function reducer(state={
           leftBrow :      {artId: 'brow0', id:'leftBrow',w:60,h:60,x:36,y:33,sx:.5,sy:.5},
           mouth :         {artId: 'mouth0', id:'mouth',w:110,h:110,x:50,y:62,sx:.5,sy:.5},
           nose :          {artId: 'nose2', id:'nose',w:100,h:100,x:50,y:43,sx:.5,sy:.5},
+          hairFront:      {artId: 'hair0', id:'hairFront',w:350,h:350,x:0,y:0,sx:.4,sy:.5},
         },
       },
     },

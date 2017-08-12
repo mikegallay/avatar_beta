@@ -50,35 +50,12 @@ export default class TimelineEngine extends Component {
       // subTimelines[id].from('.'+id+'.element-scale',.25,{scaleX:0,scaleY:0, ease:Linear.easeNone})
       this.setState({tlInit:true})
     }
-/*
-    // set a default tl animation
-    }else if (id == 'leftEar' || id == 'rightEar' || id == 'leftBrow' || id == 'rightBrow' || id == 'leftEye' || id == 'rightEye' || id == 'nose' || id == 'mouth'){
-      var subtl = subTimelines[id];
-      // console.log('here',this.props.data.id);
-      let diff = '-=15px';
-      if (id == 'nose') diff = 0;
-      if (id == 'mouth') diff = '+=15px'
-      // subtl.to('.'+id+'.element-holder',.5,{rotationZ:360,repeat:0, ease:Linear.easeNone},0)
-      subtl.to('.'+id+'.element-scale',.5,{scaleX:1,scaleY:.5,yoyo:true, repeat:1, repeatDelay:.5,ease:Linear.easeNone},0)
-      subtl.to('.'+id+'.element-holder',.15,{top:diff,yoyo:true, repeat:3, ease:Linear.easeNone},.2)
-      // subtl.pause();
-
-    }  */
   }
+
   componentDidMount(){
     // console.log('TimelineEngine',this.props);
+  }
 
-  }
-  /*renderAnimationObjects(){
-    return (
-      <ElementLayout actions={this.props.actions} data={this.props.data}>
-        {this.props.children}
-      </ElementLayout>
-    )
-  }
-  renderControlsHolder(){
-    return <ElementControls actions={this.props.actions} activeControl={this.props.activeControl} data={this.props.data}/>
-  }*/
   render() {
     return (
       <div className={ `${styles} ${this.props.data.element.id}` }>
@@ -91,10 +68,6 @@ export default class TimelineEngine extends Component {
         >
           {this.props.children}
         </ElementLayout>
-
-        {/*!this.state.isMaster && this.renderAnimationObjects()}
-        {/*{!this.state.isMaster && this.renderControlsHolder()}
-        <ControlsAnimation/>*/}
       </div>
     )
   }

@@ -6,13 +6,18 @@ import { styles } from './styles.scss';
 const url = '/assets/icon-sprite-def.svg';
 const svgScale = 50;
 
+let Color = require('color');
+
 export default class ElementLayout extends Component {
   constructor(props){
     super(props)
     console.log('ElementLayout',props);
+
     const data = this.props.data
+    const extras = data.extras ? data.extras : null
     const user = this.props.user.user
     const id = data ? data.element.id : ''
+
     const type = id === 'face' ? 'main-element' : 'child-element'
 
     this.state = {
@@ -35,16 +40,19 @@ export default class ElementLayout extends Component {
       fyValue    : 1,
       dxValue    : 0,
       dyValue    : 0,
-      skinColor  : data ? data.skinColor : 'yellow',
-      eyeColor  : data ? data.element.eyeColor : 'none',
+      skinColor  : data ? data.colors.skinColor : 'yellow',
+      eyeColor   : data ? data.element.eyeColor : 'none',
+      hairColor  : data ? data.colors.hairColor : 'green',
+      hairBack   : extras ? extras.hairBack + 'Back' : 'none'
     }
+
   }
 
 
   componentDidMount() {
     var that = this
     let xs = .5;
-
+    // console.log('hairColor',this.state.hairColor);
     this.$element.addEventListener('click',function(){
       var id = that.props.data.element.id;
       // console.log('clicked',that.props.data.id);
@@ -150,7 +158,7 @@ export default class ElementLayout extends Component {
   }
 
   renderLid(id){
-    // console.log('renderSkin',id);
+    // console.log('renderShape',id);
     let vb = '0 0 ' +(this.state.w * svgScale)+' '+(this.state.h * svgScale);
 
     return(
@@ -164,21 +172,37 @@ export default class ElementLayout extends Component {
     )
   }
 
-  renderSkin(id){
-    // console.log('renderSkin',id);
-    let skinId = id;
+  renderShape(id,color,identifier){
+    // console.log('renderShape',id);
+    let shapeId = id;
     let vb = '0 0 ' +(this.state.w * svgScale)+' '+(this.state.h * svgScale);
-    if (skinId == 'rightEye' || skinId == 'leftEye') skinId='eye';
-    if (skinId == 'rightEar' || skinId == 'leftEar') skinId='ear';
+    if (shapeId == 'rightEye' || shapeId == 'leftEye') shapeId='eye';
+    if (shapeId == 'rightEar' || shapeId == 'leftEar') shapeId='ear';
     // console.log(id);
     return(
       <svg
         viewBox={vb}
-        className={`icon skin ${skinId}Skin`}
+        className={`icon shape ${shapeId}Shape ${identifier}`}
         ref={svg => this.$svg = svg}
-        style={{fill:this.state.skinColor}}
+        style={{fill:color}}
       >
-        <use xlinkHref={`${this.state.spriteSheet}#${skinId}Skin`} />
+        <use xlinkHref={`${this.state.spriteSheet}#${shapeId}Shape`} />
+      </svg>
+    )
+  }
+
+  renderHair(id,identifier){
+    // console.log('renderShape',id);
+    let hairId = id;
+    let vb = '0 0 ' +(this.state.w * svgScale)+' '+(this.state.h * svgScale);
+    // console.log(id);
+    return(
+      <svg
+        viewBox={vb}
+        className={`icon hair shape ${hairId} ${identifier}`}
+        ref={svg => this.$svg = svg}
+      >
+        <use xlinkHref={`${this.state.spriteSheet}#${hairId}`} />
       </svg>
     )
   }
@@ -191,6 +215,7 @@ export default class ElementLayout extends Component {
     let eyeBallId = this.state.eyeBallId;
     let vb = '0 0 ' +(this.state.w * svgScale)+' '+(this.state.h * svgScale);
     if (id == 'rightEyeBall' || id == 'leftEyeBall') artId=eyeBallId;
+    if (id == 'hairFront') artId=artId+"Front";
 
     if (id == 'rightEye' || id == 'leftEye') id='eye';
     if (id == 'rightBrow' || id == 'leftBrow') id='brow';
@@ -206,25 +231,39 @@ export default class ElementLayout extends Component {
     let skinStyle = this.state.useEyeBg?{backgroundColor:this.state.skinColor}:{}
     // if (this.state.id == 'face') skinStyle={fill:this.state.skinColor}
 
+    let col = Color(this.state.hairColor).darken(.25);
+
+    console.log('this.state.hair',this.state.hair);
     return (
       <div className={`element-scale ${this.state.id}`} style={{transform:scaleStyle}}>
       <div className={`element-supersize ${this.state.id}`}>
         {this.state.id == 'rightEye' && this.props.data.element.useLids && this.renderLid(this.state.id)}
         {this.state.id == 'leftEye' && this.props.data.element.useLids && this.renderLid(this.state.id)}
 
-        {this.state.id == 'rightEar' && this.renderSkin(artId)}
-        {this.state.id == 'leftEar' && this.renderSkin(artId)}
+        {this.state.id == 'rightEar' && this.renderShape(artId,this.state.skinColor,'earShape')}
+        {this.state.id == 'leftEar' && this.renderShape(artId,this.state.skinColor,'earShape')}
 
-        {this.state.id == 'face' && this.renderSkin(artId)}
+
+        {this.state.hair != [] && this.state.id == 'face' && this.renderShape(this.state.hairBack,col,'hairBackShape')}
+        {this.state.hair != [] && this.state.id == 'face' && this.renderHair(this.state.hairBack,'hairBack')}
+
+        {/*this.state.id == 'face' && this.renderNeck()*/}
+        {this.state.id == 'face' && this.renderShape(artId,this.state.skinColor,'faceShape')}
+
+        {this.state.id == 'hairFront' && this.renderShape(artId,this.state.hairColor,'hairFrontShape')}
 
         <svg
           viewBox={vb}
-          className={`icon ${id}`}
+          className={`icon ${id} faceElement`}
           ref={svg => this.$svg = svg}
           style={skinStyle}
         >
           <use xlinkHref={`${this.state.spriteSheet}#${artId}`} />
         </svg>
+
+        {/*this.state.hair != [] && this.state.id == 'face' && this.renderShape(this.state.hair[0],this.state.hairColor,'hairFrontShape')}
+        {this.state.hair != [] && this.state.id == 'face' && this.renderHair(this.state.hair[0],'hairFront')*/}
+
 
         </div>
 
