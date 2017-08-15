@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router'
 
+import Page from "./components/Page"
+
 import Archives from "./containers/Archives"
 import News from "./containers/News"
 
@@ -8,11 +10,14 @@ import News from "./containers/News"
 import App from "./containers/App"
 import Layout from "./containers/Layout"
 import Build from "./containers/Build"
+import Welcome from "./containers/Welcome"
 
 export default (
-  <Route path="/" component={Layout}>
-    <IndexRoute component={Archives}></IndexRoute>
-    <Route path="archives" name="archives" component={Archives}></Route>
-    <Route path="news" name="news" component={News}></Route>
+  <Route path="/" component={App}>
+    <IndexRoute component={Welcome}></IndexRoute>
+    <Route path="/build" component={Build}>
+      <Route path="/build/:id" component={Page(Build, 'build-detail')} />
+    </Route>
+    <Route path="/news" component={News}></Route>
   </Route>
 )

@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { styles } from './styles.scss';
 import { connect } from "react-redux"
+import { Link } from 'react-router';
 
-import AvatarHolder from '../../components/AvatarHolder'
-import BuildHolder from '../../components/BuildHolder'
-
-export default class Build extends Component {
+export default class Welcome extends Component {
   constructor(props){
-    console.log('build',props);
     super(props)
   }
   componentDidUpdate() {
@@ -21,10 +18,11 @@ export default class Build extends Component {
 
     return (
       <div className={ `${styles}` }>
-        <div className='build-holder'>
-          <AvatarHolder/>
-          <h2>fuck</h2>
-          <BuildHolder/>
+        <div className='welcome-holder'>
+          <h1>Welcome</h1>
+          <Link to={ `/build/mouth` } >
+    				Start Building
+    			</Link>
         </div>
       </div>
     )

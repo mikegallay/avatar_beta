@@ -3,12 +3,12 @@ export default function reducer(state={
       id: null,
       name: null,
       age: null,
-      spriteSheet: 'assets/icon-sprite-def01.svg',
+      // spriteSheet: '/assets/icon-sprite-def01.svg',
       activeAvatar:'avatar02',
     },
     avatars:{
       avatar01:{
-        spriteSheet: 'assets/icon-sprite-def01.svg',
+        spriteSheet: '/assets/icon-sprite-def01.svg',
         colors: {
           skinColor: 'lightblue',
           hairColor: 'cyan',
@@ -33,7 +33,7 @@ export default function reducer(state={
         },
       },
       avatar02:{
-        spriteSheet: 'assets/icon-sprite-def01.svg',
+        spriteSheet: '/assets/icon-sprite-def01.svg',
         colors: {
           skinColor: 'lightblue',
           hairColor: 'cyan',
