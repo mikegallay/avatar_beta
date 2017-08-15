@@ -11,7 +11,7 @@ let Color = require('color');
 export default class ElementLayout extends Component {
   constructor(props){
     super(props)
-    console.log('ElementLayout',props);
+    // console.log('ElementLayout',props);
 
     const data = this.props.data
     const extras = data.extras ? data.extras : null
@@ -30,7 +30,8 @@ export default class ElementLayout extends Component {
       type      : type,
       x         : data ? data.element.x : 0,
       y         : data ? data.element.y : 0,
-      spriteSheet : user ? user.spriteSheet : '/assets/icon-sprite-def01.svg',
+      activeAvatar : user ? user.activeAvatar : 'avatar01',
+      spriteSheet : user ? this.props.user.avatars[user.activeAvatar].spriteSheet : '/assets/icon-sprite-def01.svg',
       rxValue    : 0,
       ryValue    : 0,
       rzValue    : 0,
@@ -75,9 +76,9 @@ export default class ElementLayout extends Component {
     let initPosVals = this.props.controls.initPositionValues
 
     // console.log('initPosVals',initPosVals);
-    if (this.state.spriteSheet != this.props.user.user.spriteSheet){
+    if (this.state.spriteSheet != this.props.user.avatars[this.state.activeAvatar].spriteSheet){
       this.setState({
-        spriteSheet:this.props.user.user.spriteSheet
+        spriteSheet:this.props.user.avatars[this.state.activeAvatar].spriteSheet
       })
     }
 
@@ -233,7 +234,7 @@ export default class ElementLayout extends Component {
 
     let col = Color(this.state.hairColor).darken(.25);
 
-    console.log('this.state.hair',this.state.hair);
+    // console.log('this.state.hair',this.state.hair);
     return (
       <div className={`element-scale ${this.state.id}`} style={{transform:scaleStyle}}>
       <div className={`element-supersize ${this.state.id}`}>

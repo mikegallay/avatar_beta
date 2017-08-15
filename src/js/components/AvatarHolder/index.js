@@ -55,6 +55,7 @@ export default class AvatarHolder extends Component {
     // console.log('AvatarHolder',this.props);
 
     var that = this
+    var activeAvatar = this.props.user.user.activeAvatar;
     // TweenMax.to('.face .element-rotateY',1,{rotationY:45,delay:1,ease:Linear.easeNone})
     this.$clickme.addEventListener('click',function(){
       that.playTL();
@@ -63,7 +64,7 @@ export default class AvatarHolder extends Component {
     this.$toggleSprite.addEventListener('click',function(){
         // console.log('toggleSprite',that.props.user.spriteSheet);
       let newURL = 'assets/icon-sprite-def01.svg'
-      if (that.props.user.user.spriteSheet == newURL){
+      if (that.props.user.avatar[activeAvatar].spriteSheet == newURL){
         newURL = 'assets/icon-sprite-def02.svg'
       }
       // console.log('toggleSpriteSheet',newURL);

@@ -9,6 +9,7 @@ export default class AssetGrid extends Component {
     this.state={
       id:props.id,
       activeAvatar:props.user.user.activeAvatar,
+      spriteSheet:props.user.avatars[props.user.user.activeAvatar].spriteSheet,
       activeArt:null,
       initArt:null,
       // assetId:props.id=='mouth'?'mouth':'eyes',
@@ -84,7 +85,7 @@ export default class AssetGrid extends Component {
           className='icon'
 
         >
-          <use xlinkHref={`${this.props.user.user.spriteSheet}#${this.state.initArt}${element}`} />
+          <use xlinkHref={`${this.state.spriteSheet}#${this.state.initArt}${element}`} />
         </svg>
       </div>
     )
