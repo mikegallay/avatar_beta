@@ -15,21 +15,25 @@ export default function Page(Container, pageName) {
 		}
 
 		componentWillAppear(next) {
+			console.log('will appear',pageName);
 		}
 
 		componentWillEnter(next) {
+			console.log('will enter',pageName);
 		}
 
 		componentDidEnter() {
+			console.log('did enter',pageName);
 		}
 
 		componentWillLeave(next) {
+			console.log('will leave',pageName);
 		}
 
 		render() {
 			return (
 				<div
-					className={ `${styles} ${pageName}` }
+					className={ `${styles} ${pageName} hello` }
 					ref={ wrapper => this.$wrapper = wrapper }
 				>
 					<Container data='mouth'/>

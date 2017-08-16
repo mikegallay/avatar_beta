@@ -45,11 +45,11 @@ export default class BuildHolder extends Component {
     return (
       <div className={ `${styles}` }>
         <div className='buildHolder'>
-          <h3 className='panel-title'>CHOOSE A MOUTH</h3>
+          <h3 className='panel-title'>CHOOSE A {this.props.data.id}</h3>
           <div className='grid-holder'>
             <AssetGrid
               avatarBuilt={false}
-              id='mouth'
+              id={this.props.data.id}
               user={this.props.user}
               avatar={this.props.avatar}
               action={this.props.actions.setActiveInput}
