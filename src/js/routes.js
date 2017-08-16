@@ -14,7 +14,7 @@ import Welcome from "./containers/Welcome"
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Welcome}></IndexRoute>
+    <IndexRoute component={Layout}></IndexRoute>
     <Route path="/build" component={Build}>
       <Route path="/build/:id" component={Page(Build, 'build-detail')} />
     </Route>

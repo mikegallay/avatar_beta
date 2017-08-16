@@ -61,7 +61,9 @@ export default class AssetGrid extends Component {
       console.log('avatar build',this.props.avatarBuilt);
       let property = 'mainElement';
       this.props.actions.adjustKeyableValue(this.state.id,'ID',e.target.id);
-      if(this.props.avatarBuilt){
+
+      //only run this if the avatar is built (coming from ControlsInput)
+      if(!this.props.avatarBuilt){
         this.props.actions.setBuildItemStyle(this.state.id,'ID',e.target.id);
       }
 
