@@ -42,44 +42,44 @@ export default class ControlsInput extends Component {
 
   }
   knobChangeRX = (newValue) => {
-    this.props.action(this.props.id,'RX',Number(newValue));
+    this.props.actions.adjustKeyableValue(this.props.id,'RX',Number(newValue));
     this.setState({rxvalue: newValue});
   }
   knobChangeRXEnd = (newValue) => {}
 
   knobChangeRY = (newValue) => {
-    this.props.action(this.props.id,'RY',Number(newValue));
+    this.props.actions.adjustKeyableValue(this.props.id,'RY',Number(newValue));
     this.setState({ryvalue: newValue});
   }
   knobChangeRYEnd = (newValue) => {}
 
   knobChangeRZ = (newValue) => {
-    this.props.action(this.props.id,'RZ',Number(newValue));
+    this.props.actions.adjustKeyableValue(this.props.id,'RZ',Number(newValue));
     this.setState({rzvalue: newValue});
   }
   knobChangeRZEnd = (newValue) => {}
 
   flipChangeY = (cb) => {
     let flip = this.state.fyvalue;
-    this.props.action(this.props.id,'FY',this.$fyflip.checked?flip*-1:flip);
+    this.props.actions.adjustKeyableValue(this.props.id,'FY',this.$fyflip.checked?flip*-1:flip);
   }
 
   flipChangeX = (cb) => {
     let flip = this.state.fxvalue;
-    this.props.action(this.props.id,'FX',this.$fxflip.checked?flip*-1:flip);
+    this.props.actions.adjustKeyableValue(this.props.id,'FX',this.$fxflip.checked?flip*-1:flip);
   }
 
   onSliderChangeSX = (value) => {
     const val = Number(value/100);
     this.setState({sxvalue: val});
-    this.props.action(this.props.id,'SX',val);
+    this.props.actions.adjustKeyableValue(this.props.id,'SX',val);
   }
   onSliderChangeSY = (value) => {
     const val = Number(value/100);
     this.setState({syvalue: val});
-    this.props.action(this.props.id,'SY',val);
-    if (this.props.id == "leftEye") this.props.action('leftEyeBall','SY',val);
-    if (this.props.id == "rightEye") this.props.action('rightEyeBall','SY',val);
+    this.props.actions.adjustKeyableValue(this.props.id,'SY',val);
+    if (this.props.id == "leftEye") this.props.actions.adjustKeyableValue('leftEyeBall','SY',val);
+    if (this.props.id == "rightEye") this.props.actions.adjustKeyableValue('rightEyeBall','SY',val);
   }
   handleScaleKeyUp(e){
     if (e.keyCode == 38 || e.keyCode == 40){
@@ -113,7 +113,7 @@ export default class ControlsInput extends Component {
     if (val < 0) val = 0;
     if (val != this.state.sxvalue){
       this.setState({sxvalue: val});
-      this.props.action(this.props.id,'SX',val);
+      this.props.actions.adjustKeyableValue(this.props.id,'SX',val);
     }
   }
   handleScaleYInput(e) {
@@ -123,9 +123,9 @@ export default class ControlsInput extends Component {
     if (val < 0) val = 0;
     if (val != this.state.syvalue){
       this.setState({syvalue: val});
-      this.props.action(this.props.id,'SY',val);
-      if (this.props.id == "leftEye") this.props.action('leftEyeBall','SY',val);
-      if (this.props.id == "rightEye") this.props.action('rightEyeBall','SY',val);
+      this.props.actions.adjustKeyableValue(this.props.id,'SY',val);
+      if (this.props.id == "leftEye") this.props.actions.adjustKeyableValue('leftEyeBall','SY',val);
+      if (this.props.id == "rightEye") this.props.actions.adjustKeyableValue('rightEyeBall','SY',val);
     }
   }
 
@@ -134,13 +134,13 @@ export default class ControlsInput extends Component {
     let ychange = (y/this.state.xymax)*this.state.moveMax;
 
     if (this.props.id=="eyeFocus"){
-     this.props.action('leftEyeBall','DX',xchange);
-     this.props.action('leftEyeBall','DY',ychange);
-     this.props.action('rightEyeBall','DX',-xchange);
-     this.props.action('rightEyeBall','DY',ychange);
+     this.props.actions.adjustKeyableValue('leftEyeBall','DX',xchange);
+     this.props.actions.adjustKeyableValue('leftEyeBall','DY',ychange);
+     this.props.actions.adjustKeyableValue('rightEyeBall','DX',-xchange);
+     this.props.actions.adjustKeyableValue('rightEyeBall','DY',ychange);
     }else{
-     this.props.action(this.props.id,'DX',xchange);
-     this.props.action(this.props.id,'DY',ychange);
+     this.props.actions.adjustKeyableValue(this.props.id,'DX',xchange);
+     this.props.actions.adjustKeyableValue(this.props.id,'DY',ychange);
     }
   }
 

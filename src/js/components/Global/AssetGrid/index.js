@@ -37,6 +37,7 @@ export default class AssetGrid extends Component {
       activeArt:activeAsset[artKey],
       initArt:this.props.avatarBuilt?activeAsset[artKey]:''
     })
+    console.log('actionsss',this.props.avatarBuilt,this.props.actions);
     this.props.actions.adjustKeyableValue(this.state.id,'ID',activeAsset[artKey]);
 
   }
