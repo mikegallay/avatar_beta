@@ -37,7 +37,7 @@ export default class AssetGrid extends Component {
       activeArt:activeAsset[artKey],
       initArt:this.props.avatarBuilt?activeAsset[artKey]:''
     })
-    this.props.action(this.state.id,'ID',activeAsset[artKey]);
+    this.props.actions.adjustKeyableValue(this.state.id,'ID',activeAsset[artKey]);
 
   }
 
@@ -56,7 +56,15 @@ export default class AssetGrid extends Component {
       this.setState({
         activeArt:e.target.id
       })
-      this.props.action(this.state.id,'ID',e.target.id);
+
+      //'ID' is only used once the original avatar is build-next
+      console.log('avatar build',this.props.avatarBuilt);
+      let property = 'mainElement';
+      this.props.actions.adjustKeyableValue(this.state.id,'ID',e.target.id);
+      if(this.props.avatarBuilt){
+        this.props.actions.setBuildItemStyle(this.state.id,'ID',e.target.id);
+      }
+
 
    }
 

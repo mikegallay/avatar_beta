@@ -7,8 +7,10 @@ import { Link } from 'react-router';
 import AssetGrid from '../Global/AssetGrid'
 
 // import { fetchUser } from "../../actions/userActions"
-import { toggleActiveControl,adjustKeyableValue,toggleActiveInput,setActiveInput } from "../../actions/controlsActions"
-import { addKeyFrame } from "../../actions/timelineActions"
+import { setBuildItemStyle } from "../../actions/userActions"
+import { adjustKeyableValue } from "../../actions/controlsActions"
+
+// import { addKeyFrame } from "../../actions/timelineActions"
 
 @connect((store) => {
   return {
@@ -20,11 +22,8 @@ import { addKeyFrame } from "../../actions/timelineActions"
 },(dispatch) => {
   return {
     actions:bindActionCreators({
-      toggleActiveControl,
-      toggleActiveInput,
-      setActiveInput,
-      adjustKeyableValue,
-      addKeyFrame,
+      setBuildItemStyle,
+      adjustKeyableValue
     }, dispatch)
   }
 })
@@ -42,6 +41,7 @@ export default class BuildHolder extends Component {
   }
   componentDidUpdate() {
     this.getIndex();
+    // console.log('holder update',this.props);
   }
 
   componentDidMount(){
@@ -85,7 +85,7 @@ export default class BuildHolder extends Component {
               id={this.props.data.id}
               user={this.props.user}
               avatar={this.props.avatar}
-              action={this.props.actions.setActiveInput}
+              actions={this.props.actions}
               // activeAvatar={this.props.controls.initPositionValues[this.props.id+'ID']}
             />
 

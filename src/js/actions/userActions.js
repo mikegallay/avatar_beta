@@ -2,12 +2,6 @@ import axios from "axios";
 
 export function toggleSpriteSheet(newURL) {
 
-
-  /*return {
-    type: "TOGGLE_SPRITE_SHEET_FULFILLED",
-    payload: newURL
-  }*/
-
   return function(dispatch) {
     axios.get(newURL)
       .then((response) => {
@@ -16,6 +10,18 @@ export function toggleSpriteSheet(newURL) {
       .catch((err) => {
         dispatch({type: "TOGGLE_SPRITE_SHEET_REJECTED", payload: err})
       })
+  }
+}
+
+export function setBuildItemStyle(id,prop,value) {
+
+  return {
+    type: "SET_BUILD_ITEM_STYLE",
+    payload: {
+      id: id,
+      prop:prop,
+      value: value
+    }
   }
 }
 /*export function fetchUser() {

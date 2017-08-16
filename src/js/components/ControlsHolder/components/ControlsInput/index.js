@@ -222,7 +222,7 @@ export default class ControlsInput extends Component {
             id={this.props.id}
             user={this.props.user}
             avatar={this.props.avatar}
-            action={this.props.action}
+            actions={this.props.actions}
             // activeAvatar={this.props.controls.initPositionValues[this.props.id+'ID']}
           />
         </div>

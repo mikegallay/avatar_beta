@@ -73,6 +73,7 @@ export default class ElementLayout extends Component {
 
   }
   componentDidUpdate(){
+    console.log('elementLayout update',this.props);
     let initPosVals = this.props.controls.initPositionValues
 
     // console.log('initPosVals',initPosVals);

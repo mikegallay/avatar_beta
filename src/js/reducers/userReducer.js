@@ -79,13 +79,36 @@ export default function reducer(state={
           user: {...state.user, spriteSheet: action.payload},
         }
       }
-      /*case "SET_USER_NAME": {
+      case "SET_USER_NAME": {
         return {
-          ...state,
-          user: {...state.user, name: action.payload},
+          type: "SET_BUILD_ITEM_STYLE",
+          payload: {
+            id: id,
+            prop:prop,
+            value: value
+          }
         }
       }
-      case "SET_USER_AGE": {
+      case "SET_BUILD_ITEM_STYLE": {
+        console.log('setBuildItemStyle',action.payload);
+        let el = action.payload.id;
+        let prop = action.payload.prop;
+        let active = 'avatar02';
+        return {
+          ...state,
+          avatars: {
+            ...state.avatars,
+            [active]: {
+              ...state.avatars[active],
+              [prop]: {
+                ...state.avatars[active][prop],
+                [el] : action.payload.value
+              }
+            }
+          }
+        }
+      }
+      /*case "SET_USER_AGE": {
         return {
           ...state,
           user: {...state.user, age: action.payload},
