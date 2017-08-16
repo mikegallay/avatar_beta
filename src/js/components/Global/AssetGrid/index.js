@@ -10,10 +10,11 @@ export default class AssetGrid extends Component {
       id:props.id,
       activeAvatar:props.user.user.activeAvatar,
       spriteSheet:props.user.avatars[props.user.user.activeAvatar].spriteSheet,
-      activeArt:null,
-      initArt:null,
+      activeArt:props.id+'0',
+      initArt:'',
       // assetId:props.id=='mouth'?'mouth':'eyes',
-      assets:props.avatar.assets
+      assets:props.avatarBuilt?props.avatar.assetVars:props.avatar.assetStyles,
+
     }
   }
 
@@ -21,26 +22,20 @@ export default class AssetGrid extends Component {
     var that = this
 
     this.setActiveArt();
-    /*this.$cell.addEventListener('click',function(e){
-      // console.log('click',this.artId);
-      that.props.action(that.state.id,'ID',this.id);
-      // this.props.action(this.state.id,'ID',this.artId);
-    })*/
 
   }
   setActiveArt(){
     if (this.state.id == 'face' || this.state.id == 'leftEyeLid' || this.state.id == 'rightEyeLid') return;
     let artAsset = 'elements';
-    let artKey = 'artId';
+    let artKey = this.props.avatarBuilt?'artId':'';
     let artId = this.state.id == 'eyeFocus'?'leftEye':this.state.id;
     if (this.state.id == 'eyeFocus') artKey = 'eyeBallId';
     if (this.state.id == 'leftEye' || this.state.id == 'rightEye' || this.state.id == 'eyeFocus') artAsset = 'eyes';
     let activeAsset = this.props.user.avatars[this.props.user.user.activeAvatar][artAsset][artId];//.artId;
-    // console.log(this.state.id);
-    // console.log('set active art',activeAsset[artKey]);
+
     this.setState({
       activeArt:activeAsset[artKey],
-      initArt:activeAsset[artKey]
+      initArt:this.props.avatarBuilt?activeAsset[artKey]:''
     })
     this.props.action(this.state.id,'ID',activeAsset[artKey]);
 
@@ -70,6 +65,14 @@ export default class AssetGrid extends Component {
     if (assetId=='leftEye' || assetId=='rightEye') assetId = 'eyes';
 
     let assets = this.state.assets[assetId]?this.state.assets[assetId]:[];
+    let totalAssets = assets;
+
+    if (!isNaN(assets)) {
+      assets=[];
+      for (var i=0;i<totalAssets;i++){
+        assets.push(this.state.id+i);
+      }
+    }
 
     let mappedElements = assets.map(element =>
       <div
@@ -83,7 +86,6 @@ export default class AssetGrid extends Component {
           key={element}
           viewBox='0 0 100 100'
           className='icon'
-
         >
           <use xlinkHref={`${this.state.spriteSheet}#${this.state.initArt}${element}`} />
         </svg>

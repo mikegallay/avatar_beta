@@ -20,7 +20,7 @@ export default class Welcome extends Component {
       <div className={ `${styles}` }>
         <div className='welcome-holder'>
           <h1>Welcome</h1>
-          <Link to={ `/build/mouth` } >
+          <Link to={ `/build/face` } >
     				Start Building
     			</Link>
         </div>

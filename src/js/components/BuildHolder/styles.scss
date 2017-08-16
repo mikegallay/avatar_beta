@@ -10,11 +10,26 @@
     background: gray;
     text-align: center;
     padding-top: 10px;
-    .panel-title{
-      font-weight: bold;
-      text-transform: uppercase;
-      cursor:default;
-      font-size:.95em;
+    .build-menu{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1em;
+      .build-nav{
+        color:white;
+      }
+      .build-prev{
+
+      }
+      .panel-title{
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor:default;
+        font-size:.95em;
+      }
+      .build-next{
+
+      }
     }
     .grid-holder{
       width: 100%;
