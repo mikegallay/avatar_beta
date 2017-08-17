@@ -7,7 +7,7 @@ import BuildHolder from '../../components/BuildHolder'
 
 export default class Build extends Component {
   constructor(props){
-    // console.log('build',props);
+    console.log('build',props);
     super(props)
   }
   componentDidUpdate() {
@@ -23,7 +23,7 @@ export default class Build extends Component {
       <div className={ `${styles}` }>
         <div className='build-holder'>
           <AvatarHolder/>
-          <BuildHolder data={{id:this.props.params.id}}/>
+          <BuildHolder data={this.props.data.id}/>
         </div>
       </div>
     )

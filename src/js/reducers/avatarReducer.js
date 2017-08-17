@@ -1,7 +1,7 @@
 export default function reducer(state={
     id: null,
     activeInput:null,
-    buildOrder:['face','skinColor','hair','hairColor','eye','eyeColor','ear','brow','mouth','nose'],
+    buildOrder:['face','mouth','nose','eye','skinColor','hair','hairColor','eye','eyeColor','ear','brow','mouth','nose'],
     assetStyles:{
       face:4,
       skinColor:5,

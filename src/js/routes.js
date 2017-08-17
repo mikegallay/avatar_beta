@@ -14,10 +14,8 @@ import Welcome from "./containers/Welcome"
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Layout}></IndexRoute>
-    <Route path="/build" component={Build}>
-      <Route path="/build/:id" component={Page(Build, 'build-detail')} />
-    </Route>
-    <Route path="/news" component={News}></Route>
+    <IndexRoute component={Page(Welcome, 'welcome')}></IndexRoute>
+    <Route path="/build/:id" component={Page(Build, 'build')} />
+    <Route path="/news" component={Page(News, 'news')}></Route>
   </Route>
 )

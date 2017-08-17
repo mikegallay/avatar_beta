@@ -31,10 +31,11 @@ export default class BuildHolder extends Component {
   constructor(props){
 
     super(props)
+    console.log('bh',props);
     this.state={
       buildIndex:null,
-      buildOrder:this.props.avatar.buildOrder,
-      id:this.props.data.id,
+      buildOrder:props.avatar.buildOrder,
+      id:props.data,
       prev:null,
       next:null
     }
@@ -48,10 +49,38 @@ export default class BuildHolder extends Component {
     this.getIndex();
   }
 
+	/*componentWillEnter(next) {
+    console.log('yes will enter');
+		const lastPath = this.props.lastPath;
+		const el = ReactDOM.findDOMNode(this);
+		const tl = new TimelineMax();
+
+    tl
+      .set(el, { x: '-100%' })
+      .to(el, 0.6, { x: '0%', force3D: true, ease: Power2.easeIn })
+      // .call(setIsTransitioning, [false], null, 0.5)
+      .call(next);
+
+	}
+
+	componentDidEnter() {
+	}
+
+	componentWillLeave(next) {
+    console.log('yes will leave');
+		const el = ReactDOM.findDOMNode(this);
+		const nextPath = browserHistory.getCurrentLocation().pathname;
+		const tl = new TimelineMax();
+
+    tl
+      .set(el, { x: '0%' })
+      .to(el, 0.8, { x: '-100%', force3D: true, ease: Cubic.easeOut });
+	}*/
+
   getIndex(){
     let a = this.state.buildOrder;
-    let id = this.props.data.id;
-    let buildIndex = a.findIndex(x => id);
+    let id = this.state.id;
+    let buildIndex = a.indexOf(id);
     let prev = buildIndex-1>=0?buildIndex-1:null;
     let next = buildIndex+1<a.length?buildIndex+1:null;
 
@@ -59,7 +88,7 @@ export default class BuildHolder extends Component {
 
 
     if (this.state.buildIndex != buildIndex){
-      this.setState({buildIndex:buildIndex,prev:prev,next:next})
+      this.setState({buildIndex,prev,next})
     }
   }
 
@@ -82,7 +111,7 @@ export default class BuildHolder extends Component {
 
             <AssetGrid
               avatarBuilt={false}
-              id={this.props.data.id}
+              id={this.state.id}
               user={this.props.user}
               avatar={this.props.avatar}
               actions={this.props.actions}
