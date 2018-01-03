@@ -34,8 +34,9 @@
     .grid-holder{
       width: 100%;
       max-width: 475px;
-      height:200px;
+      height:85%;
       margin: 10px auto 0;
+      overflow:auto;
     }
   }
 }
