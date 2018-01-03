@@ -27,17 +27,30 @@ export default class AssetGrid extends Component {
   setActiveArt(){
     if (this.state.id == 'face' || this.state.id == 'leftEyeLid' || this.state.id == 'rightEyeLid') return;
     let artAsset = 'elements';
-    let artKey = this.props.avatarBuilt?'artId':'';
+
+    let artKey = this.props.avatarBuilt?'':'artId';
     let artId = this.state.id == 'eyeFocus'?'leftEye':this.state.id;
     if (this.state.id == 'eyeFocus') artKey = 'eyeBallId';
-    if (this.state.id == 'leftEye' || this.state.id == 'rightEye' || this.state.id == 'eyeFocus') artAsset = 'eyes';
-    let activeAsset = this.props.user.avatars[this.props.user.user.activeAvatar][artAsset][artId];//.artId;
+    if (this.state.id == 'eye' || this.state.id == 'leftEye' || this.state.id == 'rightEye' || this.state.id == 'eyeFocus') artAsset = 'eyes';
 
+
+
+    if (this.state.id == 'eye'){
+      artId = 'leftEye'
+    }else{
+
+    }
+
+    let activeAsset = this.props.user.avatars[this.props.user.user.activeAvatar][artAsset][artId];
+
+    // console.log('activeAsset',artAsset,artId,this.state.id);
+    // console.log('asdff',artKey, this.props.avatarBuilt,activeAsset);
+    // console.log('this.props.user',this.props.user);
     this.setState({
       activeArt:activeAsset[artKey],
       initArt:this.props.avatarBuilt?activeAsset[artKey]:''
     })
-    console.log('actionsss',this.props.avatarBuilt,this.props.actions);
+    // console.log('actionsss',this.props.avatarBuilt,this.props.actions);
     this.props.actions.adjustKeyableValue(this.state.id,'ID',activeAsset[artKey]);
 
   }

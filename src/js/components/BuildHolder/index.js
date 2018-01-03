@@ -86,7 +86,6 @@ export default class BuildHolder extends Component {
 
     console.log('asdf',id,buildIndex,prev,next);
 
-
     if (this.state.buildIndex != buildIndex){
       this.setState({buildIndex,prev,next})
     }
@@ -97,7 +96,7 @@ export default class BuildHolder extends Component {
       <div className={ `${styles}` }>
         <div className='buildHolder'>
           <div className='build-menu'>
-            <Link className='build-prev build-nav' to={ `/build/${this.state.buildOrder[this.state.prev]}` } >
+            <Link className='build-prev build-nav' to={ `/build/${this.state.buildOrder[this.state.prev]}?b=1` } >
               {this.state.buildOrder[this.state.prev]}
             </Link>
             <h3 className='panel-title'>CHOOSE A {this.state.id}</h3>

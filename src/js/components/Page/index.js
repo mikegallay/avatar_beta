@@ -9,9 +9,11 @@ export default function Page(Container, pageName) {
 	return class PageWrapper extends Component {
 		constructor(props) {
 			super(props);
-			console.log('wrapper',props,pageName);
+			// console.log('wrapper',props,pageName);
+			let dir = (props.location.query['b']==1)?'right':'left'
+			// console.log('query',dir);
 			this.state = {
-				pageName
+				pageName,dir
 			};
 		}
 
@@ -26,12 +28,23 @@ export default function Page(Container, pageName) {
 			const el = ReactDOM.findDOMNode(this);
 			const tl = new TimelineMax();
 
-	    /*tl
-	      .set(el, { x: '100%' })
-	      .to(el, 0.6, { x: '0%', force3D: true, ease: Power2.easeIn })
-	      // .call(setIsTransitioning, [false], null, 0.5)
-	      .call(next);*/
+			if (this.state.dir=='left'){
+				tl
+		      .set(el, { x: '0%' })
+		      .to(el, 0.6, { x: '0%', force3D: true, ease: Power2.easeIn })
+		      // .call(setIsTransitioning, [false], null, 0.5)
+		      .call(next);
+
+			}else{
+				tl
+		      .set(el, { x: '0%' })
+		      .to(el, 0.6, { x: '0%', force3D: true, ease: Power2.easeIn })
+		      // .call(setIsTransitioning, [false], null, 0.5)
+		      .call(next);
+
+			}
 		}
+
 
 		componentDidEnter() {
 			console.log('did enter',pageName);
@@ -43,11 +56,21 @@ export default function Page(Container, pageName) {
 			const nextPath = browserHistory.getCurrentLocation().pathname;
 			const tl = new TimelineMax();
 
-	    /*tl
-	      .set(el, { x: '0%' })
-	      .to(el, 0.8, { x: '-100%', force3D: true, ease: Cubic.easeOut })
-				tl.call(next, [], null, 0.8);*/
+			if (this.state.dir=='left'){
+				tl
+		      .set(el, { x: '0%' })
+		      .to(el, 0.8, { x: '-100%', force3D: true, ease: Cubic.easeOut })
+					tl.call(next, [], null, 0.8);
+
+			}else{
+				tl
+		      .set(el, { x: '0%' })
+		      .to(el, 0.8, { x: '-100%', force3D: true, ease: Cubic.easeOut })
+					tl.call(next, [], null, 0.8);
+
+			}
 		}
+
 
 		render() {
 			return (
